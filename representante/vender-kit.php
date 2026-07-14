@@ -450,7 +450,7 @@ $storeName = Configuracion::get('nombre_tienda', 'Solumedic');
 
     <?php if (empty($kits)): ?>
         <div class="panel" style="text-align:center;padding:32px;color:var(--muted)">
-            <div style="font-size:40px;margin-bottom:12px">📦</div>
+            <div style="font-size:40px;margin-bottom:12px"></div>
             <div style="font-weight:900;margin-bottom:6px">Sin kits disponibles</div>
             <div style="font-size:14px">No hay kits activos configurados.</div>
         </div>
@@ -478,7 +478,7 @@ $storeName = Configuracion::get('nombre_tienda', 'Solumedic');
                             <img class="kit-img" src="<?= htmlspecialchars($imgSrc) ?>"
                                  alt="<?= htmlspecialchars($kit['nombre']) ?>">
                         <?php else: ?>
-                            <div class="kit-img-placeholder">🧰</div>
+                            <div class="kit-img-placeholder"></div>
                         <?php endif; ?>
                         <div class="kit-info">
                             <div class="kit-name"><?= htmlspecialchars($kit['nombre']) ?></div>
@@ -491,7 +491,7 @@ $storeName = Configuracion::get('nombre_tienda', 'Solumedic');
                             <?php if ($disabled): ?>
                                 <div class="kit-no-stock">Sin stock</div>
                             <?php else: ?>
-                                <div class="kit-stock ok">✓ <?= $posibles ?> disponible<?= $posibles > 1 ? 's' : '' ?></div>
+                                <div class="kit-stock ok"><?= $posibles ?> disponible<?= $posibles > 1 ? 's' : '' ?></div>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -532,10 +532,10 @@ $storeName = Configuracion::get('nombre_tienda', 'Solumedic');
                                    oninput="onTelInput(this)">
                             <span id="tel-badge"
                                   style="display:none;position:absolute;top:50%;right:10px;transform:translateY(-50%);font-size:11px;font-weight:900;background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:99px">
-                                ✓ Existe
+                                Existe
                             </span>
                         </div>
-                        <button type="button" class="btn-buscar" onclick="abrirBusqueda()" title="Buscar cliente">🔍</button>
+                        <button type="button" class="btn-buscar" onclick="abrirBusqueda()" title="Buscar cliente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
                     </div>
                 </div>
                 <div>
@@ -664,7 +664,7 @@ $storeName = Configuracion::get('nombre_tienda', 'Solumedic');
         <div class="srch-handle"></div>
         <div class="srch-header">
             <span>Buscar cliente</span>
-            <button class="srch-close" onclick="cerrarBusqueda()">✕</button>
+            <button class="srch-close" onclick="cerrarBusqueda()">&times;</button>
         </div>
         <div class="srch-input-wrap">
             <input type="search" id="srch-input" placeholder="Nombre, teléfono, ciudad…"

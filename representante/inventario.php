@@ -29,11 +29,11 @@ function money_inv($value) {
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
     </style>
 </head>
-<body class="bg-[#fbfaf7] text-slate-950">
+<body class="bg-[#f0f5fa] text-slate-950">
     <main class="max-w-3xl mx-auto px-4 py-5 pb-32">
 
         <!-- HEADER -->
-        <div class="sticky top-0 -mx-4 px-4 py-3 bg-[#fbfaf7]/95 backdrop-blur border-b border-stone-200 mb-4 z-20">
+        <div class="sticky top-0 -mx-4 px-4 py-3 bg-[#f0f5fa]/95 backdrop-blur border-b border-stone-200 mb-4 z-20">
             <div class="flex items-center justify-between gap-3">
                 <div>
                     <p class="text-xs font-bold uppercase text-slate-500"><?= htmlspecialchars(Configuracion::get('nombre_tienda', 'Solumedic')) ?></p>
@@ -52,7 +52,7 @@ function money_inv($value) {
         <?php if (!empty($pendRecibidos)): ?>
         <section id="sec-recibidos" class="mb-5">
             <h2 class="text-sm font-black uppercase text-amber-700 mb-2 flex items-center gap-2">
-                <span>⚠️</span> Traspasos por confirmar (<?= count($pendRecibidos) ?>)
+                <span></span> Traspasos por confirmar (<?= count($pendRecibidos) ?>)
             </h2>
             <div class="grid gap-3">
                 <?php foreach ($pendRecibidos as $tr): ?>
@@ -73,11 +73,11 @@ function money_inv($value) {
                     <div class="flex gap-2">
                         <button onclick="responderTraspaso(<?= $tr['id'] ?>, 'confirmar')"
                                 class="flex-1 min-h-11 rounded-lg bg-emerald-600 text-white font-bold text-sm active:scale-95 transition">
-                            ✓ Aceptar
+                            Aceptar
                         </button>
                         <button onclick="responderTraspaso(<?= $tr['id'] ?>, 'rechazar')"
                                 class="flex-1 min-h-11 rounded-lg bg-red-100 text-red-700 font-bold text-sm active:scale-95 transition border border-red-200">
-                            ✗ Rechazar
+                            Rechazar
                         </button>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ function money_inv($value) {
         <!-- TRASPASOS ENVIADOS PENDIENTES -->
         <?php if (!empty($pendEnviados)): ?>
         <section id="sec-enviados" class="mb-5">
-            <h2 class="text-sm font-black uppercase text-slate-500 mb-2">📤 Enviados pendientes (<?= count($pendEnviados) ?>)</h2>
+            <h2 class="text-sm font-black uppercase text-slate-500 mb-2">Enviados pendientes (<?= count($pendEnviados) ?>)</h2>
             <div class="grid gap-2">
                 <?php foreach ($pendEnviados as $tr): ?>
                 <div class="rounded-xl border border-stone-200 bg-white p-3 flex items-center justify-between gap-3">
@@ -124,7 +124,7 @@ function money_inv($value) {
                                 </p>
                             </div>
                             <div class="text-right">
-                                <div class="text-3xl font-black text-[#126c6a]"><?= (int)$item['cantidad_disponible'] ?></div>
+                                <div class="text-3xl font-black text-[#4a70a9]"><?= (int)$item['cantidad_disponible'] ?></div>
                                 <div class="text-xs font-bold uppercase text-slate-500">Disp.</div>
                             </div>
                         </div>
@@ -232,7 +232,7 @@ function money_inv($value) {
         const res = await post(fd);
         if (res.success) {
             cerrarDrawer();
-            showToast('Traspaso enviado · pendiente de confirmación ✓', 'ok');
+            showToast('Traspaso enviado · pendiente de confirmación ', 'ok');
             setTimeout(() => location.reload(), 1400);
         } else {
             showToast(res.mensaje || 'Error al crear traspaso', 'error');
@@ -249,7 +249,7 @@ function money_inv($value) {
 
         const res = await post(fd);
         if (res.success) {
-            showToast(accion === 'confirmar' ? 'Traspaso aceptado ✓' : 'Traspaso rechazado', 'ok');
+            showToast(accion === 'confirmar' ? 'Traspaso aceptado ' : 'Traspaso rechazado', 'ok');
             setTimeout(() => location.reload(), 1200);
         } else {
             showToast(res.mensaje || 'Error', 'error');

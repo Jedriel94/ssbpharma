@@ -37,12 +37,12 @@ $pedidos = $pedidoModel->getAll();
 
 // Estados con emojis y colores
 $estados = [
-    'pendiente' => ['emoji' => '⏳', 'color' => 'bg-yellow-100 text-yellow-700', 'nombre' => 'Pendiente'],
-    'por_verificar' => ['emoji' => '🔍', 'color' => 'bg-orange-100 text-orange-700', 'nombre' => 'Por Verificar'],
-    'confirmado' => ['emoji' => '✅', 'color' => 'bg-blue-100 text-blue-700', 'nombre' => 'Confirmado'],
-    'en_ruta' => ['emoji' => '🚚', 'color' => 'bg-purple-100 text-purple-700', 'nombre' => 'En Ruta'],
-    'entregado' => ['emoji' => '📦', 'color' => 'bg-green-100 text-green-700', 'nombre' => 'Entregado'],
-    'cancelado' => ['emoji' => '❌', 'color' => 'bg-red-100 text-red-700', 'nombre' => 'Cancelado'],
+    'pendiente' => ['emoji' => '', 'color' => 'bg-yellow-100 text-yellow-700', 'nombre' => 'Pendiente'],
+    'por_verificar' => ['emoji' => '', 'color' => 'bg-orange-100 text-orange-700', 'nombre' => 'Por Verificar'],
+    'confirmado' => ['emoji' => '', 'color' => 'bg-blue-100 text-blue-700', 'nombre' => 'Confirmado'],
+    'en_ruta' => ['emoji' => '', 'color' => 'bg-purple-100 text-purple-700', 'nombre' => 'En Ruta'],
+    'entregado' => ['emoji' => '', 'color' => 'bg-green-100 text-green-700', 'nombre' => 'Entregado'],
+    'cancelado' => ['emoji' => '', 'color' => 'bg-red-100 text-red-700', 'nombre' => 'Cancelado'],
 ];
 
 // Contar pedidos por estado
@@ -76,12 +76,12 @@ $cancelados = count(array_filter($pedidos, fn($p) => $p['estado'] === 'cancelado
     <div class="mb-8">
         <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
             <div>
-                <h1 class="text-3xl font-bold text-slate-800 mb-2">📜 Historial de Pedidos</h1>
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">Historial de Pedidos</h1>
                 <p class="text-slate-600">Todos los pedidos del sistema sin límite de tiempo</p>
             </div>
             <div class="flex flex-wrap gap-3">
                 <a href="kanban.php" class="btn-secondary px-4 py-2 rounded-xl flex items-center gap-2 transition shadow">
-                    📊 Vista Kanban
+                    Vista Kanban
                 </a>
             </div>
         </div>
@@ -127,7 +127,7 @@ $cancelados = count(array_filter($pedidos, fn($p) => $p['estado'] === 'cancelado
     <!-- Filtros de Búsqueda -->
     <div class="card rounded-xl shadow p-4 mb-6">
         <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-            🔍 Filtros de Búsqueda
+            Filtros de Búsqueda
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
             <!-- Filtro por ID de Pedido -->
@@ -154,12 +154,12 @@ $cancelados = count(array_filter($pedidos, fn($p) => $p['estado'] === 'cancelado
                 <select id="filtro-estado" 
                         class="input-field w-full px-4 py-2 rounded-xl">
                     <option value="">Todos los estados</option>
-                    <option value="pendiente">⏳ Pendiente</option>
-                    <option value="por_verificar">🔍 Por Verificar</option>
-                    <option value="confirmado">✅ Confirmado</option>
-                    <option value="en_ruta">🚚 En Ruta</option>
-                    <option value="entregado">📦 Entregado</option>
-                    <option value="cancelado">❌ Cancelado</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="por_verificar">Por Verificar</option>
+                    <option value="confirmado">Confirmado</option>
+                    <option value="en_ruta">En Ruta</option>
+                    <option value="entregado">Entregado</option>
+                    <option value="cancelado">Cancelado</option>
                 </select>
             </div>
 
@@ -181,7 +181,7 @@ $cancelados = count(array_filter($pedidos, fn($p) => $p['estado'] === 'cancelado
             <div class="flex items-end">
                 <button onclick="limpiarFiltros()" 
                         class="btn-secondary w-full px-4 py-2 rounded-xl font-semibold transition flex items-center justify-center gap-2">
-                    🔄 Limpiar
+                    Limpiar
                 </button>
             </div>
         </div>
@@ -197,7 +197,7 @@ $cancelados = count(array_filter($pedidos, fn($p) => $p['estado'] === 'cancelado
     <!-- Tabla de Historial -->
     <?php if (empty($pedidos)): ?>
         <div class="card rounded-xl shadow p-12 text-center">
-            <div class="text-6xl mb-4">📦</div>
+            <div class="text-6xl mb-4"></div>
             <p class="text-slate-600 text-lg mb-2">No hay pedidos registrados</p>
             <p class="text-slate-500 text-sm">Los pedidos aparecerán aquí</p>
         </div>
@@ -206,7 +206,7 @@ $cancelados = count(array_filter($pedidos, fn($p) => $p['estado'] === 'cancelado
             <!-- Header de la tabla -->
             <div class="px-6 py-4 border-b border-slate-200">
                 <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                    📋 Lista Completa de Pedidos
+                    Lista Completa de Pedidos
                     <span class="text-sm font-normal bg-slate-100 text-slate-600 px-3 py-1 rounded-full">
                         <?= $total_pedidos ?> total
                     </span>
@@ -268,7 +268,7 @@ $cancelados = count(array_filter($pedidos, fn($p) => $p['estado'] === 'cancelado
                                 <td class="px-4 py-4">
                                     <div class="text-sm">
                                         <div class="font-semibold text-slate-900">
-                                            📱 <?= htmlspecialchars($pedido['telefono']) ?>
+                                            <?= htmlspecialchars($pedido['telefono']) ?>
                                         </div>
                                         <?php if (!empty($pedido['nombre'])): ?>
                                             <div class="text-xs text-slate-500">
@@ -321,11 +321,11 @@ $cancelados = count(array_filter($pedidos, fn($p) => $p['estado'] === 'cancelado
                                     <div class="flex justify-center gap-2">
                                         <button onclick="verDetallePedido(<?= $pedido['id'] ?>)" 
                                                 class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center gap-1">
-                                            👁️ Ver
+                                            Ver
                                         </button>
                                         <a href="chat-admin.php?pedido_id=<?= $pedido['id'] ?>&return=historial" 
                                            class="bg-sage-500 hover:bg-sage-600 text-white px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center gap-1">
-                                            💬 Chat
+                                            Chat
                                         </a>
                                     </div>
                                 </td>
@@ -375,7 +375,7 @@ function verDetallePedido(pedidoId) {
         .catch(error => {
             contenido.innerHTML = `
                 <div class="text-center py-12">
-                    <div class="text-6xl mb-4">⚠️</div>
+                    <div class="text-6xl mb-4"></div>
                     <p class="text-slate-600 text-lg mb-2">Error al cargar el pedido</p>
                     <button onclick="cerrarModal()" class="mt-4 bg-slate-600 hover:bg-slate-700 text-white px-6 py-2 rounded-lg">
                         Cerrar

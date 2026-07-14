@@ -146,7 +146,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
     <div class="mb-8">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
             <div>
-                <h1 class="text-3xl font-bold text-slate-800 mb-2">💳 Gestión de Métodos de Pago</h1>
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">Gestión de Métodos de Pago</h1>
                 <p class="text-slate-600">Configura transferencias, pagos en tienda y pasarelas disponibles para tus clientes.</p>
             </div>
         </div>
@@ -178,16 +178,16 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
         <div class="mp-tabs">
             <?php 
             $iconos_tabs = [
-                'transferencia' => '🏦',
-                'oxxo' => '🏪',
-                'tienda' => '🏪',
-                'paypal' => '💵',
-                'liga_pago' => '🔗',
-                'mercado_pago' => '💳',
-                'ecartpay' => '🛒'
+                'transferencia' => '',
+                'oxxo' => '',
+                'tienda' => '',
+                'paypal' => '',
+                'liga_pago' => '',
+                'mercado_pago' => '',
+                'ecartpay' => ''
             ];
             foreach ($metodos as $index => $metodo): 
-                $icono = $iconos_tabs[$metodo['metodo']] ?? '💳';
+                $icono = $iconos_tabs[$metodo['metodo']] ?? '';
                 $isFirst = $index === 0;
             ?>
                 <button type="button" 
@@ -228,7 +228,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                        <?= $metodo['activo'] ? 'checked' : '' ?>
                                        class="w-5 h-5 text-terracotta-500 rounded focus:ring-2 focus:ring-terracotta-500">
                                 <span class="font-semibold <?= $metodo['activo'] ? 'text-green-600' : 'text-slate-400' ?>">
-                                    <?= $metodo['activo'] ? '✅ Activo' : '❌ Inactivo' ?>
+                                    <?= $metodo['activo'] ? 'Activo' : 'Inactivo' ?>
                                 </span>
                             </label>
                         </div>
@@ -258,7 +258,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                     <!-- Información General -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">📋 Nombre para Mostrar</label>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Nombre para Mostrar</label>
                             <input type="text" 
                                    name="nombre_display" 
                                    value="<?= htmlspecialchars($metodo['nombre_display']) ?>"
@@ -267,14 +267,14 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                         </div>
                         
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">📝 Descripción</label>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Descripción</label>
                             <textarea name="descripcion" 
                                       rows="2"
                                       class="input-field w-full px-4 py-3 rounded-xl"><?= htmlspecialchars($metodo['descripcion'] ?? '') ?></textarea>
                         </div>
                         
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">📖 Instrucciones para el Cliente</label>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Instrucciones para el Cliente</label>
                             <textarea name="instrucciones" 
                                       rows="3"
                                       class="input-field w-full px-4 py-3 rounded-xl"
@@ -286,7 +286,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                         <!-- Datos de Transferencia Bancaria -->
                         <div class="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
                             <h3 class="text-lg font-bold text-blue-900 mb-4 flex items-center gap-2">
-                                🏦 Datos Bancarios
+                                Datos Bancarios
                             </h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
@@ -359,7 +359,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                         <!-- Datos de OXXO/Tienda de Conveniencia -->
                         <div class="bg-amber-50 p-6 rounded-xl border-2 border-amber-200">
                             <h3 class="text-lg font-bold text-amber-900 mb-4 flex items-center gap-2">
-                                🏪 Datos de Tienda de Conveniencia
+                                Datos de Tienda de Conveniencia
                             </h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
@@ -428,7 +428,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                         <!-- Liga de Pago -->
                         <div class="bg-violet-50 p-6 rounded-xl border-2 border-violet-200">
                             <h3 class="text-lg font-bold text-violet-900 mb-3 flex items-center gap-2">
-                                🔗 Liga de Pago vía EcartPay
+                                Liga de Pago vía EcartPay
                             </h3>
                             <p class="text-sm text-violet-700 mb-4">
                                 Pega tu enlace personal de EcartPay (<code>https://ecartpay.com/me/...</code>). El representante generará la liga con el monto del pedido y la compartirá con el cliente.
@@ -470,7 +470,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                         <!-- Datos de PayPal -->
                         <div class="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
                             <h3 class="text-lg font-bold text-blue-900 mb-4 flex items-center gap-2">
-                                💳 Configuración de PayPal
+                                Configuración de PayPal
                             </h3>
                             <div class="grid grid-cols-1 gap-4">
                                 <div>
@@ -490,7 +490,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                            value="<?= htmlspecialchars($metodo['paypal_secret'] ?? '') ?>"
                                            class="input-field w-full px-4 py-3 rounded-xl font-mono text-sm"
                                            placeholder="EJRldII9VzF05...">
-                                    <p class="text-xs text-slate-500 mt-1">⚠️ Mantén esta clave segura</p>
+                                    <p class="text-xs text-slate-500 mt-1">Mantén esta clave segura</p>
                                 </div>
                                 
                                 <div>
@@ -498,10 +498,10 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                     <select name="paypal_mode" 
                                             class="input-field w-full px-4 py-3 rounded-xl">
                                         <option value="sandbox" <?= ($metodo['paypal_mode'] ?? 'sandbox') === 'sandbox' ? 'selected' : '' ?>>
-                                            🧪 Sandbox (Pruebas)
+                                            Sandbox (Pruebas)
                                         </option>
                                         <option value="production" <?= ($metodo['paypal_mode'] ?? '') === 'production' ? 'selected' : '' ?>>
-                                            🚀 Production (En vivo)
+                                            Production (En vivo)
                                         </option>
                                     </select>
                                     <p class="text-xs text-slate-500 mt-1">Inicia en Sandbox para pruebas</p>
@@ -514,7 +514,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                                <?= !empty($metodo['paypal_sin_cuenta']) ? 'checked' : '' ?>
                                                class="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500">
                                         <div>
-                                            <span class="font-semibold text-blue-900">💳 Permitir pago sin cuenta PayPal</span>
+                                            <span class="font-semibold text-blue-900">Permitir pago sin cuenta PayPal</span>
                                             <p class="text-xs text-slate-500 mt-0.5">El cliente podrá pagar con tarjeta de crédito/débito directamente, sin necesitar una cuenta PayPal</p>
                                         </div>
                                     </label>
@@ -559,7 +559,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                         <!-- Datos de EcartPay -->
                         <div class="bg-green-50 p-6 rounded-xl border-2 border-green-200">
                             <h3 class="text-lg font-bold text-green-900 mb-4 flex items-center gap-2">
-                                🛒 Configuración de EcartPay
+                                Configuración de EcartPay
                             </h3>
                             <div class="grid grid-cols-1 gap-4">
                                 <div>
@@ -579,7 +579,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                            value="<?= htmlspecialchars($metodo['ecartpay_private_key'] ?? '') ?>"
                                            class="input-field w-full px-4 py-3 rounded-xl font-mono text-sm"
                                            placeholder="sk_live_...">
-                                    <p class="text-xs text-slate-500 mt-1">⚠️ Mantén esta clave segura. Se usa en el servidor.</p>
+                                    <p class="text-xs text-slate-500 mt-1">Mantén esta clave segura. Se usa en el servidor.</p>
                                 </div>
 
                                 <div class="bg-white border-2 border-green-200 rounded-xl p-4">
@@ -589,7 +589,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                                <?= !empty($metodo['ecartpay_sandbox']) ? 'checked' : '' ?>
                                                class="w-5 h-5 text-green-600 rounded focus:ring-2 focus:ring-green-500">
                                         <div>
-                                            <span class="font-semibold text-green-900">🧪 Modo Sandbox (Pruebas)</span>
+                                            <span class="font-semibold text-green-900">Modo Sandbox (Pruebas)</span>
                                             <p class="text-xs text-slate-500 mt-0.5">Activa para usar el entorno de pruebas de EcartPay. Desactiva para producción.</p>
                                         </div>
                                     </label>
@@ -597,7 +597,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
 
                                 <div class="bg-green-100 border border-green-300 rounded-xl p-4">
                                     <p class="text-xs text-green-800">
-                                        ℹ️ Cuando el cliente selecciona este método, se redirige al checkout de EcartPay donde paga con tarjeta de crédito o débito. El pedido se confirma automáticamente vía webhook tras el pago exitoso.
+                                        ℹCuando el cliente selecciona este método, se redirige al checkout de EcartPay donde paga con tarjeta de crédito o débito. El pedido se confirma automáticamente vía webhook tras el pago exitoso.
                                     </p>
                                 </div>
                             </div>
@@ -633,7 +633,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                         <!-- Datos de Mercado Pago -->
                         <div class="bg-sky-50 p-6 rounded-xl border-2 border-sky-200">
                             <h3 class="text-lg font-bold text-sky-900 mb-4 flex items-center gap-2">
-                                💳 Configuración de Mercado Pago
+                                Configuración de Mercado Pago
                             </h3>
                             <div class="grid grid-cols-1 gap-4">
                                 <div>
@@ -653,17 +653,17 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                            value="<?= htmlspecialchars($metodo['mp_access_token'] ?? '') ?>"
                                            class="input-field w-full px-4 py-3 rounded-xl font-mono text-sm"
                                            placeholder="APP_USR-...">
-                                    <p class="text-xs text-slate-500 mt-1">⚠️ Mantén este token seguro. Se usa en el servidor.</p>
+                                    <p class="text-xs text-slate-500 mt-1">Mantén este token seguro. Se usa en el servidor.</p>
                                 </div>
 
                                 <div>
                                     <label class="block text-sm font-semibold text-sky-900 mb-2">Modo de Operación</label>
                                     <select name="mp_mode" class="input-field w-full px-4 py-3 rounded-xl">
                                         <option value="sandbox" <?= ($metodo['mp_mode'] ?? 'production') === 'sandbox' ? 'selected' : '' ?>>
-                                            🧪 Sandbox (Pruebas)
+                                            Sandbox (Pruebas)
                                         </option>
                                         <option value="production" <?= ($metodo['mp_mode'] ?? 'production') === 'production' ? 'selected' : '' ?>>
-                                            🚀 Production (En vivo)
+                                            Production (En vivo)
                                         </option>
                                     </select>
                                     <p class="text-xs text-slate-500 mt-1">Usa Sandbox para pruebas antes de salir en vivo</p>
@@ -676,7 +676,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                                <?= !empty($metodo['mp_sin_cuenta']) ? 'checked' : '' ?>
                                                class="w-5 h-5 text-sky-600 rounded focus:ring-2 focus:ring-sky-500">
                                         <div>
-                                            <span class="font-semibold text-sky-900">💳 Permitir pago sin cuenta Mercado Pago</span>
+                                            <span class="font-semibold text-sky-900">Permitir pago sin cuenta Mercado Pago</span>
                                             <p class="text-xs text-slate-500 mt-0.5">El cliente podrá pagar con tarjeta de crédito/débito directamente en el Checkout Pro, sin necesitar una cuenta de Mercado Pago</p>
                                         </div>
                                     </label>
@@ -684,7 +684,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
 
                                 <div class="bg-sky-100 border border-sky-300 rounded-xl p-4">
                                     <p class="text-xs text-sky-800">
-                                        ℹ️ Cuando el cliente selecciona este método, se abre el checkout de Mercado Pago donde puede pagar con tarjeta de crédito, débito o cuenta MP. El pedido se confirma automáticamente tras el pago.
+                                        ℹCuando el cliente selecciona este método, se abre el checkout de Mercado Pago donde puede pagar con tarjeta de crédito, débito o cuenta MP. El pedido se confirma automáticamente tras el pago.
                                     </p>
                                 </div>
                             </div>
@@ -719,7 +719,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                         <!-- Datos de OpenPay -->
                         <div class="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-200">
                             <h3 class="text-lg font-bold text-indigo-900 mb-4 flex items-center gap-2">
-                                💳 Configuración de OpenPay (BBVA)
+                                Configuración de OpenPay (BBVA)
                             </h3>
                             <div class="grid grid-cols-1 gap-4">
                                 <div>
@@ -739,7 +739,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                            value="<?= htmlspecialchars($metodo['openpay_private_key'] ?? '') ?>"
                                            class="input-field w-full px-4 py-3 rounded-xl font-mono text-sm"
                                            placeholder="sk_...">
-                                    <p class="text-xs text-slate-500 mt-1">⚠️ Mantén esta clave segura. Nunca la expongas al cliente.</p>
+                                    <p class="text-xs text-slate-500 mt-1">Mantén esta clave segura. Nunca la expongas al cliente.</p>
                                 </div>
 
                                 <div>
@@ -759,7 +759,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                                                <?= !empty($metodo['openpay_sandbox']) ? 'checked' : '' ?>
                                                class="w-5 h-5 text-indigo-600 rounded focus:ring-2 focus:ring-indigo-500">
                                         <div>
-                                            <span class="font-semibold text-indigo-900">🧪 Modo Sandbox (Pruebas)</span>
+                                            <span class="font-semibold text-indigo-900">Modo Sandbox (Pruebas)</span>
                                             <p class="text-xs text-slate-500 mt-0.5">Activa para usar el entorno de pruebas. Desactiva para producción después de la certificación.</p>
                                         </div>
                                     </label>
@@ -767,8 +767,8 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
 
                                 <div class="bg-indigo-100 border border-indigo-300 rounded-xl p-4">
                                     <p class="text-xs text-indigo-800">
-                                        ℹ️ El cliente ingresa los datos de su tarjeta directamente en tu página. OpenPay los tokeniza con JS y tu servidor crea el cargo. Tarjeta de prueba sandbox: <strong>4111 1111 1111 1111</strong>, cualquier fecha futura, CVV cualquiera.<br><br>
-                                        🔗 Webhook: <code class="bg-white px-1 rounded">/api/openpay.php?action=webhook</code>
+                                        ℹEl cliente ingresa los datos de su tarjeta directamente en tu página. OpenPay los tokeniza con JS y tu servidor crea el cargo. Tarjeta de prueba sandbox: <strong>4111 1111 1111 1111</strong>, cualquier fecha futura, CVV cualquiera.<br><br>
+                                        Webhook: <code class="bg-white px-1 rounded">/api/openpay.php?action=webhook</code>
                                     </p>
                                 </div>
                             </div>
@@ -802,7 +802,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                     <!-- Configuración Adicional -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">🖼️ Imagen/Logo (URL)</label>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Imagen/Logo (URL)</label>
                             <input type="text" 
                                    name="imagen" 
                                    value="<?= htmlspecialchars($metodo['imagen'] ?? '') ?>"
@@ -811,7 +811,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-2">📊 Orden de Visualización</label>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Orden de Visualización</label>
                             <input type="number" 
                                    name="orden" 
                                    value="<?= $metodo['orden'] ?>"
@@ -825,7 +825,7 @@ $pasarelasConfiguradas = count(array_filter($metodos, fn($m) => in_array($m['met
                     <div class="flex justify-end pt-4 border-t-2 border-slate-200">
                         <button type="submit" 
                                 class="btn-primary text-white px-8 py-3 rounded-xl font-semibold flex items-center gap-2">
-                            💾 Guardar Cambios
+                            Guardar Cambios
                         </button>
                     </div>
 
@@ -871,7 +871,7 @@ function actualizarMetodo(e, id) {
     const btn = e.target.querySelector('button[type="submit"]');
     const btnText = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '⏳ Guardando...';
+    btn.innerHTML = 'Guardando...';
     
     // Usar la misma URL de la página actual para evitar problemas de rutas
     fetch(window.location.pathname, {

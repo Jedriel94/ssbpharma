@@ -131,7 +131,7 @@ function validarCupon() {
         echo json_encode([
             'success' => true,
             'valido' => true,
-            'message' => '✓ Cupón aplicado correctamente',
+            'message' => 'Cupón aplicado correctamente',
             'cupon' => [
                 'id' => $cupon['id'],
                 'codigo' => $cupon['codigo'],

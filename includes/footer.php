@@ -142,9 +142,9 @@
 <script>
 (function () {
     const ICONS = {
-        success: '✓',
-        error:   '✕',
-        warning: '⚠',
+        success: '',
+        error:   '',
+        warning: '',
         info:    'i',
     };
     const LABELS = {

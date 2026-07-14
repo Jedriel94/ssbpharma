@@ -18,7 +18,7 @@ $CLAVES_SELECTOR = [
             'en_ruta'    => 'En Ruta o Entregado',
             'confirmado' => 'Confirmado, En Ruta o Entregado',
         ],
-        'icono'       => '📊',
+        'icono'       => '',
         'descripcion' => 'Estado mínimo de pedido para considerar una venta en el dashboard',
     ],
 ];
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($existe->fetch()) { echo json_encode(['success' => false, 'message' => 'Ya existe esa especialidad']); exit; }
             $max = $db->query("SELECT COALESCE(MAX(orden),0)+1 FROM especialidades")->fetchColumn();
             $db->prepare("INSERT INTO especialidades (nombre, orden) VALUES (?,?)")->execute([$nombre, $max]);
-            echo json_encode(['success' => true, 'message' => '✅ Especialidad creada', 'id' => $db->lastInsertId(), 'nombre' => $nombre, 'orden' => $max]);
+            echo json_encode(['success' => true, 'message' => 'Especialidad creada', 'id' => $db->lastInsertId(), 'nombre' => $nombre, 'orden' => $max]);
         } catch (Exception $e) { echo json_encode(['success' => false, 'message' => $e->getMessage()]); }
         exit;
     }
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($existe->fetch()) { echo json_encode(['success' => false, 'message' => 'Ya existe']); exit; }
             $max = $db->query("SELECT COALESCE(MAX(orden),0)+1 FROM especialidades")->fetchColumn();
             $db->prepare("INSERT INTO especialidades (nombre, orden) VALUES (?,?)")->execute([$nombre, $max]);
-            echo json_encode(['success' => true, 'message' => "✅ \"$nombre\" agregada como especialidad oficial"]);
+            echo json_encode(['success' => true, 'message' => "\"$nombre\" agregada como especialidad oficial"]);
         } catch (Exception $e) { echo json_encode(['success' => false, 'message' => $e->getMessage()]); }
         exit;
     }
@@ -235,7 +235,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Page Header -->
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-slate-800 mb-1">⚙️ Configuración del Sistema</h1>
+        <h1 class="text-3xl font-bold text-slate-800 mb-1">Configuración del Sistema</h1>
         <p class="text-sm" style="color:var(--text-secondary)">Parámetros generales, correo electrónico y especialidades médicas.</p>
     </div>
         
@@ -263,7 +263,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach; ?>
                 </select>
                 <button type="submit" class="btn-primary px-6 py-3 rounded-xl font-semibold transition">
-                    💾 Guardar
+                    Guardar
                 </button>
             </form>
             <p class="text-xs text-slate-400 mt-3">
@@ -292,11 +292,11 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
                         </p>
                     </div>
                     <span class="text-2xl"><?php
-                        if ($es_booleana) echo '🔘';
-                        elseif (in_array($config['clave'], ['terminos_condiciones_url', 'aviso_privacidad_url'], true)) echo '🔗';
-                        elseif ($es_texto) echo '🏪';
-                        elseif (in_array($config['clave'], ['carrusel_intervalo'])) echo '⏱️';
-                        else echo '💰';
+                        if ($es_booleana) echo '';
+                        elseif (in_array($config['clave'], ['terminos_condiciones_url', 'aviso_privacidad_url'], true)) echo '';
+                        elseif ($es_texto) echo '';
+                        elseif (in_array($config['clave'], ['carrusel_intervalo'])) echo '';
+                        else echo '';
                     ?></span>
                 </div>
                 
@@ -318,14 +318,14 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
                         type="submit"
                         class="w-full btn-primary py-3 rounded-xl font-semibold transition"
                     >
-                        💾 Guardar Cambios
+                        Guardar Cambios
                     </button>
                 </form>
                 <?php elseif ($es_booleana): ?>
                 <!-- Toggle para configuración booleana -->
                 <div class="flex items-center justify-between py-3 px-4 bg-slate-50 rounded-xl">
                     <span class="text-sm font-semibold text-slate-700">
-                        <?php echo intval($config['valor']) ? '✅ Activado' : '❌ Desactivado'; ?>
+                        <?php echo intval($config['valor']) ? 'Activado' : 'Desactivado'; ?>
                     </span>
                     <button
                         type="button"
@@ -370,7 +370,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
                         type="submit"
                         class="w-full btn-primary py-3 rounded-xl font-semibold transition"
                     >
-                        💾 Guardar Cambios
+                        Guardar Cambios
                     </button>
                 </form>
                 <?php endif; ?>
@@ -393,7 +393,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
         ================================================================ -->
         <div class="mt-10">
             <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                📧 Configuración de Correo Electrónico
+                Configuración de Correo Electrónico
             </h2>
             <p class="text-sm mb-6" style="color:var(--text-secondary)">
                 Configura el servidor SMTP para enviar correos automáticos al confirmar pedidos y al subir facturas.
@@ -408,7 +408,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
 
                 <!-- Control de envío -->
                 <div class="card rounded-2xl shadow-lg p-6">
-                    <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">🔔 Control de envío</h3>
+                    <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">Control de envío</h3>
                     <div class="space-y-4">
                         <!-- Toggle activar envío -->
                         <div class="flex items-center justify-between py-3 px-4 rounded-xl" style="background:var(--bg-menu-item)">
@@ -483,7 +483,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
 
                 <!-- SMTP -->
                 <div class="card rounded-2xl shadow-lg p-6">
-                    <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">🔌 Servidor SMTP</h3>
+                    <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">Servidor SMTP</h3>
                     <div class="grid gap-4 md:grid-cols-2">
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-1">Host SMTP</label>
@@ -515,7 +515,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
                                        value="<?= htmlspecialchars($ec['email_smtp_pass']) ?>"
                                        autocomplete="current-password"
                                        class="w-full px-4 py-2.5 border-2 border-slate-200 rounded-xl focus:border-blue-500 outline-none transition pr-12">
-                                <button type="button" onclick="togglePass()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 text-lg">👁</button>
+                                <button type="button" onclick="togglePass()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 text-lg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
                             </div>
                         </div>
                     </div>
@@ -523,7 +523,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
 
                 <!-- Remitente -->
                 <div class="card rounded-2xl shadow-lg p-6">
-                    <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">✉️ Datos del Remitente</h3>
+                    <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">Datos del Remitente</h3>
                     <div class="grid gap-4 md:grid-cols-2">
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-1">Nombre remitente</label>
@@ -544,7 +544,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
 
                 <!-- Plantilla confirmación -->
                 <div class="card rounded-2xl shadow-lg p-6">
-                    <h3 class="text-base font-bold text-slate-800 mb-1 flex items-center gap-2">✅ Correo de Confirmación de Pedido</h3>
+                    <h3 class="text-base font-bold text-slate-800 mb-1 flex items-center gap-2">Correo de Confirmación de Pedido</h3>
                     <p class="text-xs text-slate-500 mb-4">Se envía cuando el admin confirma el pedido en el Kanban. Variables disponibles: <code class="bg-slate-100 px-1 rounded">{nombre}</code>, <code class="bg-slate-100 px-1 rounded">{id}</code>, <code class="bg-slate-100 px-1 rounded">{total}</code>, <code class="bg-slate-100 px-1 rounded">{items}</code>, <code class="bg-slate-100 px-1 rounded">{tienda}</code></p>
                     <div class="space-y-3">
                         <div>
@@ -563,7 +563,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
 
                 <!-- Plantilla solicitud inventario rep -->
                 <div class="card rounded-2xl shadow-lg p-6">
-                    <h3 class="text-base font-bold text-slate-800 mb-1 flex items-center gap-2">📦 Correo de Solicitud de Inventario (Representante)</h3>
+                    <h3 class="text-base font-bold text-slate-800 mb-1 flex items-center gap-2">Correo de Solicitud de Inventario (Representante)</h3>
                     <p class="text-xs text-slate-500 mb-4">Se envía al representante cuando crea una nueva solicitud de inventario. Variables: <code class="bg-slate-100 px-1 rounded">{nombre}</code>, <code class="bg-slate-100 px-1 rounded">{id}</code>, <code class="bg-slate-100 px-1 rounded">{productos}</code>, <code class="bg-slate-100 px-1 rounded">{fecha}</code>, <code class="bg-slate-100 px-1 rounded">{tienda}</code></p>
                     <div class="space-y-3">
                         <div>
@@ -582,7 +582,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
 
                 <button type="submit"
                         class="w-full btn-primary py-3.5 rounded-xl font-semibold transition">
-                    💾 Guardar Configuración de Correo
+                    Guardar Configuración de Correo
                 </button>
             </form>
         </div>
@@ -590,7 +590,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
         <!-- Info Box -->
         <div class="mt-8 card border-l-4 border-blue-400 rounded-xl p-6">
             <div class="flex items-start gap-3">
-                <span class="text-2xl">ℹ️</span>
+                <span class="text-2xl">ℹ</span>
                 <div>
                     <h4 class="font-bold text-blue-900 mb-2">Información importante</h4>
                     <ul class="text-sm text-blue-800 space-y-1">
@@ -621,13 +621,13 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                mostrarAlerta('✅ ' + data.message, 'success');
+                mostrarAlerta('' + data.message, 'success');
                 setTimeout(() => location.reload(), 800);
             } else {
-                mostrarAlerta('❌ ' + data.message, 'error');
+                mostrarAlerta('' + data.message, 'error');
             }
         })
-        .catch(() => mostrarAlerta('❌ Error al actualizar la configuración', 'error'));
+        .catch(() => mostrarAlerta('Error al actualizar la configuración', 'error'));
     }
 
     function actualizarConfigSelector(event, clave) {
@@ -638,20 +638,20 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
         const btn = form.querySelector('button[type="submit"]');
         const btnText = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '⏳ Guardando...';
+        btn.innerHTML = 'Guardando...';
         fetch('configuracion.php', { method: 'POST', body: formData })
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    mostrarAlerta('✅ ' + data.message, 'success');
+                    mostrarAlerta('' + data.message, 'success');
                 } else {
-                    mostrarAlerta('❌ ' + (data.message || 'Error'), 'error');
+                    mostrarAlerta('' + (data.message || 'Error'), 'error');
                 }
                 btn.disabled = false;
                 btn.innerHTML = btnText;
             })
             .catch(() => {
-                mostrarAlerta('❌ Error al guardar', 'error');
+                mostrarAlerta('Error al guardar', 'error');
                 btn.disabled = false;
                 btn.innerHTML = btnText;
             });
@@ -668,7 +668,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
         const btn = form.querySelector('button[type="submit"]');
         const btnText = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '⏳ Guardando...';
+        btn.innerHTML = 'Guardando...';
         
         fetch('configuracion.php', {
             method: 'POST',
@@ -677,17 +677,17 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                mostrarAlerta('✅ ' + data.message, 'success');
+                mostrarAlerta('' + data.message, 'success');
                 // Recargar página después de 1 segundo
                 setTimeout(() => location.reload(), 1000);
             } else {
-                mostrarAlerta('❌ ' + data.message, 'error');
+                mostrarAlerta('' + data.message, 'error');
                 btn.disabled = false;
                 btn.innerHTML = btnText;
             }
         })
         .catch(error => {
-            mostrarAlerta('❌ Error al actualizar la configuración', 'error');
+            mostrarAlerta('Error al actualizar la configuración', 'error');
             btn.disabled = false;
             btn.innerHTML = btnText;
         });
@@ -702,22 +702,22 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
         const btn = form.querySelector('button[type="submit"]');
         const btnText = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '⏳ Guardando...';
+        btn.innerHTML = 'Guardando...';
 
         fetch('configuracion.php', { method: 'POST', body: formData })
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                mostrarAlerta('✅ ' + data.message, 'success');
+                mostrarAlerta('' + data.message, 'success');
                 setTimeout(() => location.reload(), 1000);
             } else {
-                mostrarAlerta('❌ ' + data.message, 'error');
+                mostrarAlerta('' + data.message, 'error');
                 btn.disabled = false;
                 btn.innerHTML = btnText;
             }
         })
         .catch(() => {
-            mostrarAlerta('❌ Error al actualizar la configuración', 'error');
+            mostrarAlerta('Error al actualizar la configuración', 'error');
             btn.disabled = false;
             btn.innerHTML = btnText;
         });
@@ -732,21 +732,21 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
         const btn = form.querySelector('button[type="submit"]');
         const btnText = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '⏳ Guardando...';
+        btn.innerHTML = 'Guardando...';
 
         fetch('configuracion.php', { method: 'POST', body: formData })
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                mostrarAlerta('✅ ' + data.message, 'success');
+                mostrarAlerta('' + data.message, 'success');
             } else {
-                mostrarAlerta('❌ ' + data.message, 'error');
+                mostrarAlerta('' + data.message, 'error');
             }
             btn.disabled = false;
             btn.innerHTML = btnText;
         })
         .catch(() => {
-            mostrarAlerta('❌ Error al guardar la configuración', 'error');
+            mostrarAlerta('Error al guardar la configuración', 'error');
             btn.disabled = false;
             btn.innerHTML = btnText;
         });
@@ -811,7 +811,7 @@ $esp_otros = $stmt_otros->fetchAll(PDO::FETCH_ASSOC);
     </style>
     <!-- ═══ Sección Especialidades ═══════════════════════════════════════ -->
     <section class="max-w-5xl mx-auto px-4 pb-12 mt-2">
-        <h2 class="text-2xl font-bold text-slate-800 mb-6">🩺 Especialidades Médicas</h2>
+        <h2 class="text-2xl font-bold text-slate-800 mb-6">Especialidades Médicas</h2>
 
         <div class="grid gap-6 md:grid-cols-2">
 

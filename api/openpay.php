@@ -128,7 +128,7 @@ $mensajeModel = new MensajePedido($pdo);
 $mensajeModel->create(
     $pedidoId,
     'cliente',
-    "💳 Pago realizado con OpenPay\n✅ Charge ID: {$chargeId}\n📋 Estado: completado (webhook)"
+    "Pago realizado con OpenPay\nCharge ID: {$chargeId}\nEstado: completado (webhook)"
 );
 
 echo json_encode(['received' => true]);

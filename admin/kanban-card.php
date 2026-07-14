@@ -60,7 +60,7 @@ foreach ($mensajes as $msg) {
     
     <!-- Cliente -->
     <div class="mb-3 pb-3 border-b border-slate-100">
-        <p class="text-xs text-slate-600">👤 Cliente:</p>
+        <p class="text-xs text-slate-600">Cliente:</p>
         <p class="font-semibold text-slate-900 text-sm truncate">
             <?= htmlspecialchars($pedido['telefono']) ?>
         </p>
@@ -118,7 +118,7 @@ foreach ($mensajes as $msg) {
     <!-- Productos (resumido) -->
     <div class="mb-3">
         <p class="text-xs text-slate-600 mb-1">
-            📦 <?= count($detalle) ?> producto<?= count($detalle) != 1 ? 's' : '' ?>
+            <?= count($detalle) ?> producto<?= count($detalle) != 1 ? 's' : '' ?>
         </p>
         <div class="text-xs text-slate-500 line-clamp-2">
             <?= implode(', ', array_map(fn($item) => $item['producto'] . ' (x' . $item['cantidad'] . ')', $detalle)) ?>
@@ -129,7 +129,7 @@ foreach ($mensajes as $msg) {
     <?php if ($solicita_liga || $tiene_solicitud_liga): ?>
         <div class="mb-3 p-2 bg-purple-50 border-2 border-purple-300 rounded-lg animate-pulse">
             <p class="text-xs font-bold text-purple-800 flex items-center gap-1">
-                🔗 Cliente solicita Liga de Pago
+                Cliente solicita Liga de Pago
             </p>
             <p class="text-xs text-purple-600 mt-1">
                 Abre el chat para enviar el enlace
@@ -142,7 +142,7 @@ foreach ($mensajes as $msg) {
         <div class="mb-3 p-2 bg-amber-50 border-2 border-amber-400 rounded-lg"
              title="Verificado el último día laborable de <?= htmlspecialchars($fecha_verificar_str) ?>">
             <p class="text-xs font-bold text-amber-800 flex items-center gap-1">
-                ⚠️ Verificado en mes anterior
+                Verificado en mes anterior
             </p>
             <p class="text-xs text-amber-700 mt-0.5">
                 Verificado el <?= htmlspecialchars($fecha_verificar_str) ?> — al confirmar podrás usar esa fecha
@@ -156,7 +156,7 @@ foreach ($mensajes as $msg) {
             <a href="../uploads/comprobantes/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" 
                target="_blank"
                class="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1">
-                💳 Ver comprobante pago
+                Ver comprobante pago
             </a>
         </div>
     <?php endif; ?>
@@ -166,7 +166,7 @@ foreach ($mensajes as $msg) {
             <a href="../uploads/comprobantes_envio/<?= htmlspecialchars($pedido['comprobante_envio']) ?>" 
                target="_blank"
                class="text-xs text-purple-600 hover:text-purple-800 flex items-center gap-1">
-                📤 Ver comprobante envío
+                Ver comprobante envío
             </a>
         </div>
     <?php endif; ?>
@@ -174,7 +174,7 @@ foreach ($mensajes as $msg) {
     <!-- Factura Electrónica -->
     <?php if ($pedido['requiere_factura']): ?>
         <div class="mb-2 p-2 bg-amber-50 border border-amber-200 rounded-lg">
-            <p class="text-xs font-semibold text-amber-800 mb-1">🧾 Requiere Factura</p>
+            <p class="text-xs font-semibold text-amber-800 mb-1">Requiere Factura</p>
             
             <?php if (!empty($pedido['factura_pdf']) || !empty($pedido['factura_xml'])): ?>
                 <div class="space-y-1">
@@ -182,7 +182,7 @@ foreach ($mensajes as $msg) {
                         <a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_pdf']) ?>" 
                            target="_blank"
                            class="text-xs text-green-600 hover:text-green-800 flex items-center gap-1">
-                            ✅ Ver PDF
+                            Ver PDF
                         </a>
                     <?php endif; ?>
                     
@@ -190,12 +190,12 @@ foreach ($mensajes as $msg) {
                         <a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_xml']) ?>" 
                            target="_blank" download
                            class="text-xs text-green-600 hover:text-green-800 flex items-center gap-1">
-                            ✅ Descargar XML
+                            Descargar XML
                         </a>
                     <?php endif; ?>
                 </div>
             <?php else: ?>
-                <p class="text-xs text-amber-600">⏳ Factura pendiente</p>
+                <p class="text-xs text-amber-600">Factura pendiente</p>
             <?php endif; ?>
         </div>
     <?php endif; ?>
@@ -206,18 +206,18 @@ foreach ($mensajes as $msg) {
         <!-- Datos de Envío -->
         <?php if (!empty($pedido['calle']) || !empty($pedido['numero']) || !empty($pedido['cp_envio'])): ?>
             <div class="mb-2 p-2 bg-blue-50 border border-blue-200 rounded-lg">
-                <p class="text-xs font-semibold text-blue-800 mb-2">📦 Datos de Envío</p>
+                <p class="text-xs font-semibold text-blue-800 mb-2">Datos de Envío</p>
                 <div class="space-y-1 text-xs text-blue-900">
                     <?php if (!empty($pedido['calle']) || !empty($pedido['numero'])): ?>
-                        <p><strong>📍 Dirección:</strong> <?= htmlspecialchars($pedido['calle'] ?? '') ?> <?= htmlspecialchars($pedido['numero'] ?? '') ?></p>
+                        <p><strong>Dirección:</strong> <?= htmlspecialchars($pedido['calle'] ?? '') ?> <?= htmlspecialchars($pedido['numero'] ?? '') ?></p>
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['colonia'])): ?>
-                        <p><strong>🏘️ Colonia:</strong> <?= htmlspecialchars($pedido['colonia']) ?></p>
+                        <p><strong>Colonia:</strong> <?= htmlspecialchars($pedido['colonia']) ?></p>
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['ciudad']) || !empty($pedido['estado_envio']) || !empty($pedido['cp_envio'])): ?>
-                        <p><strong>🗺️ Ubicación:</strong> 
+                        <p><strong>Ubicación:</strong> 
                             <?php
                             $ubicacion = array_filter([
                                 $pedido['ciudad'] ?? '',
@@ -230,11 +230,11 @@ foreach ($mensajes as $msg) {
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['referencias'])): ?>
-                        <p><strong>📌 Referencias:</strong> <?= htmlspecialchars($pedido['referencias']) ?></p>
+                        <p><strong>Referencias:</strong> <?= htmlspecialchars($pedido['referencias']) ?></p>
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['quien_recibe'])): ?>
-                        <p><strong>🙋 Recibe:</strong> <?= htmlspecialchars($pedido['quien_recibe']) ?></p>
+                        <p><strong>Recibe:</strong> <?= htmlspecialchars($pedido['quien_recibe']) ?></p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -243,30 +243,30 @@ foreach ($mensajes as $msg) {
         <!-- Datos Fiscales (si requiere factura) -->
         <?php if ($pedido['requiere_factura']): ?>
             <div class="mb-2 p-2 bg-purple-50 border border-purple-200 rounded-lg">
-                <p class="text-xs font-semibold text-purple-800 mb-2">🧾 Datos Fiscales</p>
+                <p class="text-xs font-semibold text-purple-800 mb-2">Datos Fiscales</p>
                 <div class="space-y-1 text-xs text-purple-900">
                     <?php if (!empty($pedido['rfc'])): ?>
-                        <p><strong>🆔 RFC:</strong> <?= htmlspecialchars($pedido['rfc']) ?></p>
+                        <p><strong>RFC:</strong> <?= htmlspecialchars($pedido['rfc']) ?></p>
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['razon_social'])): ?>
-                        <p><strong>🏢 Razón Social:</strong> <?= htmlspecialchars($pedido['razon_social']) ?></p>
+                        <p><strong>Razón Social:</strong> <?= htmlspecialchars($pedido['razon_social']) ?></p>
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['email_factura'])): ?>
-                        <p><strong>📧 Email:</strong> <?= htmlspecialchars($pedido['email_factura']) ?></p>
+                        <p><strong>Email:</strong> <?= htmlspecialchars($pedido['email_factura']) ?></p>
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['codigo_postal'])): ?>
-                        <p><strong>📮 CP Fiscal:</strong> <?= htmlspecialchars($pedido['codigo_postal']) ?></p>
+                        <p><strong>CP Fiscal:</strong> <?= htmlspecialchars($pedido['codigo_postal']) ?></p>
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['regimen_fiscal'])): ?>
-                        <p><strong>📊 Régimen:</strong> <?= htmlspecialchars($pedido['regimen_fiscal']) ?></p>
+                        <p><strong>Régimen:</strong> <?= htmlspecialchars($pedido['regimen_fiscal']) ?></p>
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['uso_cfdi'])): ?>
-                        <p><strong>📄 Uso CFDI:</strong> <?= htmlspecialchars($pedido['uso_cfdi']) ?></p>
+                        <p><strong>Uso CFDI:</strong> <?= htmlspecialchars($pedido['uso_cfdi']) ?></p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -281,7 +281,7 @@ foreach ($mensajes as $msg) {
            data-pedido-id="<?= $pedido['id'] ?>"
            data-chat-link
            class="w-full bg-sage-500 hover:bg-sage-600 text-white px-3 py-2 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition relative">
-            💬 Chat
+            Chat
             <?php if ($mensajes_cliente_no_leidos > 0): ?>
                 <span class="badge-mensajes absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                     <?= $mensajes_cliente_no_leidos ?>
@@ -293,20 +293,20 @@ foreach ($mensajes as $msg) {
         <?php $num_factura_val = $pedido['num_factura'] ?? ''; ?>
         <?php if (!empty($num_factura_val)): ?>
             <span class="nf-badge inline-block px-2 py-0.5 bg-teal-50 text-teal-700 border border-teal-200 rounded text-[11px] font-mono font-semibold">
-                🔢 <?= htmlspecialchars($num_factura_val) ?>
+                <?= htmlspecialchars($num_factura_val) ?>
             </span>
         <?php endif; ?>
         <button data-nf-btn
                 onclick="abrirModalNumFactura(<?= $pedido['id'] ?>, '<?= htmlspecialchars(addslashes($num_factura_val)) ?>')"
                 class="w-full bg-teal-50 hover:bg-teal-100 text-teal-700 border border-teal-200 px-3 py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 transition">
-            <?= empty($num_factura_val) ? '🔢 N° Factura' : '✏️ Editar N° Factura' ?>
+            <?= empty($num_factura_val) ? 'N° Factura' : 'Editar N° Factura' ?>
         </button>
         
         <!-- Botones específicos por estado -->
         <?php if ($pedido['estado'] === 'por_verificar' && !empty($pedido['comprobante_pago'])): ?>
             <button onclick="confirmarPago(<?= $pedido['id'] ?>, <?= $badge_fin_mes ? htmlspecialchars(json_encode($pedido['fecha_por_verificar']), ENT_QUOTES) : 'null' ?>)"
                     class="w-full bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition">
-                ✅ Confirmar Pago<?= $es_entrega_directa && !$factura_pendiente ? ' → Entregado' : ' → Confirmado' ?>
+                Confirmar Pago<?= $es_entrega_directa && !$factura_pendiente ? ' → Entregado' : ' → Confirmado' ?>
             </button>
         <?php endif; ?>
         
@@ -315,7 +315,7 @@ foreach ($mensajes as $msg) {
             <?php if ($pedido['requiere_factura'] && empty($pedido['factura_pdf']) && empty($pedido['factura_xml'])): ?>
                 <button onclick="abrirModalFactura(<?= $pedido['id'] ?>)"
                         class="w-full bg-amber-500 hover:bg-amber-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition">
-                    🧾 Subir Factura
+                    Subir Factura
                 </button>
             <?php endif; ?>
             
@@ -323,13 +323,13 @@ foreach ($mensajes as $msg) {
                 <?php if (!$factura_pendiente): ?>
                     <button onclick="cambiarEstado(<?= $pedido['id'] ?>, 'entregado')"
                             class="w-full bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition">
-                        ✅ Cerrar como Entregado
+                        Cerrar como Entregado
                     </button>
                 <?php endif; ?>
             <?php else: ?>
                 <button onclick="abrirModalEnvio(<?= $pedido['id'] ?>)"
                         class="w-full bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition">
-                    📤 Subir Guía → En Ruta
+                    Subir Guía → En Ruta
                 </button>
             <?php endif; ?>
         <?php endif; ?>
@@ -339,13 +339,13 @@ foreach ($mensajes as $msg) {
             <?php if ($pedido['requiere_factura'] && empty($pedido['factura_pdf']) && empty($pedido['factura_xml'])): ?>
                 <button onclick="abrirModalFactura(<?= $pedido['id'] ?>)"
                         class="w-full bg-amber-500 hover:bg-amber-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition">
-                    🧾 Subir Factura
+                    Subir Factura
                 </button>
             <?php endif; ?>
             
             <button onclick="cambiarEstado(<?= $pedido['id'] ?>, 'entregado')"
                     class="w-full bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition">
-                ✅ Marcar Entregado
+                Marcar Entregado
             </button>
         <?php endif; ?>
         
@@ -354,7 +354,7 @@ foreach ($mensajes as $msg) {
             <?php if ($pedido['requiere_factura'] && empty($pedido['factura_pdf']) && empty($pedido['factura_xml'])): ?>
                 <button onclick="abrirModalFactura(<?= $pedido['id'] ?>)"
                         class="w-full bg-amber-500 hover:bg-amber-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition">
-                    🧾 Subir Factura
+                    Subir Factura
                 </button>
             <?php endif; ?>
         <?php endif; ?>

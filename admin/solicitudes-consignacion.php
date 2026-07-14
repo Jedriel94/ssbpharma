@@ -392,13 +392,13 @@ $pageTitle = ($vista === 'lista' ? 'Lista de Consignaciones' : 'Tablero de Consi
 <main class="consignacion-shell px-4 py-8">
     <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6" style="padding-right:3.5rem">
         <div class="flex-1 min-w-0">
-            <h1 class="text-3xl font-bold" style="color:var(--text-primary)">📦 Consignaciones</h1>
+            <h1 class="text-3xl font-bold" style="color:var(--text-primary)">Consignaciones</h1>
             <p class="text-sm mt-1" style="color:var(--text-muted)"><?= $vista === 'lista' ? 'Historial completo · sin límite de fechas' : 'Vista Kanban · estados finales últimos 7 días' ?></p>
         </div>
         <!-- Toggle vistas -->
         <div class="flex gap-1 p-1 rounded-xl shrink-0" style="background:var(--bg-input);border:1px solid var(--border-card)">
             <a href="?vista=tablero" class="vista-tab <?= $vista === 'tablero' ? 'active' : '' ?>">⊞ Tablero</a>
-            <a href="?vista=lista"   class="vista-tab <?= $vista === 'lista'   ? 'active' : '' ?>">☰ Lista</a>
+            <a href="?vista=lista"   class="vista-tab <?= $vista === 'lista'   ? 'active' : '' ?>">Lista</a>
         </div>
     </div>
 
@@ -465,7 +465,7 @@ $pageTitle = ($vista === 'lista' ? 'Lista de Consignaciones' : 'Tablero de Consi
                                 ?>
                                 <?php if ($dirParts): ?>
                                 <div class="consignacion-panel mt-1 rounded-lg px-3 py-2">
-                                    <div class="text-[10px] font-bold uppercase text-slate-700 mb-0.5">📦 Dirección de envío</div>
+                                    <div class="text-[10px] font-bold uppercase text-slate-700 mb-0.5">Dirección de envío</div>
                                     <div class="text-xs text-slate-700 leading-relaxed"><?= h(implode(', ', $dirParts)) ?></div>
                                 </div>
                                 <?php else: ?>
@@ -483,13 +483,13 @@ $pageTitle = ($vista === 'lista' ? 'Lista de Consignaciones' : 'Tablero de Consi
                             <div class="grid gap-2 mb-4">
                                 <?php if (!empty($solicitud['notas_representante'])): ?>
                                 <div class="consignacion-panel rounded-lg px-3 py-2">
-                                    <div class="text-[10px] font-bold uppercase text-slate-500 mb-0.5">📝 Notas del representante</div>
+                                    <div class="text-[10px] font-bold uppercase text-slate-500 mb-0.5">Notas del representante</div>
                                     <p class="text-xs text-slate-700 whitespace-pre-line"><?= h($solicitud['notas_representante']) ?></p>
                                 </div>
                                 <?php endif; ?>
                                 <?php if (!empty($solicitud['notas_admin'])): ?>
                                 <div class="rounded-lg bg-blue-50 border border-blue-200 px-3 py-2">
-                                    <div class="text-[10px] font-bold uppercase text-blue-400 mb-0.5">🔵 Notas del admin</div>
+                                    <div class="text-[10px] font-bold uppercase text-blue-400 mb-0.5">Notas del admin</div>
                                     <p class="text-xs text-blue-900 whitespace-pre-line"><?= h($solicitud['notas_admin']) ?></p>
                                 </div>
                                 <?php endif; ?>
@@ -581,7 +581,7 @@ $pageTitle = ($vista === 'lista' ? 'Lista de Consignaciones' : 'Tablero de Consi
                                             <button class="btn-primary w-full min-h-10 rounded-xl text-sm font-bold">Confirmar entrega</button>
                                         </form>
                                         <details class="mt-3 rounded-xl border border-indigo-200">
-                                            <summary class="cursor-pointer list-none px-3 py-2 text-xs font-bold text-indigo-700">✏️ Corregir guía</summary>
+                                            <summary class="cursor-pointer list-none px-3 py-2 text-xs font-bold text-indigo-700">Corregir guía</summary>
                                             <form method="POST" enctype="multipart/form-data" class="space-y-2 border-t border-indigo-100 p-3">
                                                 <input type="hidden" name="accion" value="update_guia">
                                                 <input type="hidden" name="solicitud_id" value="<?= $id ?>">
@@ -740,13 +740,13 @@ $pageTitle = ($vista === 'lista' ? 'Lista de Consignaciones' : 'Tablero de Consi
                             <div style="display:grid;gap:8px;margin-bottom:10px">
                                 <?php if (!empty($solicitud['notas_representante'])): ?>
                                 <div style="background:var(--bg-secondary);border:1px solid var(--border-card);border-radius:8px;padding:8px 10px;font-size:12px">
-                                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:3px">📝 Rep.</div>
+                                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:3px">Rep.</div>
                                     <?= h($solicitud['notas_representante']) ?>
                                 </div>
                                 <?php endif; ?>
                                 <?php if (!empty($solicitud['notas_admin'])): ?>
                                 <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:8px 10px;font-size:12px;color:#1e3a8a">
-                                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#93c5fd;margin-bottom:3px">🔵 Admin</div>
+                                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#93c5fd;margin-bottom:3px">Admin</div>
                                     <?= h($solicitud['notas_admin']) ?>
                                 </div>
                                 <?php endif; ?>

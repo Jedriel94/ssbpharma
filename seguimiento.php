@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 exit;
             }
 
-            $mensajeModel->create($pedido_id, 'cliente', '❌ El cliente canceló el pedido antes de procesar el pago.');
+            $mensajeModel->create($pedido_id, 'cliente', 'El cliente canceló el pedido antes de procesar el pago.');
 
             echo json_encode(['success' => true, 'message' => $resultadoCancelacion['message'] ?? 'Pedido cancelado correctamente']);
             exit;
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             
             if ($stmt->execute()) {
                 // Crear un mensaje automático en el chat para notificar al admin
-                $mensajeModel->create($pedido_id, 'cliente', '📄 El cliente ha solicitado factura electrónica para este pedido.');
+                $mensajeModel->create($pedido_id, 'cliente', 'El cliente ha solicitado factura electrónica para este pedido.');
                 
                 echo json_encode(['success' => true, 'message' => 'Factura solicitada exitosamente. El administrador generará tu factura pronto.']);
             } else {
@@ -143,7 +143,7 @@ if (!$cliente) {
     exit;
 }
 
-// ✅ Actualizar representante si no tiene uno asignado (respeta el primero)
+// Actualizar representante si no tiene uno asignado (respeta el primero)
 $clienteModel->actualizarRepresentanteSiNoTiene($telefono);
 
 // Verificar contraseña si el cliente tiene una configurada
@@ -179,10 +179,10 @@ if ($requierePassword) {
             <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4">
                 <div class="p-6">
                     <div class="text-center mb-6">
-                        <div class="text-6xl mb-4">🔒</div>
+                        <div class="text-6xl mb-4"></div>
                         <h2 class="text-2xl font-bold text-slate-900 mb-2">Verificación requerida</h2>
                         <p class="text-slate-600">Ingresa tu contraseña para ver tus pedidos</p>
-                        <p class="text-sm text-terracotta-600 mt-2">📱 <?= htmlspecialchars($telefono) ?></p>
+                        <p class="text-sm text-terracotta-600 mt-2"><?= htmlspecialchars($telefono) ?></p>
                     </div>
                     
                     <form id="formPassword" onsubmit="verificarPassword(event)">
@@ -236,13 +236,13 @@ if ($requierePassword) {
                     // Recargar la página para mostrar los pedidos
                     window.location.reload();
                 } else {
-                    errorDiv.textContent = '❌ ' + (data.message || 'Contraseña incorrecta');
+                    errorDiv.textContent = '' + (data.message || 'Contraseña incorrecta');
                     errorDiv.classList.remove('hidden');
                     document.getElementById('passwordInput').value = '';
                     document.getElementById('passwordInput').focus();
                 }
             } catch (error) {
-                errorDiv.textContent = '❌ Error al verificar la contraseña';
+                errorDiv.textContent = 'Error al verificar la contraseña';
                 errorDiv.classList.remove('hidden');
             }
         }
@@ -268,37 +268,37 @@ if (isset($_GET['logout'])) {
 // Estados con emojis y colores
 $estados = [
     'pendiente' => [
-        'emoji' => '⏳', 
+        'emoji' => '', 
         'color' => 'bg-yellow-100 text-yellow-700', 
         'colorBoton' => 'bg-yellow-500 hover:bg-yellow-600',
         'nombre' => 'Pendiente'
     ],
     'por_verificar' => [
-        'emoji' => '🔍', 
+        'emoji' => '', 
         'color' => 'bg-orange-100 text-orange-700', 
         'colorBoton' => 'bg-orange-500 hover:bg-orange-600',
         'nombre' => 'Por Verificar'
     ],
     'confirmado' => [
-        'emoji' => '✅', 
+        'emoji' => '', 
         'color' => 'bg-blue-100 text-blue-700', 
         'colorBoton' => 'bg-blue-500 hover:bg-blue-600',
         'nombre' => 'Confirmado'
     ],
     'en_ruta' => [
-        'emoji' => '🚚', 
+        'emoji' => '', 
         'color' => 'bg-purple-100 text-purple-700', 
         'colorBoton' => 'bg-purple-500 hover:bg-purple-600',
         'nombre' => 'En Ruta'
     ],
     'entregado' => [
-        'emoji' => '📦', 
+        'emoji' => '', 
         'color' => 'bg-green-100 text-green-700', 
         'colorBoton' => 'bg-green-500 hover:bg-green-600',
         'nombre' => 'Entregado'
     ],
     'cancelado' => [
-        'emoji' => '❌', 
+        'emoji' => '', 
         'color' => 'bg-red-100 text-red-700', 
         'colorBoton' => 'bg-red-500 hover:bg-red-600',
         'nombre' => 'Cancelado'
@@ -447,7 +447,7 @@ $estados = [
     <div class="cliente-page-head mb-6">
         <div class="flex justify-between items-start mb-2">
             <div>
-                <h1 class="text-3xl font-bold text-slate-900 mb-2">📋 Mis Pedidos</h1>
+                <h1 class="text-3xl font-bold text-slate-900 mb-2">Mis Pedidos</h1>
                 <p class="text-slate-600">
                     Cliente: <span class="font-semibold text-terracotta-600"><?= htmlspecialchars($telefono) ?></span>
                     <?php if (!empty($cliente['nombre'])): ?>
@@ -460,7 +460,7 @@ $estados = [
                 <a href="seguimiento.php?telefono=<?= urlencode($telefono) ?>&logout=1" 
                    class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-sm font-semibold hover:bg-slate-200 transition inline-flex items-center gap-2"
                    onclick="return confirm('¿Cerrar sesión?')">
-                    🚪 Cerrar Sesión
+                    Cerrar Sesión
                 </a>
             <?php endif; ?>
         </div>
@@ -470,7 +470,7 @@ $estados = [
     <div class="mb-6">
         <a href="crear-pedido.php?telefono=<?= urlencode($telefono) ?>" 
            class="btn-primary text-white px-6 py-3 rounded-xl shadow-lg inline-flex items-center gap-2">
-            ➕ Nuevo Pedido
+            Nuevo Pedido
         </a>
     </div>
 
@@ -490,7 +490,7 @@ $estados = [
         
         <div class="card rounded-2xl shadow-lg p-6 mb-6">
             <div class="flex items-center justify-between mb-4">
-                <h2 class="text-lg font-bold text-slate-900">🔍 Filtrar por Estado</h2>
+                <h2 class="text-lg font-bold text-slate-900">Filtrar por Estado</h2>
                 <div class="hidden sm:block text-xs text-slate-500">
                     <span id="contadorVisible"><?= count($pedidos) ?></span> de <?= count($pedidos) ?> pedidos
                 </div>
@@ -505,7 +505,7 @@ $estados = [
                 <button onclick="filtrarPorEstado('todos')" 
                         data-estado="todos"
                         class="filtro-estado filtro-activo px-4 py-2 rounded-xl font-semibold transition-all shadow-sm hover:shadow-md bg-slate-600 hover:bg-slate-700 text-white">
-                    📋 Todos (<?= count($pedidos) ?>)
+                    Todos (<?= count($pedidos) ?>)
                 </button>
                 
                 <!-- Botones por estado -->
@@ -527,7 +527,7 @@ $estados = [
                     <span class="font-semibold">Mostrando:</span>
                     <span id="filtroTexto" class="px-3 py-1 bg-slate-100 rounded-lg"></span>
                     <button onclick="filtrarPorEstado('todos')" class="text-terracotta-600 hover:text-terracotta-700 font-semibold ml-2">
-                        ✕ Limpiar filtro
+                        Limpiar filtro
                     </button>
                 </div>
             </div>
@@ -537,7 +537,7 @@ $estados = [
     <!-- Lista de Pedidos -->
     <?php if (empty($pedidos)): ?>
         <div class="card rounded-2xl shadow-lg p-12 text-center">
-            <div class="text-6xl mb-4">📦</div>
+            <div class="text-6xl mb-4"></div>
             <p class="text-slate-600 text-lg mb-2">No tienes pedidos registrados</p>
             <p class="text-slate-500 text-sm">Haz tu primer pedido para comenzar</p>
         </div>
@@ -546,7 +546,7 @@ $estados = [
             <?php foreach ($pedidos as $pedido): ?>
                 <?php 
                 $detalle = $pedidoModel->getDetalle($pedido['id']);
-                $estado = $estados[$pedido['estado']] ?? ['emoji' => '❓', 'color' => 'bg-gray-100 text-gray-700', 'nombre' => 'Desconocido'];
+                $estado = $estados[$pedido['estado']] ?? ['emoji' => '', 'color' => 'bg-gray-100 text-gray-700', 'nombre' => 'Desconocido'];
                 $canalPedido = $pedido['canal'] ?? 'cliente_directo';
                 $esEntregaDirecta = $canalPedido === 'representante_directo' || (int)($pedido['entrega_directa'] ?? 0) === 1;
                 $badgeCanal = $esEntregaDirecta
@@ -631,7 +631,7 @@ $estados = [
                         <!-- Notas del pedido -->
                         <?php if (!empty($pedido['notas'])): ?>
                             <div class="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-                                <p class="text-sm font-semibold text-yellow-800 mb-1">📝 Notas:</p>
+                                <p class="text-sm font-semibold text-yellow-800 mb-1">Notas:</p>
                                 <p class="text-sm text-yellow-700"><?= nl2br(htmlspecialchars($pedido['notas'])) ?></p>
                             </div>
                         <?php endif; ?>
@@ -640,7 +640,7 @@ $estados = [
                         <?php if ($pedido['requiere_factura']): ?>
                             <div class="mt-4 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 rounded-xl shadow-sm">
                                 <div class="flex items-start gap-3 mb-3">
-                                    <div class="text-3xl">🧾</div>
+                                    <div class="text-3xl"></div>
                                     <div class="flex-1">
                                         <p class="text-base font-bold text-amber-900 mb-1">Factura Electrónica</p>
                                         <p class="text-sm text-amber-700">
@@ -664,7 +664,7 @@ $estados = [
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                                                 </svg>
-                                                📄 Descargar PDF
+                                                Descargar PDF
                                             </a>
                                         <?php endif; ?>
                                         
@@ -675,7 +675,7 @@ $estados = [
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
                                                 </svg>
-                                                📥 Descargar XML
+                                                Descargar XML
                                             </a>
                                         <?php endif; ?>
                                     </div>
@@ -737,7 +737,7 @@ $estados = [
                                     <!-- Datos fiscales proporcionados -->
                                     <?php if (!empty($pedido['rfc']) || !empty($pedido['razon_social'])): ?>
                                         <div class="mt-3 p-3 bg-white bg-opacity-50 rounded-lg">
-                                            <p class="text-xs font-semibold text-amber-800 mb-2">📋 Datos fiscales registrados:</p>
+                                            <p class="text-xs font-semibold text-amber-800 mb-2">Datos fiscales registrados:</p>
                                             <div class="grid grid-cols-1 gap-1 text-xs text-amber-700">
                                                 <?php if (!empty($pedido['rfc'])): ?>
                                                     <div>
@@ -769,7 +769,7 @@ $estados = [
                                data-pedido-id="<?= $pedido['id'] ?>"
                                data-chat-link
                                class="bg-sage-500 hover:bg-sage-600 text-white px-6 py-3 rounded-xl shadow-md inline-flex items-center gap-2 w-full justify-center font-semibold transition relative">
-                                💬 Chat con Proveedor
+                                Chat con Proveedor
                                 <?php if ($mensajes_admin_no_leidos > 0): ?>
                                     <span class="badge-mensajes absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse">
                                         <?= $mensajes_admin_no_leidos ?>
@@ -783,10 +783,10 @@ $estados = [
                             <div class="mt-3">
                                 <button onclick="abrirModalSolicitarFactura(<?= $pedido['id'] ?>)"
                                         class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl shadow-md inline-flex items-center gap-2 w-full justify-center font-semibold transition">
-                                    🧾 Solicitar Factura
+                                    Solicitar Factura
                                 </button>
                                 <p class="text-xs text-slate-500 text-center mt-2">
-                                    💡 Puedes solicitar tu factura electrónica
+                                    Puedes solicitar tu factura electrónica
                                 </p>
                             </div>
                         <?php endif; ?>
@@ -796,10 +796,10 @@ $estados = [
                             <div class="mt-4">
                                 <a href="procesar-pago.php?pedido_id=<?= $pedido['id'] ?>&telefono=<?= urlencode($telefono) ?>" 
                                    class="btn-primary text-white px-6 py-3 rounded-xl shadow-md inline-flex items-center gap-2 w-full justify-center font-semibold hover:shadow-lg transition">
-                                    💳 Proceder al Pago
+                                    Proceder al Pago
                                 </a>
                                 <p class="text-xs text-slate-500 text-center mt-2">
-                                    ⚠️ Este pedido está pendiente de pago
+                                    Este pedido está pendiente de pago
                                 </p>
                             </div>
                         <?php elseif ($pedido['estado'] === 'pendiente' && $esEntregaDirecta): ?>
@@ -814,7 +814,7 @@ $estados = [
                                 <button type="button"
                                         onclick="cancelarPedido(<?= $pedido['id'] ?>)"
                                         class="w-full px-6 py-3 rounded-xl border-2 border-red-300 text-red-700 bg-red-50 hover:bg-red-100 font-semibold transition">
-                                    ❌ Cancelar pedido
+                                    Cancelar pedido
                                 </button>
                                 <p class="text-xs text-slate-500 text-center mt-2">
                                     Solo disponible antes de procesar el pago
@@ -825,7 +825,7 @@ $estados = [
                         <!-- Información de pago verificado (para pedidos por_verificar) -->
                         <?php if ($pedido['estado'] === 'por_verificar'): ?>
                             <div class="mt-4 p-4 bg-orange-50 border-l-4 border-orange-400 rounded">
-                                <p class="text-sm font-semibold text-orange-800 mb-1">🔍 Pago en Verificación</p>
+                                <p class="text-sm font-semibold text-orange-800 mb-1">Pago en Verificación</p>
                                 <p class="text-sm text-orange-700">Hemos recibido tu comprobante de pago. Estamos verificando la información y te notificaremos pronto.</p>
                                 <?php if (!empty($pedido['metodo_pago'])): ?>
                                     <p class="text-xs text-orange-600 mt-2">
@@ -838,7 +838,7 @@ $estados = [
                         <!-- Información de pedido confirmado -->
                         <?php if ($pedido['estado'] === 'confirmado'): ?>
                             <div class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-400 rounded">
-                                <p class="text-sm font-semibold text-blue-800 mb-1">✅ Pago Confirmado</p>
+                                <p class="text-sm font-semibold text-blue-800 mb-1">Pago Confirmado</p>
                                 <p class="text-sm text-blue-700">Tu pago ha sido verificado exitosamente. Estamos preparando tu pedido para el envío.</p>
                             </div>
                         <?php endif; ?>
@@ -846,7 +846,7 @@ $estados = [
                         <!-- Información de envío (para pedidos en_ruta) -->
                         <?php if ($pedido['estado'] === 'en_ruta' && !empty($pedido['comprobante_envio'])): ?>
                             <div class="mt-4 p-4 bg-purple-50 border-l-4 border-purple-400 rounded">
-                                <p class="text-sm font-semibold text-purple-800 mb-3">🚚 Tu Pedido Está En Camino</p>
+                                <p class="text-sm font-semibold text-purple-800 mb-3">Tu Pedido Está En Camino</p>
                                 <p class="text-sm text-purple-700 mb-4">Hemos enviado tu pedido. Aquí está la guía de envío:</p>
                                 
                                 <!-- Visualizador de Guía de Envío -->
@@ -864,7 +864,7 @@ $estados = [
                                                  class="max-w-full h-auto rounded-lg shadow-md cursor-pointer hover:shadow-xl transition"
                                                  onclick="abrirImagenCompleta('<?= $rutaComprobante ?>')">
                                             <p class="text-xs text-slate-500 mt-2">
-                                                👆 Haz clic en la imagen para verla en tamaño completo
+                                                Haz clic en la imagen para verla en tamaño completo
                                             </p>
                                         </div>
                                     <?php elseif ($extension === 'pdf'): ?>
@@ -872,7 +872,7 @@ $estados = [
                                         <div class="space-y-3">
                                             <div class="flex items-center justify-between p-3 bg-purple-100 rounded-lg">
                                                 <div class="flex items-center gap-3">
-                                                    <span class="text-3xl">📄</span>
+                                                    <span class="text-3xl"></span>
                                                     <div>
                                                         <p class="font-semibold text-purple-900">Guía de Envío (PDF)</p>
                                                         <p class="text-xs text-purple-700">Haz clic para abrir</p>
@@ -897,7 +897,7 @@ $estados = [
                                         <!-- Otros formatos -->
                                         <div class="flex items-center justify-between p-3 bg-purple-100 rounded-lg">
                                             <div class="flex items-center gap-3">
-                                                <span class="text-3xl">📎</span>
+                                                <span class="text-3xl"></span>
                                                 <div>
                                                     <p class="font-semibold text-purple-900">Guía de Envío</p>
                                                     <p class="text-xs text-purple-700">Archivo adjunto</p>
@@ -907,14 +907,14 @@ $estados = [
                                                target="_blank"
                                                download
                                                class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
-                                                ⬇️ Descargar
+                                                Descargar
                                             </a>
                                         </div>
                                     <?php endif; ?>
                                 </div>
                                 
                                 <p class="text-xs text-purple-600 mt-3 text-center">
-                                    💡 Guarda esta información para rastrear tu pedido
+                                    Guarda esta información para rastrear tu pedido
                                 </p>
                             </div>
                         <?php endif; ?>
@@ -922,13 +922,13 @@ $estados = [
                         <!-- Información de pedido entregado -->
                         <?php if ($pedido['estado'] === 'entregado'): ?>
                             <div class="mt-4 p-4 bg-green-50 border-l-4 border-green-400 rounded">
-                                <p class="text-sm font-semibold text-green-800 mb-1">📦 ¡Pedido Entregado!</p>
+                                <p class="text-sm font-semibold text-green-800 mb-1">¡Pedido Entregado!</p>
                                 <p class="text-sm text-green-700">Tu pedido ha sido entregado exitosamente. ¡Gracias por tu compra!</p>
                                 
                                 <!-- Mostrar guía de envío también en entregado -->
                                 <?php if (!empty($pedido['comprobante_envio'])): ?>
                                     <div class="mt-3 pt-3 border-t border-green-200">
-                                        <p class="text-xs font-semibold text-green-800 mb-2">📄 Información de Envío:</p>
+                                        <p class="text-xs font-semibold text-green-800 mb-2">Información de Envío:</p>
                                         <?php 
                                         $extension = strtolower(pathinfo($pedido['comprobante_envio'], PATHINFO_EXTENSION));
                                         $rutaComprobante = url('uploads/comprobantes_envio/' . htmlspecialchars($pedido['comprobante_envio']));
@@ -937,11 +937,11 @@ $estados = [
                                            target="_blank"
                                            class="inline-flex items-center gap-2 text-sm text-green-700 hover:text-green-900 font-semibold">
                                             <?php if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp'])): ?>
-                                                🖼️ Ver guía de envío
+                                                Ver guía de envío
                                             <?php elseif ($extension === 'pdf'): ?>
-                                                📄 Ver guía de envío (PDF)
+                                                Ver guía de envío (PDF)
                                             <?php else: ?>
-                                                📎 Descargar guía de envío
+                                                Descargar guía de envío
                                             <?php endif; ?>
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
@@ -963,7 +963,7 @@ $estados = [
 <div id="modalImagen" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4" onclick="cerrarModalImagen()">
     <div class="relative max-w-6xl max-h-screen">
         <button onclick="cerrarModalImagen()" class="absolute -top-12 right-0 text-white hover:text-gray-300 text-4xl font-bold">
-            ✕
+            
         </button>
         <img id="imagenCompleta" src="" alt="Guía de envío" class="max-w-full max-h-screen rounded-lg shadow-2xl">
     </div>
@@ -976,11 +976,11 @@ $estados = [
             <!-- Header -->
             <div class="flex items-center justify-between mb-6">
                 <div>
-                    <h2 class="text-2xl font-bold text-slate-900 mb-1">🧾 Solicitar Factura Electrónica</h2>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-1">Solicitar Factura Electrónica</h2>
                     <p class="text-sm text-slate-600">Pedido #<span id="pedidoIdFactura"></span></p>
                 </div>
                 <button onclick="cerrarModalSolicitarFactura()" class="text-slate-400 hover:text-slate-600 text-2xl">
-                    ✕
+                    
                 </button>
             </div>
             
@@ -1227,7 +1227,7 @@ function mostrarMensajeSinResultados(cantidad) {
             mensajeDiv.id = 'mensajeSinResultados';
             mensajeDiv.className = 'card rounded-2xl shadow-lg p-12 text-center';
             mensajeDiv.innerHTML = `
-                <div class="text-6xl mb-4">🔍</div>
+                <div class="text-6xl mb-4"></div>
                 <p class="text-slate-600 text-lg mb-2">No hay pedidos con este estado</p>
                 <p class="text-slate-500 text-sm">Intenta con otro filtro</p>
             `;
@@ -1360,21 +1360,21 @@ async function cancelarPedido(pedidoId) {
                 if (window.showToast) {
                     showToast(data.message || 'Pedido cancelado', 'success');
                 } else {
-                    alert('✅ ' + (data.message || 'Pedido cancelado'));
+                    alert('' + (data.message || 'Pedido cancelado'));
                 }
                 window.location.reload();
             } else {
                 if (window.showToast) {
                     showToast(data.message || 'No se pudo cancelar el pedido', 'error');
                 } else {
-                    alert('❌ ' + (data.message || 'No se pudo cancelar el pedido'));
+                    alert('' + (data.message || 'No se pudo cancelar el pedido'));
                 }
             }
         } catch (error) {
             if (window.showToast) {
                 showToast('Error de red al cancelar el pedido', 'error');
             } else {
-                alert('❌ Error de red al cancelar el pedido');
+                alert('Error de red al cancelar el pedido');
             }
         }
     };
@@ -1420,7 +1420,7 @@ async function enviarSolicitudFactura(event) {
         const data = await response.json();
         
         if (data.success) {
-            exitoDiv.textContent = '✅ ' + data.message;
+            exitoDiv.textContent = '' + data.message;
             exitoDiv.classList.remove('hidden');
             
             // Recargar la página después de 2 segundos
@@ -1428,13 +1428,13 @@ async function enviarSolicitudFactura(event) {
                 window.location.reload();
             }, 2000);
         } else {
-            errorDiv.textContent = '❌ ' + data.message;
+            errorDiv.textContent = '' + data.message;
             errorDiv.classList.remove('hidden');
             btn.disabled = false;
             btn.textContent = 'Solicitar Factura';
         }
     } catch (error) {
-        errorDiv.textContent = '❌ Error al procesar la solicitud';
+        errorDiv.textContent = 'Error al procesar la solicitud';
         errorDiv.classList.remove('hidden');
         btn.disabled = false;
         btn.textContent = 'Solicitar Factura';
@@ -1502,20 +1502,20 @@ async function actualizarBadgesMensajes() {
                     if (badge) {
                         // Actualizar el badge existente
                         badge.textContent = count;
-                        console.log(`✅ Badge actualizado para pedido ${pedidoId}: ${count} mensajes`);
+                        console.log(`Badge actualizado para pedido ${pedidoId}: ${count} mensajes`);
                     } else {
                         // Crear el badge si no existe
                         const newBadge = document.createElement('span');
                         newBadge.className = 'badge-mensajes absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse';
                         newBadge.textContent = count;
                         chatLink.appendChild(newBadge);
-                        console.log(`🆕 Badge creado para pedido ${pedidoId}: ${count} mensajes`);
+                        console.log(`Badge creado para pedido ${pedidoId}: ${count} mensajes`);
                     }
                 } else {
                     // Remover el badge si no hay mensajes
                     if (badge) {
                         badge.remove();
-                        console.log(`🗑️ Badge eliminado para pedido ${pedidoId}`);
+                        console.log(`Badge eliminado para pedido ${pedidoId}`);
                     }
                 }
             });
@@ -1523,12 +1523,12 @@ async function actualizarBadgesMensajes() {
             console.error('Error en respuesta:', data);
         }
     } catch (error) {
-        console.error('❌ Error actualizando badges de mensajes:', error);
+        console.error('Error actualizando badges de mensajes:', error);
     }
 }
 
 // Ejecutar inmediatamente y luego cada 10 segundos
-console.log('🚀 Iniciando sistema de actualización de badges (Cliente)...');
+console.log('Iniciando sistema de actualización de badges (Cliente)...');
 actualizarBadgesMensajes();
 setInterval(actualizarBadgesMensajes, 10000);
 </script>

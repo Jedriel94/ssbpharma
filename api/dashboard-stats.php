@@ -294,7 +294,7 @@ try {
 
                                 UNION ALL
 
-                                SELECT CONCAT('📦 ', k.nombre) AS label,
+                                SELECT CONCAT('', k.nombre) AS label,
                                        '' AS extra,
                                        SUM(kv.cantidad) AS piezas,
                                        SUM(kv.subtotal) AS monto,

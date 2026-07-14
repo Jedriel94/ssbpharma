@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'guard
         'es_nuevo' => $es_nuevo,
         'nombre'   => $nombre_final,
         'telefono' => $tel,
-        'message'  => $es_nuevo ? "✅ Cliente registrado" : "✅ Cliente actualizado",
+        'message'  => $es_nuevo ? "Cliente registrado" : "Cliente actualizado",
     ]);
     exit;
 }
@@ -418,15 +418,15 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
     <link rel="stylesheet" href="<?= asset('css/representante.css') ?>">
     <style>
         :root {
-            --ink: #101820;
-            --muted: #65717f;
-            --paper: #fbfaf7;
+            --ink: #102040;
+            --muted: #6a90b8;
+            --paper: #f0f5fa;
             --panel: #ffffff;
-            --line: #e6e0d6;
-            --field: #f2eee7;
-            --brand: #126c6a;
-            --brand-dark: #0b4f4e;
-            --accent: #d86f4d;
+            --line: #bfcfe8;
+            --field: #eef4fa;
+            --brand: #4a70a9;
+            --brand-dark: #3a5a90;
+            --accent: #8fabd4;
             --warn: #9a5b13;
             --danger: #b42318;
         }
@@ -1389,14 +1389,14 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
                     <button class="period-chip" data-p="semana"        onclick="selPeriodo(this)">Semana</button>
                     <button class="period-chip active" data-p="mes"    onclick="selPeriodo(this)">Este mes</button>
                     <button class="period-chip" data-p="mes_anterior"  onclick="selPeriodo(this)">Mes ant.</button>
-                    <button class="period-chip" data-p="personalizado" onclick="selPeriodo(this)">📅 Fechas</button>
+                    <button class="period-chip" data-p="personalizado" onclick="selPeriodo(this)">Fechas</button>
                 </div>
             </div>
             <!-- Chips de canal -->
             <div class="canal-chips" role="group">
                 <button class="canal-chip active" data-canal="todos"   onclick="selCanal(this)">Todos los canales</button>
-                <button class="canal-chip" data-canal="directo" onclick="selCanal(this)">👤 Directas</button>
-                <button class="canal-chip" data-canal="qr"      onclick="selCanal(this)">📱 Tienda / QR</button>
+                <button class="canal-chip" data-canal="directo" onclick="selCanal(this)">Directas</button>
+                <button class="canal-chip" data-canal="qr"      onclick="selCanal(this)">Tienda / QR</button>
                 <label style="display:flex;align-items:center;gap:6px;margin-left:8px;cursor:pointer;height:28px;padding:0 12px;border-radius:999px;border:1.5px solid var(--line);background:white;font-size:12px;font-weight:900;color:var(--muted);white-space:nowrap;font-family:inherit;" id="sinIvaLabel" title="Mostrar montos sin IVA">
                     <input type="checkbox" id="toggleSinIva" onchange="onToggleSinIva(this)" style="width:14px;height:14px;cursor:pointer;accent-color:var(--brand)">
                     Sin IVA
@@ -1429,22 +1429,22 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
             <!-- KPI 2×2 -->
             <div class="kpi-grid">
                 <div class="kpi-card" style="--kd:.06s">
-                    <div class="kpi-icon">👥</div>
+                    <div class="kpi-icon"></div>
                     <div class="kpi-num" id="dash-clientes">—</div>
                     <div class="kpi-label">Clientes únicos</div>
                 </div>
                 <div class="kpi-card" style="--kd:.12s">
-                    <div class="kpi-icon">🎯</div>
+                    <div class="kpi-icon"></div>
                     <div class="kpi-num" id="dash-ticket">—</div>
                     <div class="kpi-label">Ticket promedio</div>
                 </div>
                 <div class="kpi-card" style="--kd:.18s">
-                    <div class="kpi-icon">🧾</div>
+                    <div class="kpi-icon"></div>
                     <div class="kpi-num" id="dash-pct-cfdi">—</div>
                     <div class="kpi-label">Con factura CFDI</div>
                 </div>
                 <div class="kpi-card kpi-card--click" style="--kd:.24s" onclick="abrirPedidosEntrega()" title="Ver pedidos">
-                    <div class="kpi-icon">🚚</div>
+                    <div class="kpi-icon"></div>
                     <div class="kpi-num" id="dash-entrega">—</div>
                     <div class="kpi-label">Entregas <span style="font-size:9px;opacity:.55">▸ ver</span></div>
                 </div>
@@ -1508,7 +1508,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
 
         <?php if ($_sinDireccion): ?>
         <a href="<?= url('representante/solicitar-inventario.php') ?>" style="display:flex;align-items:center;gap:12px;margin-top:10px;padding:12px 14px;background:#fff8f0;border:1.5px solid #f4b87a;border-radius:12px;text-decoration:none;color:var(--ink)">
-            <span style="font-size:22px;flex-shrink:0">📦</span>
+            <span style="font-size:22px;flex-shrink:0"></span>
             <div>
                 <div style="font-size:13px;font-weight:900">Registra tu dirección de envío</div>
                 <div style="font-size:12px;color:var(--muted)">Para recibir inventario necesitamos saber dónde enviártelo</div>
@@ -1590,7 +1590,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
                                 <div class="row-sub">
                                     <?= htmlspecialchars($venta['cliente_nombre'] ?: $venta['cliente_telefono']) ?>
                                     <?php if (($venta['canal'] ?? '') === 'representante_qr'): ?>
-                                    <span style="margin-left:4px;font-size:10px;background:#e0f2fe;color:#0369a1;padding:1px 6px;border-radius:99px;font-weight:900">📱 QR</span>
+                                    <span style="margin-left:4px;font-size:10px;background:#e0f2fe;color:#0369a1;padding:1px 6px;border-radius:99px;font-weight:900">QR</span>
                                     <?php endif; ?>
                                     · <?= htmlspecialchars($venta['metodo_pago'] ?: 'sin pago') ?>
                                 </div>
@@ -1610,8 +1610,8 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
         <div class="ped-sheet">
             <div class="ped-handle"></div>
             <div class="ped-head">
-                <h3>🚚 Pedidos del período</h3>
-                <button class="ped-close" onclick="cerrarPedidosEntrega()" aria-label="Cerrar">✕</button>
+                <h3>Pedidos del período</h3>
+                <button class="ped-close" onclick="cerrarPedidosEntrega()" aria-label="Cerrar">&times;</button>
             </div>
             <div class="ped-body" id="ped-body">
                 <div class="ped-loading">Cargando…</div>
@@ -1625,7 +1625,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
             <div class="cli-handle"></div>
             <div class="cli-header">
                 <span class="cli-title" id="cli-modal-title">Nuevo cliente</span>
-                <button class="cli-close" onclick="cerrarModalCliente()" aria-label="Cerrar">✕</button>
+                <button class="cli-close" onclick="cerrarModalCliente()" aria-label="Cerrar">&times;</button>
             </div>
 
             <!-- Formulario -->
@@ -1634,13 +1634,13 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
                 <!-- Teléfono -->
                 <div style="margin-bottom:12px">
                     <label class="cli-label" for="cli-tel">
-                        Teléfono <span id="cli-tel-badge" class="cli-badge-ok" style="display:none">✓ Cliente existente</span>
+                        Teléfono <span id="cli-tel-badge" class="cli-badge-ok" style="display:none">Cliente existente</span>
                     </label>
                     <div style="display:flex;gap:8px;align-items:flex-start">
                         <input id="cli-tel" type="tel" inputmode="numeric" maxlength="10" pattern="[0-9]{10}"
                                class="cli-input" placeholder="10 dígitos"
                                oninput="onCliTelInput(this.value)" style="flex:1">
-                        <button type="button" class="cli-btn-buscar" onclick="abrirCliSearch()" title="Buscar cliente por nombre o teléfono">🔍</button>
+                        <button type="button" class="cli-btn-buscar" onclick="abrirCliSearch()" title="Buscar cliente por nombre o teléfono"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
                     </div>
                     <div id="cli-tel-error" style="display:none;margin-top:6px;font-size:12px;font-weight:800;color:#b91c1c">
                         El telefono debe tener exactamente 10 digitos.
@@ -1801,7 +1801,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
                         <div id="cli-constancia-drop"
                              onclick="document.getElementById('cli-constancia-input').click()"
                              style="border:2px dashed #ccc;border-radius:8px;padding:14px;text-align:center;cursor:pointer;background:#fafafa;transition:border-color .15s">
-                            <div id="cli-constancia-placeholder" style="color:#999;font-size:13px">📄 Toca para seleccionar archivo</div>
+                            <div id="cli-constancia-placeholder" style="color:#999;font-size:13px">Toca para seleccionar archivo</div>
                             <div id="cli-constancia-filename" style="display:none;font-size:13px;font-weight:700;color:var(--brand)"></div>
                         </div>
                         <input id="cli-constancia-input" type="file" accept=".pdf,image/*" style="display:none" onchange="onCliConstanciaChange(this)">
@@ -1819,7 +1819,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
                     <div class="cli-srch-handle"></div>
                     <div class="cli-srch-header">
                         <span>Buscar cliente</span>
-                        <button class="cli-srch-close" onclick="cerrarCliSearch()" aria-label="Cerrar">✕</button>
+                        <button class="cli-srch-close" onclick="cerrarCliSearch()" aria-label="Cerrar">&times;</button>
                     </div>
                     <div class="cli-srch-input-wrap">
                         <input type="search" id="cli-srch-input" placeholder="Nombre, teléfono, ciudad…"
@@ -1834,7 +1834,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
 
             <!-- Pantalla de éxito -->
             <div class="cli-success" id="cli-success-body">
-                <div class="cli-success-icon">✅</div>
+                <div class="cli-success-icon"></div>
                 <div style="font-size:20px;font-weight:900" id="cli-success-nombre"></div>
                 <div style="color:var(--muted);font-size:14px" id="cli-success-msg"></div>
                 <div style="display:flex;gap:10px;margin-top:8px;width:100%">
@@ -2086,7 +2086,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
                 <div class="cli-srch-avatar">${inicial}</div>
                 <div class="cli-srch-item-info">
                     <div class="cli-srch-item-name">${nombre}</div>
-                    ${lugar ? `<div class="cli-srch-item-meta">📍 ${lugar}</div>` : ''}
+                    ${lugar ? `<div class="cli-srch-item-meta">${lugar}</div>` : ''}
                 </div>
                 <div class="cli-srch-item-tel">${esc(c.telefono)}</div>
             </div>`;
@@ -2105,7 +2105,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
         if (input.files && input.files[0]) {
             ph.style.display = 'none';
             fn.style.display = '';
-            fn.textContent = '📎 ' + input.files[0].name;
+            fn.textContent = '' + input.files[0].name;
         } else {
             ph.style.display = '';
             fn.style.display = 'none';
@@ -2460,7 +2460,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
                 'confirmado':'Confirmado','en_ruta':'En ruta',
                 'entregado':'Entregado','cancelado':'Cancelado',
             };
-            const canalLabel = e => e === 'representante_directo' ? '🤝 Directa' : '📱 Tienda';
+            const canalLabel = e => e === 'representante_directo' ? 'Directa' : 'Tienda';
             body.innerHTML = rows.map(r => {
                 const st = estadoStyle[r.estado] || 'background:#f1f5f9;color:#475569';
                 const sl = estadoLabel[r.estado] || r.estado;
@@ -2497,13 +2497,13 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
         history.replaceState(null, '', url.toString());
 
         // Usar showToast global si está disponible, si no fallback inline
-        const msg = '✅ Solicitud #' + sol + ' enviada correctamente';
+        const msg = 'Solicitud #' + sol + ' enviada correctamente';
         if (typeof showToast === 'function') {
             showToast(msg, 'success');
         } else {
             const t = document.createElement('div');
             t.setAttribute('role', 'status');
-            t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#126c6a;color:#fff;font-weight:700;font-size:14px;padding:12px 22px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.22);z-index:9999;white-space:nowrap';
+            t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#4a70a9;color:#fff;font-weight:700;font-size:14px;padding:12px 22px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.22);z-index:9999;white-space:nowrap';
             t.textContent = msg;
             document.body.appendChild(t);
             setTimeout(() => t.remove(), 4000);
@@ -2533,9 +2533,9 @@ document.addEventListener('DOMContentLoaded', () => {
 <div id="modalQR" onclick="if(event.target===this)this.classList.remove('open')">
     <div style="background:#fff;border-radius:20px;padding:28px 24px;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center" onclick="event.stopPropagation()">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-            <h2 style="font-size:17px;font-weight:800;color:#101820">📲 Tu enlace de tienda</h2>
+            <h2 style="font-size:17px;font-weight:800;color:#102040">Tu enlace de tienda</h2>
             <button onclick="document.getElementById('modalQR').classList.remove('open')"
-                    style="background:#f1f5f9;border:none;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;color:#64748b">✕</button>
+                    style="background:#f1f5f9;border:none;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;color:#64748b"></button>
         </div>
 
         <!-- QR -->
@@ -2547,18 +2547,18 @@ document.addEventListener('DOMContentLoaded', () => {
                    style="flex:1;padding:10px 12px;border:1.5px solid #d1d5db;border-radius:10px;font-size:12px;color:#374151;background:#f8fafc;outline:none">
             <button onclick="repCopiarEnlace()"
                     style="padding:10px 14px;background:#15803d;border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap"
-                    id="repBtnCopiar">📋 Copiar</button>
+                    id="repBtnCopiar">Copiar</button>
         </div>
 
         <!-- Botones de acción -->
         <div style="display:flex;gap:10px;flex-wrap:wrap">
             <button onclick="repCompartir()" id="repBtnCompartir"
                     style="flex:1;padding:12px;background:#0f172a;border:none;border-radius:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer">
-                🚀 Compartir
+                Compartir
             </button>
             <a href="<?= htmlspecialchars($_rep_enlace) ?>" target="_blank"
                style="flex:1;padding:12px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;color:#15803d;font-size:14px;font-weight:700;text-decoration:none;display:block">
-                🔗 Abrir tienda
+                Abrir tienda
             </a>
         </div>
         <p style="font-size:11px;color:#94a3b8;margin-top:14px">Los clientes que entren por este enlace quedarán vinculados a ti automáticamente.</p>
@@ -2570,13 +2570,13 @@ function repCopiarEnlace() {
     const input = document.getElementById('repEnlaceInput');
     const btn   = document.getElementById('repBtnCopiar');
     navigator.clipboard.writeText(input.value).then(() => {
-        btn.textContent = '✅ Copiado';
-        setTimeout(() => btn.textContent = '📋 Copiar', 2000);
+        btn.textContent = 'Copiado';
+        setTimeout(() => btn.textContent = 'Copiar', 2000);
     }).catch(() => {
         input.select();
         document.execCommand('copy');
-        btn.textContent = '✅ Copiado';
-        setTimeout(() => btn.textContent = '📋 Copiar', 2000);
+        btn.textContent = 'Copiado';
+        setTimeout(() => btn.textContent = 'Copiar', 2000);
     });
 }
 function repCompartir() {

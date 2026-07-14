@@ -36,11 +36,11 @@ foreach ($preciosRefRaw as $r) {
 <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-slate-900">📦 Gestión de Kits</h1>
+            <h1 class="text-3xl font-bold text-slate-900">Gestión de Kits</h1>
             <p class="text-slate-600 mt-1">Crea kits que agrupan varios productos</p>
         </div>
         <button onclick="mostrarModalCrear()" class="btn-primary text-white px-6 py-3 rounded-xl font-semibold shadow-lg flex items-center gap-2">
-            <span class="text-xl">➕</span>
+            <span class="text-xl"></span>
             <span>Crear Kit</span>
         </button>
     </div>
@@ -48,7 +48,7 @@ foreach ($preciosRefRaw as $r) {
     <!-- Información sobre el sistema de kits -->
     <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 mb-6">
         <div class="flex items-start gap-3">
-            <span class="text-2xl">ℹ️</span>
+            <span class="text-2xl">ℹ</span>
             <div>
                 <h3 class="font-bold text-blue-900 mb-1">¿Cómo funcionan los kits?</h3>
                 <ul class="text-sm text-blue-800 space-y-1">
@@ -82,7 +82,7 @@ foreach ($preciosRefRaw as $r) {
                         <tr>
                             <td colspan="8" class="px-6 py-12 text-center">
                                 <div class="flex flex-col items-center gap-3 text-slate-400">
-                                    <span class="text-6xl">📦</span>
+                                    <span class="text-6xl"></span>
                                     <p class="text-lg font-semibold">No hay kits creados</p>
                                     <p class="text-sm">Crea tu primer kit para comenzar</p>
                                 </div>
@@ -102,7 +102,7 @@ foreach ($preciosRefRaw as $r) {
                                                  class="w-12 h-12 rounded-lg object-cover">
                                         <?php else: ?>
                                             <div class="w-12 h-12 rounded-lg bg-slate-200 flex items-center justify-center">
-                                                <span class="text-2xl">📦</span>
+                                                <span class="text-2xl"></span>
                                             </div>
                                         <?php endif; ?>
                                         <div>
@@ -115,7 +115,7 @@ foreach ($preciosRefRaw as $r) {
                                 </td>
                                 <td class="px-6 py-4">
                                     <span class="inline-flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">
-                                        <span>📋</span>
+                                        <span></span>
                                         <span><?= $kit['total_productos'] ?> productos</span>
                                     </span>
                                 </td>
@@ -133,22 +133,22 @@ foreach ($preciosRefRaw as $r) {
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-2">
-                                        <span class="text-2xl">📊</span>
+                                        <span class="text-2xl"></span>
                                         <span class="font-semibold text-slate-700"><?= $kit['total_vendidos'] ?></span>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-center">
                                     <?php if ($kit['activo']): ?>
                                         <span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
-                                            ✓ Activo
+                                            Activo
                                         </span>
                                     <?php else: ?>
                                         <span class="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold">
-                                            ✗ Inactivo
+                                            Inactivo
                                         </span>
                                     <?php endif; ?>
                                     <?php if (!empty($kit['en_carrusel'])): ?>
-                                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-semibold mt-1">⭐ Carrusel</span>
+                                        <span class="inline-flex items-center gap-1 px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-semibold mt-1">Carrusel</span>
                                     <?php endif; ?>
                                 </td>
                                 <td class="px-6 py-4">
@@ -156,17 +156,17 @@ foreach ($preciosRefRaw as $r) {
                                         <button onclick="verDetalleKit(<?= $kit['id'] ?>)" 
                                                 class="p-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg transition"
                                                 title="Ver detalle">
-                                            👁️
+                                            
                                         </button>
                                         <button onclick="editarKit(<?= $kit['id'] ?>)" 
                                                 class="p-2 bg-yellow-100 hover:bg-yellow-200 text-yellow-700 rounded-lg transition"
                                                 title="Editar">
-                                            ✏️
+                                            
                                         </button>
                                         <button onclick="toggleEstadoKit(<?= $kit['id'] ?>, <?= $kit['activo'] ? 'false' : 'true' ?>)" 
                                                 class="p-2 bg-<?= $kit['activo'] ? 'red' : 'green' ?>-100 hover:bg-<?= $kit['activo'] ? 'red' : 'green' ?>-200 text-<?= $kit['activo'] ? 'red' : 'green' ?>-700 rounded-lg transition"
                                                 title="<?= $kit['activo'] ? 'Desactivar' : 'Activar' ?>">
-                                            <?= $kit['activo'] ? '🚫' : '✅' ?>
+                                            <?= $kit['activo'] ? '' : '' ?>
                                         </button>
                                     </div>
                                 </td>
@@ -274,7 +274,7 @@ foreach ($preciosRefRaw as $r) {
             <div class="flex items-center gap-3">
                 <input type="checkbox" id="en_carrusel" name="en_carrusel"
                        class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                <label for="en_carrusel" class="text-sm font-semibold text-slate-700">⭐ Mostrar en carrusel</label>
+                <label for="en_carrusel" class="text-sm font-semibold text-slate-700">Mostrar en carrusel</label>
             </div>
 
             <!-- Productos del Kit -->
@@ -283,10 +283,10 @@ foreach ($preciosRefRaw as $r) {
                     <label class="block text-sm font-semibold text-slate-700">Productos del Kit *</label>
                     <div class="flex gap-2">
                         <button type="button" onclick="distribuirPrecios()" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3 py-2 rounded-lg text-xs font-semibold transition">
-                            ⚖️ Distribuir precios
+                            Distribuir precios
                         </button>
                         <button type="button" onclick="agregarProducto()" class="btn-secondary text-white px-4 py-2 rounded-lg text-sm font-semibold">
-                            ➕ Agregar Producto
+                            Agregar Producto
                         </button>
                     </div>
                 </div>
@@ -300,7 +300,7 @@ foreach ($preciosRefRaw as $r) {
             <!-- Botones -->
             <div class="flex gap-3 pt-4">
                 <button type="submit" class="flex-1 btn-primary text-white px-6 py-3 rounded-xl font-semibold">
-                    💾 Guardar Kit
+                    Guardar Kit
                 </button>
                 <button type="button" onclick="cerrarModal()" class="px-6 py-3 bg-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-slate-300 transition">
                     Cancelar
@@ -314,7 +314,7 @@ foreach ($preciosRefRaw as $r) {
 <div id="modalDetalle" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center">
     <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div class="sticky top-0 px-6 py-4 flex justify-between items-center" style="background:linear-gradient(to right,var(--tw-neu-800),var(--tw-neu-900));color:#fff;">
-            <h2 class="text-2xl font-bold">📦 Detalle del Kit</h2>
+            <h2 class="text-2xl font-bold">Detalle del Kit</h2>
             <button onclick="cerrarModalDetalle()" class="text-white hover:bg-white/20 rounded-lg p-2 transition">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -408,7 +408,7 @@ function agregarProducto(productoId = '', cantidad = 1, precioUnitario = '') {
         <div class="col-span-1 pt-5">
             <button type="button" onclick="eliminarProducto(${id})" 
                     class="p-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg transition">
-                🗑️
+                
             </button>
         </div>
     `;
@@ -453,8 +453,8 @@ function actualizarSumaPrecios() {
     const ok = Math.abs(diff) < 0.02;
     indicador.className = `mb-3 text-xs font-semibold px-3 py-2 rounded-lg ${ok ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`;
     indicador.textContent = ok
-        ? `✅ Los precios suman $${suma.toFixed(2)} — coincide con el precio del kit`
-        : `⚠️ Los precios suman $${suma.toFixed(2)} de $${precioKit.toFixed(2)} (diferencia: ${diff > 0 ? '+' : ''}${diff.toFixed(2)})`;
+        ? `Los precios suman $${suma.toFixed(2)} — coincide con el precio del kit`
+        : `Los precios suman $${suma.toFixed(2)} de $${precioKit.toFixed(2)} (diferencia: ${diff > 0 ? '+' : ''}${diff.toFixed(2)})`;
 }
 
 // Distribuir precio_kit equitativamente entre los componentes (por unidades)
@@ -710,7 +710,7 @@ async function verDetalleKit(kit_id) {
                 html += `
                     <div class="flex items-center justify-between bg-slate-50 p-3 rounded-lg">
                         <div class="flex items-center gap-3">
-                            <span class="text-2xl">📦</span>
+                            <span class="text-2xl"></span>
                             <div>
                                 <p class="font-semibold text-slate-900">${p.nombre}</p>
                                 <p class="text-xs text-slate-500">Stock: ${p.existencia} unidades</p>
@@ -837,11 +837,11 @@ async function editarKit(kit_id) {
                 
                 // Log de eventos de carga
                 imagenPreviewImg.onload = function() {
-                    console.log('✅ Imagen cargada correctamente');
+                    console.log('Imagen cargada correctamente');
                 };
                 
                 imagenPreviewImg.onerror = function() {
-                    console.error('❌ Error al cargar imagen:', imagenUrl);
+                    console.error('Error al cargar imagen:', imagenUrl);
                     console.error('Verifica la ruta y permisos del archivo');
                 };
             } else {

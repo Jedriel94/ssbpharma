@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $mensajeModel->create(
                     $pedido_id,
                     'cliente',
-                    "💳 Pago realizado con Mercado Pago\n✅ Payment ID: {$payment_id}\n📋 Estado: {$status}"
+                    "Pago realizado con Mercado Pago\nPayment ID: {$payment_id}\nEstado: {$status}"
                 );
 
                 echo json_encode(['success' => true, 'message' => 'Pago registrado exitosamente']);
@@ -224,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $mensajeModel->create(
                     $pedido_id,
                     'cliente',
-                    '🔗 Cliente solicita liga de pago para realizar el pago en línea (Generación automática en proceso...)'
+                    'Cliente solicita liga de pago para realizar el pago en línea (Generación automática en proceso...)'
                 );
                 
                 echo json_encode([
@@ -430,7 +430,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $mensajeModel->create(
                     $pedido_id,
                     'cliente',
-                    "💳 Pago realizado con PayPal\n✅ Transaction ID: {$transaction_id}\n📧 Email: {$payer_email}"
+                    "Pago realizado con PayPal\nTransaction ID: {$transaction_id}\nEmail: {$payer_email}"
                 );
                 
                 echo json_encode([
@@ -941,7 +941,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 // Guardar preferencia de notificación de factura
                 $n_fact = isset($_POST['notif_factura']) ? 1 : 0;
                 $pdo->prepare("UPDATE clientes SET notif_factura = :nf WHERE telefono = :tel")->execute([':nf' => $n_fact, ':tel' => $telefono]);
-                echo json_encode(['success' => true, 'message' => '✅ Datos fiscales guardados para futuros pedidos']);
+                echo json_encode(['success' => true, 'message' => 'Datos fiscales guardados para futuros pedidos']);
             } catch (Exception $e) {
                 echo json_encode(['success' => false, 'message' => 'Error al guardar: ' . $e->getMessage()]);
             }
@@ -1108,7 +1108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     ")->execute(['pid' => $pedido_id]);
                     require_once __DIR__ . '/models/MensajePedido.php';
                     $mOp = new MensajePedido($pdo);
-                    $mOp->create($pedido_id, 'cliente', "💳 Pago realizado con OpenPay\n✅ Charge ID: {$chargeId}\n📋 Estado: aprobado");
+                    $mOp->create($pedido_id, 'cliente', "Pago realizado con OpenPay\nCharge ID: {$chargeId}\nEstado: aprobado");
                     echo json_encode(['success' => true, 'status' => 'completed', 'charge_id' => $chargeId]);
                 } elseif ($status === 'in_progress') {
                     $redirect3ds = $charge['payment_method']['url'] ?? '';
@@ -1157,7 +1157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     }
                 }
                 
-                echo json_encode(['success' => true, 'message' => '✅ Datos adicionales guardados']);
+                echo json_encode(['success' => true, 'message' => 'Datos adicionales guardados']);
             } catch (Exception $e) {
                 echo json_encode(['success' => false, 'message' => 'Error al guardar: ' . $e->getMessage()]);
             }
@@ -1251,7 +1251,7 @@ if ($ep_status === 'paid') {
         if ($stmtEpUpdate->rowCount() > 0) {
             require_once __DIR__ . '/models/MensajePedido.php';
             $mensajeEp = new MensajePedido($pdo);
-            $mensajeEp->create($pedido_id, 'cliente', "💳 Pago realizado con EcartPay\n📋 Estado: aprobado");
+            $mensajeEp->create($pedido_id, 'cliente', "Pago realizado con EcartPay\nEstado: aprobado");
             $ep_auto_confirm = true;
             $pedido = $pedidoModel->getById($pedido_id);
         }
@@ -1288,7 +1288,7 @@ if ($op_status === 'completed') {
                     if ($stmtOpRet->rowCount() > 0) {
                         require_once __DIR__ . '/models/MensajePedido.php';
                         $mensajeOp = new MensajePedido($pdo);
-                        $mensajeOp->create($pedido_id, 'cliente', "💳 Pago realizado con OpenPay\n✅ Charge ID: {$chargeId}\n📋 Estado: aprobado");
+                        $mensajeOp->create($pedido_id, 'cliente', "Pago realizado con OpenPay\nCharge ID: {$chargeId}\nEstado: aprobado");
                         $op_auto_confirm = true;
                         $pedido = $pedidoModel->getById($pedido_id);
                     }
@@ -1326,7 +1326,7 @@ if (!empty($mp_status) && !empty($mp_payment_id) && $mp_status === 'approved') {
         $mensajeModelMp->create(
             $pedido_id,
             'cliente',
-            "💳 Pago realizado con Mercado Pago\n✅ Payment ID: {$mp_payment_id}\n📋 Estado: aprobado"
+            "Pago realizado con Mercado Pago\nPayment ID: {$mp_payment_id}\nEstado: aprobado"
         );
         $mp_auto_confirm = true;
         // Refresh pedido data
@@ -1429,7 +1429,7 @@ body { padding-bottom: 90px; }
                class="min-h-9 px-4 rounded-lg bg-slate-950 text-white font-bold text-sm grid place-items-center">Inicio</a>
             <button onclick="compartirEnlacePago()"
                     class="flex items-center gap-2 bg-green-500 text-white text-sm font-bold px-4 py-2 rounded-xl active:bg-green-600">
-                📱 Compartir enlace
+                Compartir enlace
             </button>
         </div>
         <div class="flex items-end justify-between">
@@ -1449,7 +1449,7 @@ body { padding-bottom: 90px; }
         <a href="seguimiento.php?telefono=<?= htmlspecialchars($telefono) ?>" class="text-terracotta-600 hover:underline mb-2 inline-block">
             ← Volver al seguimiento
         </a>
-        <h1 class="text-3xl font-bold text-slate-900 mb-2">💳 Procesar Pago</h1>
+        <h1 class="text-3xl font-bold text-slate-900 mb-2">Procesar Pago</h1>
         <p class="text-slate-600">Pedido #<?= $pedido['id'] ?> - Total: <span class="font-bold text-terracotta-600">$<?= number_format($pedido['total'], 2) ?></span></p>
     </div>
 <?php endif; ?>
@@ -1458,7 +1458,7 @@ body { padding-bottom: 90px; }
     <div id="modalCamara" class="modal-backdrop fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-75">
         <div class="card rounded-2xl shadow-2xl max-w-2xl w-full p-6 bg-white">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold text-slate-900">📸 Tomar Foto del Comprobante</h2>
+                <h2 class="text-xl font-bold text-slate-900">Tomar Foto del Comprobante</h2>
                 <button onclick="cerrarCamara()" class="text-slate-500 hover:text-slate-700">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -1491,7 +1491,7 @@ body { padding-bottom: 90px; }
             </div>
             
             <p class="text-xs text-slate-500 text-center mt-3">
-                💡 Asegúrate de que el comprobante sea legible
+                Asegúrate de que el comprobante sea legible
             </p>
         </div>
     </div>
@@ -1508,14 +1508,14 @@ body { padding-bottom: 90px; }
                 <div class="space-y-3">
                     <?php 
                     $iconos = [
-                        'transferencia' => '🏦',
-                        'oxxo' => '🏪',
-                        'tienda' => '🏪',
-                        'tarjeta' => '💳',
-                        'liga_pago' => '🔗',
+                        'transferencia' => '',
+                        'oxxo' => '',
+                        'tienda' => '',
+                        'tarjeta' => '',
+                        'liga_pago' => '',
                         'paypal' => '<img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal" class="h-6">',
-                        'mercado_pago' => '💳',
-                        'ecartpay' => '🛒'
+                        'mercado_pago' => '',
+                        'ecartpay' => ''
                     ];
                     $colores = [
                         'transferencia' => 'bg-sage-100',
@@ -1530,7 +1530,7 @@ body { padding-bottom: 90px; }
                     
                     foreach ($metodosActivos as $metodo): 
                         $key = $metodo['metodo'];
-                        $icono = $iconos[$key] ?? '💳';
+                        $icono = $iconos[$key] ?? '';
                         $color = $colores[$key] ?? 'bg-slate-100';
                     ?>
                         <button onclick="seleccionarMetodo('<?= $key ?>')" 
@@ -1586,7 +1586,7 @@ body { padding-bottom: 90px; }
                     <div id="paypal-button-container" class="mb-4"></div>
                     
                     <p class="text-xs text-slate-500">
-                        🔒 Transacción segura procesada por PayPal
+                        Transacción segura procesada por PayPal
                     </p>
                 </div>
             </div>
@@ -1594,14 +1594,14 @@ body { padding-bottom: 90px; }
             <!-- Panel Especial: Mercado Pago (oculto inicialmente) -->
             <div id="panel-mercado-pago" class="card rounded-2xl shadow-lg p-6 bg-sky-50 border-2 border-sky-200 hidden">
                 <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                    💳 Pagar con Mercado Pago
+                    Pagar con Mercado Pago
                 </h2>
 
                 <?php if ($mp_auto_confirm): ?>
                 <!-- Pago ya confirmado al regresar de MP -->
                 <div class="text-center py-6">
                     <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-4xl">✅</span>
+                        <span class="text-4xl"></span>
                     </div>
                     <h3 class="text-lg font-semibold text-green-800 mb-2">¡Pago aprobado!</h3>
                     <p class="text-slate-600">Tu pago con Mercado Pago fue procesado exitosamente.</p>
@@ -1630,11 +1630,11 @@ body { padding-bottom: 90px; }
                             onclick="iniciarPagoMP()"
                             class="w-full py-4 rounded-xl font-bold text-white text-lg transition-all"
                             style="background: linear-gradient(135deg, #009EE3 0%, #00A8E0 100%);">
-                        🛒 Pagar con Mercado Pago
+                        Pagar con Mercado Pago
                     </button>
 
                     <p class="text-xs text-slate-500 mt-3">
-                        🔒 Transacción segura procesada por Mercado Pago
+                        Transacción segura procesada por Mercado Pago
                     </p>
                 </div>
                 <?php endif; ?>
@@ -1643,13 +1643,13 @@ body { padding-bottom: 90px; }
             <!-- Panel Especial: EcartPay (oculto inicialmente) -->
             <div id="panel-ecartpay" class="card rounded-2xl shadow-lg p-6 bg-green-50 border-2 border-green-200 hidden">
                 <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                    🛒 Pagar con EcartPay
+                    Pagar con EcartPay
                 </h2>
 
                 <?php if ($ep_auto_confirm): ?>
                 <div class="text-center py-6">
                     <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-4xl">✅</span>
+                        <span class="text-4xl"></span>
                     </div>
                     <h3 class="text-lg font-semibold text-green-800 mb-2">¡Pago aprobado!</h3>
                     <p class="text-slate-600">Tu pago con EcartPay fue procesado exitosamente.</p>
@@ -1674,11 +1674,11 @@ body { padding-bottom: 90px; }
                             onclick="iniciarPagoEcartPay()"
                             class="w-full py-4 rounded-xl font-bold text-white text-lg transition-all"
                             style="background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);">
-                        🛒 Pagar con EcartPay
+                        Pagar con EcartPay
                     </button>
 
                     <p class="text-xs text-slate-500 mt-3">
-                        🔒 Transacción segura procesada por EcartPay
+                        Transacción segura procesada por EcartPay
                     </p>
                 </div>
                 <?php endif; ?>
@@ -1689,13 +1689,13 @@ body { padding-bottom: 90px; }
             <!-- Panel OpenPay: tarjeta inline con tokenización JS -->
             <div id="panel-openpay" class="card rounded-2xl shadow-lg p-6 bg-indigo-50 border-2 border-indigo-200 hidden">
                 <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                    💳 Pagar con Tarjeta (OpenPay)
+                    Pagar con Tarjeta (OpenPay)
                 </h2>
 
                 <?php if ($op_auto_confirm): ?>
                 <div class="text-center py-6">
                     <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-4xl">✅</span>
+                        <span class="text-4xl"></span>
                     </div>
                     <h3 class="text-lg font-semibold text-green-800 mb-2">¡Pago aprobado!</h3>
                     <p class="text-slate-600">Tu pago con OpenPay fue procesado exitosamente.</p>
@@ -1759,9 +1759,9 @@ body { padding-bottom: 90px; }
                             onclick="procesarPagoOpenPay()"
                             class="w-full py-4 rounded-xl font-bold text-white text-lg transition-all"
                             style="background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);">
-                        💳 Pagar $<?= number_format($pedido['total'], 2) ?> MXN
+                        Pagar $<?= number_format($pedido['total'], 2) ?> MXN
                     </button>
-                    <p class="text-xs text-slate-500 text-center mt-3">🔒 Transacción segura procesada por OpenPay (BBVA)</p>
+                    <p class="text-xs text-slate-500 text-center mt-3">Transacción segura procesada por OpenPay (BBVA)</p>
                 </form>
                 <?php endif; ?>
             </div>
@@ -1770,10 +1770,10 @@ body { padding-bottom: 90px; }
             <?php if ($modo_rep): ?>
             <!-- Panel: Efectivo (solo modo rep) -->
             <div id="panel-efectivo" class="card rounded-2xl shadow-lg p-6 bg-green-50 border-2 border-green-200 hidden">
-                <h2 class="text-xl font-bold text-slate-900 mb-4">💵 Pago en Efectivo</h2>
+                <h2 class="text-xl font-bold text-slate-900 mb-4">Pago en Efectivo</h2>
                 <div class="text-center py-4">
                     <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-5xl">💵</span>
+                        <span class="text-5xl"></span>
                     </div>
                     <div class="bg-white rounded-2xl border-2 border-green-300 p-4 mb-4">
                         <p class="text-sm font-semibold text-green-700 uppercase tracking-wide mb-1">Total a cobrar</p>
@@ -1788,14 +1788,14 @@ body { padding-bottom: 90px; }
             <!-- Panel Especial: Liga de Pago (oculto inicialmente) -->
             <div id="panel-liga-pago" class="card rounded-2xl shadow-lg p-6 bg-purple-50 border-2 border-purple-200 hidden">
                 <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    🔗 Liga de Pago
+                    Liga de Pago
                 </h2>
 
                 <?php if ($modo_rep): ?>
                 <!-- ── REP MODE: genera la liga al instante ────────────────── -->
                 <div id="rep-liga-sin-generar" class="text-center py-6">
                     <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-4xl">🔗</span>
+                        <span class="text-4xl"></span>
                     </div>
                     <p class="text-slate-700 font-semibold mb-1">Total del pedido</p>
                     <p class="text-3xl font-black text-purple-700 mb-4">$<?= number_format($pedido['total'], 2) ?></p>
@@ -1804,13 +1804,13 @@ body { padding-bottom: 90px; }
                     </p>
                     <button id="btnGenerarLiga" type="button" onclick="generarLigaRep()"
                             class="w-full py-4 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-2xl font-bold text-lg transition active:scale-95">
-                        🔗 Generar Liga de Pago
+                        Generar Liga de Pago
                     </button>
                 </div>
 
                 <div id="rep-liga-generada" class="hidden">
                     <div class="bg-green-50 border-2 border-green-300 rounded-2xl p-4 mb-4 text-center">
-                        <p class="text-green-700 font-bold text-lg mb-1">✅ ¡Liga generada!</p>
+                        <p class="text-green-700 font-bold text-lg mb-1">¡Liga generada!</p>
                         <p class="text-slate-600 text-sm">Abre el enlace e ingresa estos datos en EcartPay:</p>
                     </div>
 
@@ -1836,7 +1836,7 @@ body { padding-bottom: 90px; }
                            class="flex-1 text-purple-700 text-xs font-medium break-all">—</a>
                         <button type="button" onclick="copiarTextoRep(this, document.getElementById('rep-liga-url').textContent)"
                                 class="flex-shrink-0 bg-purple-100 hover:bg-purple-200 text-purple-700 rounded-xl px-3 py-2 text-sm font-semibold transition">
-                            📋 Copiar
+                            Copiar
                         </button>
                     </div>
 
@@ -1870,9 +1870,9 @@ body { padding-bottom: 90px; }
                     <!-- Abrir / Regenerar -->
                     <div class="flex items-center justify-between">
                         <button type="button" onclick="abrirLigaRep()"
-                                class="text-purple-600 text-sm underline hover:text-purple-800">🔗 Abrir liga</button>
+                                class="text-purple-600 text-sm underline hover:text-purple-800">Abrir liga</button>
                         <button type="button" onclick="regenerarLigaRep()"
-                                class="text-slate-400 text-sm underline hover:text-slate-600">🔄 Regenerar</button>
+                                class="text-slate-400 text-sm underline hover:text-slate-600">Regenerar</button>
                     </div>
                 </div>
                 <?php else: ?>
@@ -1880,7 +1880,7 @@ body { padding-bottom: 90px; }
                     <!-- Estado: Sin generar -->
                     <div id="sin-solicitar" class="text-center py-8">
                         <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-4xl">🔗</span>
+                            <span class="text-4xl"></span>
                         </div>
                         <p class="text-slate-700 font-semibold mb-1">Total del pedido</p>
                         <p class="text-3xl font-black text-purple-700 mb-4">$<?= number_format($pedido['total'], 2) ?></p>
@@ -1889,14 +1889,14 @@ body { padding-bottom: 90px; }
                         </p>
                         <button id="btnGenerarLigaCliente" type="button" onclick="generarLigaCliente()"
                                 class="w-full py-4 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-2xl font-bold text-lg transition active:scale-95">
-                            🔗 Generar Liga de Pago
+                            Generar Liga de Pago
                         </button>
                     </div>
 
                     <!-- Estado: Liga generada -->
                     <div id="liga-recibida" class="hidden">
                         <div class="bg-green-50 border-2 border-green-300 rounded-2xl p-4 mb-4 text-center">
-                            <p class="text-green-700 font-bold text-lg mb-1">✅ ¡Liga generada!</p>
+                            <p class="text-green-700 font-bold text-lg mb-1">¡Liga generada!</p>
                             <?php if ($rep_en_tienda): ?>
                             <p class="text-slate-600 text-sm">Comparte este enlace con el cliente para que pague en línea:</p>
                             <?php else: ?>
@@ -1912,7 +1912,7 @@ body { padding-bottom: 90px; }
                             <button type="button"
                                     onclick="copiarTextoRep(this, document.getElementById('enlace-pago').href)"
                                     class="flex-shrink-0 bg-purple-600 hover:bg-purple-700 text-white rounded-xl px-4 py-2 text-sm font-bold transition active:scale-95">
-                                📋 Copiar enlace
+                                Copiar enlace
                             </button>
                         </div>
                         <!-- Comprobante de pago (opcional) -->
@@ -1921,11 +1921,11 @@ body { padding-bottom: 90px; }
                             <div class="grid grid-cols-2 gap-3 mb-3">
                                 <button type="button" onclick="document.getElementById('comp-tienda').click()"
                                         class="py-3 bg-[#126c6a] text-white rounded-xl font-semibold text-sm flex items-center justify-center gap-2 active:scale-95">
-                                    📎 Subir archivo
+                                    Subir archivo
                                 </button>
                                 <button type="button" onclick="abrirCamaraTienda()"
                                         class="py-3 bg-blue-500 text-white rounded-xl font-semibold text-sm flex items-center justify-center gap-2 active:scale-95">
-                                    📷 Tomar foto
+                                    Tomar foto
                                 </button>
                             </div>
                             <input type="file" id="comp-tienda"
@@ -1937,11 +1937,11 @@ body { padding-bottom: 90px; }
                         <a id="enlace-pago" href="" target="_blank"
                            onclick="scrollAlComprobante()"
                            class="block w-full py-4 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-2xl font-bold text-lg transition text-center mb-4">
-                            🔗 Ir a la Plataforma de Pago →
+                            Ir a la Plataforma de Pago →
                         </a>
                         <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-3">
                             <p class="text-sm text-amber-800">
-                                <strong>⚠️ Importante:</strong> Después de pagar, regresa aquí y sube tu comprobante para que podamos verificar tu pedido.
+                                <strong>Importante:</strong> Después de pagar, regresa aquí y sube tu comprobante para que podamos verificar tu pedido.
                             </p>
                         </div>
                         <?php endif; ?>
@@ -1949,7 +1949,7 @@ body { padding-bottom: 90px; }
                         <div class="text-center">
                             <button type="button" onclick="regenerarLigaCliente()"
                                     class="text-slate-400 hover:text-slate-600 font-semibold text-sm underline">
-                                🔄 Regenerar liga
+                                Regenerar liga
                             </button>
                         </div>
                     </div>
@@ -1974,7 +1974,7 @@ body { padding-bottom: 90px; }
                 
                 <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
                     <p class="text-sm text-amber-800">
-                        <strong>⚠️ Importante:</strong> Realiza el pago por el monto exacto de <strong>$<?= number_format($pedido['total'], 2) ?></strong> y sube tu comprobante.
+                        <strong>Importante:</strong> Realiza el pago por el monto exacto de <strong>$<?= number_format($pedido['total'], 2) ?></strong> y sube tu comprobante.
                     </p>
                 </div>
                 
@@ -1984,7 +1984,7 @@ body { padding-bottom: 90px; }
                     
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-slate-700 mb-3">
-                            📎 Comprobante de Pago <span class="text-red-500">*</span>
+                            Comprobante de Pago <span class="text-red-500">*</span>
                         </label>
                         
                         <!-- Preview de la imagen -->
@@ -2041,7 +2041,7 @@ body { padding-bottom: 90px; }
         <div class="space-y-6">
             
             <div class="card rounded-2xl shadow-lg p-6">
-                <h2 class="text-xl font-bold text-slate-900 mb-4">📦 Datos de Envío</h2>
+                <h2 class="text-xl font-bold text-slate-900 mb-4">Datos de Envío</h2>
                 
                 <form id="formEnvio" onsubmit="return false;">
                     <div class="space-y-4">
@@ -2050,20 +2050,20 @@ body { padding-bottom: 90px; }
                         <!-- Mostrar campo solo si no tiene nombre -->
                         <div class="bg-purple-50 border-2 border-purple-200 rounded-xl p-4">
                             <label class="block text-sm font-medium text-purple-900 mb-2">
-                                👋 ¿Cómo te gustaría que te llamáramos? <span class="text-xs text-purple-600">(Opcional)</span>
+                                ¿Cómo te gustaría que te llamáramos? <span class="text-xs text-purple-600">(Opcional)</span>
                             </label>
                             <input type="text" name="nombre" id="nombre_cliente"
                                    class="input-field w-full px-4 py-3 rounded-xl border-purple-300" 
                                    placeholder="Tu nombre">
                             <p class="text-xs text-purple-700 mt-2">
-                                💡 Nos ayuda a personalizar tu experiencia
+                                Nos ayuda a personalizar tu experiencia
                             </p>
                         </div>
                         <?php else: ?>
                         <!-- Mostrar nombre guardado de forma subtle -->
                         <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex items-center justify-between">
                             <div class="flex items-center gap-3">
-                                <span class="text-2xl">👤</span>
+                                <span class="text-2xl"></span>
                                 <div>
                                     <p class="text-xs text-slate-500">Cliente</p>
                                     <p class="font-semibold text-slate-900"><?= htmlspecialchars($cliente['nombre']) ?></p>
@@ -2071,7 +2071,7 @@ body { padding-bottom: 90px; }
                             </div>
                             <button type="button" onclick="editarNombre()" 
                                     class="text-purple-600 hover:text-purple-800 text-sm font-medium">
-                                ✏️ Editar
+                                Editar
                             </button>
                         </div>
                         <input type="hidden" name="nombre" id="nombre_hidden" value="<?= htmlspecialchars($cliente['nombre']) ?>">
@@ -2079,8 +2079,8 @@ body { padding-bottom: 90px; }
                         
                         <div>
                             <label class="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
-                                🏠 Calle
-                                <span id="alerta-calle" class="hidden text-red-500 text-xs">⚠️ Campo obligatorio</span>
+                                Calle
+                                <span id="alerta-calle" class="hidden text-red-500 text-xs">Campo obligatorio</span>
                             </label>
                             <input type="text" name="calle" id="calle" required
                                    value="<?= htmlspecialchars($cliente['calle'] ?? '') ?>"
@@ -2090,8 +2090,8 @@ body { padding-bottom: 90px; }
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
-                                    🔢 Número
-                                    <span id="alerta-numero" class="hidden text-red-500 text-xs">⚠️ Obligatorio</span>
+                                    Número
+                                    <span id="alerta-numero" class="hidden text-red-500 text-xs">Obligatorio</span>
                                 </label>
                                 <input type="text" name="numero" id="numero" required
                                        value="<?= htmlspecialchars($cliente['numero'] ?? '') ?>"
@@ -2099,8 +2099,8 @@ body { padding-bottom: 90px; }
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
-                                    📮 CP
-                                    <span id="alerta-cp" class="hidden text-red-500 text-xs">⚠️ Obligatorio</span>
+                                    CP
+                                    <span id="alerta-cp" class="hidden text-red-500 text-xs">Obligatorio</span>
                                 </label>
                                 <input type="text" name="cp" id="cp" required maxlength="5"
                                        value="<?= htmlspecialchars($cliente['cp'] ?? '') ?>"
@@ -2110,21 +2110,21 @@ body { padding-bottom: 90px; }
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🏘️ Colonia</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Colonia</label>
                             <input type="text" name="colonia" id="colonia" required
                                    value="<?= htmlspecialchars($cliente['colonia'] ?? '') ?>"
                                    class="input-field w-full px-4 py-3 rounded-xl" placeholder="Colonia">
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🗺️ Estado</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Estado</label>
                             <select name="estado" id="estado" required class="input-field w-full px-4 py-3 rounded-xl">
                                 <option value="">Selecciona un estado</option>
                             </select>
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🏙️ Municipio / Alcaldía</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Municipio / Alcaldía</label>
                             <select name="ciudad" id="ciudad" required disabled
                                    class="input-field w-full px-4 py-3 rounded-xl">
                                 <option value="">— Primero selecciona un estado —</option>
@@ -2132,7 +2132,7 @@ body { padding-bottom: 90px; }
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">📍 Referencias</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Referencias</label>
                             <textarea name="referencias" id="referencias" rows="2"
                                       class="input-field w-full px-4 py-3 rounded-xl"
                                       placeholder="Referencias para encontrar el domicilio..."><?= htmlspecialchars($cliente['referencias'] ?? '') ?></textarea>
@@ -2140,7 +2140,7 @@ body { padding-bottom: 90px; }
                         
                         <div>
                             <label class="block text-sm font-medium text-slate-700 mb-2">
-                                🙋 Quien Recibe <span class="text-xs text-slate-500">(Opcional)</span>
+                                Quien Recibe <span class="text-xs text-slate-500">(Opcional)</span>
                             </label>
                             <input type="text" name="quien_recibe" id="quien_recibe"
                                    value="<?= htmlspecialchars($cliente['quien_recibe'] ?? '') ?>"
@@ -2149,7 +2149,7 @@ body { padding-bottom: 90px; }
 
                         <div>
                             <label class="block text-sm font-medium text-slate-700 mb-2">
-                                📧 Correo Electrónico <span class="text-xs text-slate-500">(Opcional - para recibir confirmaciones)</span>
+                                Correo Electrónico <span class="text-xs text-slate-500">(Opcional - para recibir confirmaciones)</span>
                             </label>
                             <input type="email"
                                    name="email_factura"
@@ -2178,17 +2178,17 @@ body { padding-bottom: 90px; }
                             <div class="flex gap-3">
                                 <label class="flex items-center gap-2 cursor-pointer flex-1 justify-center border-2 rounded-xl py-3 font-bold transition <?= ($cliente['tipo_cliente'] ?? 'medico') === 'medico' ? 'border-terracotta-500 bg-terracotta-50 text-terracotta-600' : 'border-slate-200 text-slate-600' ?>" id="lbl-medico">
                                     <input type="radio" name="tipo_cliente" value="medico" class="hidden" <?= ($cliente['tipo_cliente'] ?? 'medico') === 'medico' ? 'checked' : '' ?> onchange="toggleTipoCliente(this)">
-                                    👨‍⚕️ Médico
+                                    Médico
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer flex-1 justify-center border-2 rounded-xl py-3 font-bold transition <?= ($cliente['tipo_cliente'] ?? '') === 'paciente' ? 'border-terracotta-500 bg-terracotta-50 text-terracotta-600' : 'border-slate-200 text-slate-600' ?>" id="lbl-paciente">
                                     <input type="radio" name="tipo_cliente" value="paciente" class="hidden" <?= ($cliente['tipo_cliente'] ?? '') === 'paciente' ? 'checked' : '' ?> onchange="toggleTipoCliente(this)">
-                                    🧑 Paciente
+                                    Paciente
                                 </label>
                             </div>
                         </div>
 
                         <div id="pp-bloque-especialidad">
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🔬 Especialidad</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Especialidad</label>
                             <?php
                                 $esp_val = $cliente['especialidad'] ?? '';
                                 $esp_en_lista = in_array($esp_val, $especialidades_lista_pp);
@@ -2210,9 +2210,9 @@ body { padding-bottom: 90px; }
 
                         <div>
                             <label class="block text-sm font-medium text-slate-700 mb-2">
-                                👔 Nombre del Representante
+                                Nombre del Representante
                                 <?php if ($campo_readonly): ?>
-                                    <span class="text-xs text-green-600 ml-2">(✓ Asignado automáticamente)</span>
+                                    <span class="text-xs text-green-600 ml-2">(Asignado automáticamente)</span>
                                 <?php endif; ?>
                             </label>
                             <input type="text"
@@ -2224,7 +2224,7 @@ body { padding-bottom: 90px; }
                                    <?= $campo_readonly ? 'readonly' : '' ?>>
                             <?php if ($campo_readonly): ?>
                                 <p class="text-xs text-slate-600 mt-1">
-                                    🔒 Este representante fue asignado automáticamente desde tu enlace de referido
+                                    Este representante fue asignado automáticamente desde tu enlace de referido
                                 </p>
                             <?php endif; ?>
                         </div>
@@ -2271,7 +2271,7 @@ body { padding-bottom: 90px; }
                                onchange="toggleFacturacion()"
                                class="w-5 h-5 text-terracotta-500 rounded focus:ring-2 focus:ring-terracotta-500">
                         <span class="text-slate-900 font-semibold group-hover:text-terracotta-600 transition">
-                            🧾 Requiero Factura Electrónica
+                            Requiero Factura Electrónica
                         </span>
                     </label>
                 </div>
@@ -2280,7 +2280,7 @@ body { padding-bottom: 90px; }
                 <div id="panelFacturacion" class="hidden">
                     <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4">
                         <p class="text-sm text-blue-800">
-                            ℹ️ Completa tus datos fiscales. El proveedor generará tu factura electrónica y la recibirás en tu correo.
+                            ℹCompleta tus datos fiscales. El proveedor generará tu factura electrónica y la recibirás en tu correo.
                         </p>
                     </div>
                     
@@ -2288,8 +2288,8 @@ body { padding-bottom: 90px; }
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
-                                    🆔 RFC
-                                    <span id="alerta-rfc" class="hidden text-red-500 text-xs">⚠️ Campo obligatorio</span>
+                                    RFC
+                                    <span id="alerta-rfc" class="hidden text-red-500 text-xs">Campo obligatorio</span>
                                 </label>
                                 <input type="text" 
                                        name="rfc" 
@@ -2303,8 +2303,8 @@ body { padding-bottom: 90px; }
                             
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
-                                    🏢 Razón Social
-                                    <span id="alerta-razon_social" class="hidden text-red-500 text-xs">⚠️ Campo obligatorio</span>
+                                    Razón Social
+                                    <span id="alerta-razon_social" class="hidden text-red-500 text-xs">Campo obligatorio</span>
                                 </label>
                                 <input type="text" 
                                        name="razon_social" 
@@ -2317,7 +2317,7 @@ body { padding-bottom: 90px; }
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-2">
-                                        📮 Código Postal <span class="text-red-500">*</span>
+                                        Código Postal <span class="text-red-500">*</span>
                                     </label>
                                     <input type="text" 
                                            name="codigo_postal" 
@@ -2331,7 +2331,7 @@ body { padding-bottom: 90px; }
                                 
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-2">
-                                        📋 Régimen Fiscal
+                                        Régimen Fiscal
                                     </label>
                                     <select name="regimen_fiscal" 
                                             id="regimen_fiscal" 
@@ -2362,7 +2362,7 @@ body { padding-bottom: 90px; }
                             
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2">
-                                    📄 Uso de CFDI <span class="text-red-500">*</span>
+                                    Uso de CFDI <span class="text-red-500">*</span>
                                 </label>
                                 <select name="uso_cfdi" 
                                         id="uso_cfdi" 
@@ -2400,15 +2400,15 @@ body { padding-bottom: 90px; }
                                 <input type="checkbox" name="notif_factura" id="notif_factura" value="1"
                                        class="w-4 h-4 accent-teal-600 rounded"
                                        <?= (int)($cliente['notif_factura'] ?? 1) ? 'checked' : '' ?>>
-                                <span>📧 Recibir factura electrónica por correo</span>
+                                <span>Recibir factura electrónica por correo</span>
                             </label>
 
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">📄 Constancia fiscal <span class="text-slate-400 font-normal text-xs">(opcional · PDF o imagen)</span></label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Constancia fiscal <span class="text-slate-400 font-normal text-xs">(opcional · PDF o imagen)</span></label>
                                 <div id="pp-constancia-drop"
                                      onclick="document.getElementById('pp_constancia_fiscal').click()"
                                      class="border-2 border-dashed border-slate-300 rounded-xl p-4 text-center cursor-pointer transition hover:border-terracotta-400 hover:bg-cream-50">
-                                    <div id="pp-constancia-placeholder" class="text-slate-400 text-sm">📄 Toca para seleccionar archivo</div>
+                                    <div id="pp-constancia-placeholder" class="text-slate-400 text-sm">Toca para seleccionar archivo</div>
                                     <div id="pp-constancia-filename" class="hidden text-sm font-semibold" style="color:#E07856"></div>
                                 </div>
                                 <input id="pp_constancia_fiscal" name="constancia_fiscal" type="file" accept=".pdf,image/*" class="hidden"
@@ -2417,12 +2417,12 @@ body { padding-bottom: 90px; }
 
                             <div id="alertaFacturacion" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-4">
                                 <p class="text-sm text-amber-800">
-                                    ⚠️ <strong>Faltan datos fiscales.</strong> Por favor complétalos o el proveedor te los solicitará.
+                                    <strong>Faltan datos fiscales.</strong> Por favor complétalos o el proveedor te los solicitará.
                                 </p>
                             </div>
                             
                             <button type="submit" class="bg-terracotta-500 hover:bg-terracotta-600 text-white w-full py-3 rounded-xl font-medium transition">
-                                💾 Guardar Datos Fiscales para Futuros Pedidos
+                                Guardar Datos Fiscales para Futuros Pedidos
                             </button>
                         </div>
                     </form>
@@ -2443,22 +2443,22 @@ body { padding-bottom: 90px; }
             
             <!-- Checklist de validación -->
             <div class="mb-6">
-                <h3 class="text-lg font-bold text-slate-900 mb-4">📋 Verificación antes de confirmar:</h3>
+                <h3 class="text-lg font-bold text-slate-900 mb-4">Verificación antes de confirmar:</h3>
                 <div class="space-y-2 text-sm">
                     <div id="check-metodo" class="flex items-center gap-2 text-slate-500">
-                        <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">✗</span>
+                        <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center"></span>
                         <span>Método de pago seleccionado</span>
                     </div>
                     <div id="check-comprobante" class="flex items-center gap-2 text-slate-500">
-                        <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">✗</span>
+                        <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center"></span>
                         <span>Comprobante adjunto</span>
                     </div>
                     <div id="check-envio" class="flex items-center gap-2 text-slate-500">
-                        <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">✗</span>
+                        <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center"></span>
                         <span>Términos y privacidad aceptados</span>
                     </div>
                     <div id="check-factura" class="flex items-center gap-2 text-slate-500">
-                        <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">✓</span>
+                        <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center"></span>
                         <span>Datos de factura (opcional)</span>
                     </div>
                 </div>
@@ -2467,7 +2467,7 @@ body { padding-bottom: 90px; }
             <!-- Alerta de advertencia -->
             <div class="bg-amber-50 border-2 border-amber-300 rounded-xl p-4 mb-6">
                 <p class="text-sm text-amber-900 font-semibold mb-2">
-                    ⚠️ Al confirmar este proceso:
+                    Al confirmar este proceso:
                 </p>
                 <ul class="text-xs text-amber-800 space-y-1 ml-4 list-disc">
                     <li>Tu comprobante de pago será enviado para revisión</li>
@@ -2484,11 +2484,11 @@ body { padding-bottom: 90px; }
                     disabled
                     class="w-full py-5 rounded-2xl font-bold text-lg shadow-xl transition-all transform disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     style="background:#0F172A; color:white;">
-                🚀 CONFIRMAR Y PROCESAR PAGO
+                CONFIRMAR Y PROCESAR PAGO
             </button>
             
             <p class="text-xs text-slate-500 text-center mt-4">
-                💡 Asegúrate de que todos los datos estén correctos antes de confirmar
+                Asegúrate de que todos los datos estén correctos antes de confirmar
             </p>
         </div>
     </div>
@@ -2503,7 +2503,7 @@ body { padding-bottom: 90px; }
                 disabled
                 class="w-full py-4 rounded-2xl font-bold text-lg shadow-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                 style="background:#126c6a; color:white; font-size:18px;">
-            ✓ CONFIRMAR COBRO
+            CONFIRMAR COBRO
         </button>
     </div>
     <?php endif; ?>
@@ -2564,7 +2564,7 @@ const datosBancarios = {
         
         // Instrucciones si existen
         if (!empty($metodo['instrucciones'])) {
-            $datosHTML .= '<p class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-200">💡 ' . nl2br(htmlspecialchars($metodo['instrucciones'])) . '</p>';
+            $datosHTML .= '<p class="text-xs text-slate-600 mt-3 pt-3 border-t border-slate-200">' . nl2br(htmlspecialchars($metodo['instrucciones'])) . '</p>';
         }
         
         $datosHTML .= '</div>';
@@ -2591,13 +2591,13 @@ const datosBancarios = {
                 $allText .= "\nTotal: $" . number_format($pedido['total'], 2);
                 $copyRowsHTML = '<button type="button" class="w-full py-3 rounded-xl font-bold text-white text-sm" '
                     . 'style="background:#101820" data-copyall="' . htmlspecialchars($allText, ENT_QUOTES) . '" onclick="copiarTextoData(this)">'
-                    . '📋 Copiar</button>';
+                    . 'Copiar</button>';
             }
         }
         
         $metodosJS[] = $key . ': {
         titulo: \'' . addslashes($metodo['nombre_display']) . '\',
-        icono: \'💳\',
+        icono: \'\',
         datos: `' . $datosHTML . '`,
         copyRows: `' . $copyRowsHTML . '`
     }';
@@ -2686,7 +2686,7 @@ function seleccionarMetodo(metodo) {
             const repCopyPanel = document.getElementById('rep-copy-panel');
 
             if (titulo) titulo.textContent = 'Pago en Efectivo';
-            if (icono) icono.textContent = '💵';
+            if (icono) icono.textContent = '';
             if (datos) {
                 datos.innerHTML = `
                     <div class="text-sm space-y-2">
@@ -2899,7 +2899,7 @@ function subirComprobante(e) {
     }
     
     comprobanteSubido = true;
-    mostrarAlerta('✅ Comprobante listo. Confirma todos los datos abajo.', 'success');
+    mostrarAlerta('Comprobante listo. Confirma todos los datos abajo.', 'success');
     
     // Actualizar checklist
     validarFormularioCompleto();
@@ -2917,7 +2917,7 @@ function confirmarProcesoPago() {
     const cp = document.getElementById('cp').value.trim();
     
     if (!calle || !numero || !cp) {
-        mostrarAlerta('⚠️ Por favor completa los datos de envío obligatorios (Calle, Número y CP) antes de procesar el pago.', 'error');
+        mostrarAlerta('Por favor completa los datos de envío obligatorios (Calle, Número y CP) antes de procesar el pago.', 'error');
         
         // Scroll al formulario de envío
         document.getElementById('formEnvio').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -2927,7 +2927,7 @@ function confirmarProcesoPago() {
     const checkTerminos = document.getElementById('checkTerminosPrivacidad');
     const aceptaTerminos = checkTerminos ? !!checkTerminos.checked : false;
     if (!aceptaTerminos) {
-        mostrarAlerta('⚠️ Debes aceptar los Términos y Condiciones y el Aviso de Privacidad para continuar.', 'error');
+        mostrarAlerta('Debes aceptar los Términos y Condiciones y el Aviso de Privacidad para continuar.', 'error');
         const chk = document.getElementById('checkTerminosPrivacidad');
         if (chk) chk.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
@@ -2940,7 +2940,7 @@ function confirmarProcesoPago() {
         const razonSocial = document.getElementById('razon_social').value.trim();
         
         if (!rfc || !razonSocial) {
-            mostrarAlerta('⚠️ Por favor completa los datos fiscales obligatorios (RFC y Razón Social) antes de procesar el pago.', 'error');
+            mostrarAlerta('Por favor completa los datos fiscales obligatorios (RFC y Razón Social) antes de procesar el pago.', 'error');
             document.getElementById('panelFacturacion').scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
@@ -2949,7 +2949,7 @@ function confirmarProcesoPago() {
     const tipoClienteSel = document.querySelector('input[name="tipo_cliente"]:checked')?.value || 'medico';
     const especialidad = document.getElementById('especialidad_pp').value.trim();
     if (tipoClienteSel === 'medico' && !especialidad) {
-        mostrarAlerta('⚠️ La especialidad es obligatoria para procesar el pago.', 'error');
+        mostrarAlerta('La especialidad es obligatoria para procesar el pago.', 'error');
         const bloqueEsp = document.getElementById('pp-bloque-especialidad');
         if (bloqueEsp) bloqueEsp.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
@@ -3000,7 +3000,7 @@ function confirmarProcesoPago() {
     const btn = document.getElementById('btnConfirmarPago');
     const btnText = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '⏳ Procesando pago...';
+    btn.innerHTML = 'Procesando pago...';
     
     fetch('procesar-pago.php', {
         method: 'POST',
@@ -3010,10 +3010,10 @@ function confirmarProcesoPago() {
     .then(data => {
         if (data.success) {
             // Mostrar mensaje de éxito
-            btn.innerHTML = '✅ ¡Pago Procesado!';
+            btn.innerHTML = '¡Pago Procesado!';
             btn.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
             
-            mostrarAlerta('✅ Pago procesado. Redirigiendo...', 'success');
+            mostrarAlerta('Pago procesado. Redirigiendo...', 'success');
             
             setTimeout(() => {
                 window.location.href = 'seguimiento.php?telefono=<?= $telefono ?>';
@@ -3040,7 +3040,7 @@ function editarNombre() {
     nombreDiv.innerHTML = `
         <div class="bg-purple-50 border-2 border-purple-200 rounded-xl p-4">
             <label class="block text-sm font-medium text-purple-900 mb-2">
-                👤 Nombre
+                Nombre
             </label>
             <input type="text" name="nombre" id="nombre_cliente"
                    value="<?= htmlspecialchars($cliente['nombre'] ?? '') ?>"
@@ -3120,7 +3120,7 @@ function actualizarEnvio(e) {
     const btn = e.target.querySelector('button[type="submit"]');
     const btnText = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '⏳ Confirmando...';
+    btn.innerHTML = 'Confirmando...';
     
     fetch('procesar-pago.php', {
         method: 'POST',
@@ -3132,7 +3132,7 @@ function actualizarEnvio(e) {
         
         if (data.success) {
             datosEnvioConfirmados = true;
-            btn.innerHTML = '✅ Datos Confirmados';
+            btn.innerHTML = 'Datos Confirmados';
             btn.disabled = true;
             btn.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
             
@@ -3197,13 +3197,13 @@ function actualizarCheck(id, completado) {
         elemento.classList.add('text-green-600');
         icono.classList.remove('border-slate-300');
         icono.classList.add('bg-green-500', 'border-green-500', 'text-white');
-        icono.innerHTML = '✓';
+        icono.innerHTML = '';
     } else {
         elemento.classList.remove('text-green-600');
         elemento.classList.add('text-slate-500');
         icono.classList.remove('bg-green-500', 'border-green-500', 'text-white');
         icono.classList.add('border-slate-300');
-        icono.innerHTML = '✗';
+        icono.innerHTML = '';
     }
 }
 
@@ -3288,7 +3288,7 @@ function guardarDatosFiscales(e) {
     const btn = e.target.querySelector('button[type="submit"]');
     const btnText = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '⏳ Guardando...';
+    btn.innerHTML = 'Guardando...';
     
     const formData = new FormData(e.target);
     formData.append('action', 'guardar_datos_fiscales');
@@ -3562,7 +3562,7 @@ function previsualizarArchivo(input) {
     
     // Marcar comprobante como subido
     comprobanteSubido = true;
-    mostrarAlerta('✅ Comprobante adjuntado. Revisa los datos y confirma abajo.', 'success');
+    mostrarAlerta('Comprobante adjuntado. Revisa los datos y confirma abajo.', 'success');
     
     // Validar formulario completo
     validarFormularioCompleto();
@@ -3687,7 +3687,7 @@ function seleccionarLigaPago() {
 
 function generarLigaCliente() {
     const btn = document.getElementById('btnGenerarLigaCliente');
-    if (btn) { btn.disabled = true; btn.innerHTML = '⏳ Generando...'; }
+    if (btn) { btn.disabled = true; btn.innerHTML = 'Generando...'; }
 
     const fd = new FormData();
     fd.append('action', 'generar_liga_rep');
@@ -3709,13 +3709,13 @@ function generarLigaCliente() {
                 }
                 recibida.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             } else {
-                alert('❌ ' + (data.message || 'No se pudo generar la liga'));
-                if (btn) { btn.disabled = false; btn.innerHTML = '🔗 Generar Liga de Pago'; }
+                alert('' + (data.message || 'No se pudo generar la liga'));
+                if (btn) { btn.disabled = false; btn.innerHTML = 'Generar Liga de Pago'; }
             }
         })
         .catch(() => {
             alert('Error de red al generar la liga');
-            if (btn) { btn.disabled = false; btn.innerHTML = '🔗 Generar Liga de Pago'; }
+            if (btn) { btn.disabled = false; btn.innerHTML = 'Generar Liga de Pago'; }
         });
 }
 
@@ -3723,7 +3723,7 @@ function regenerarLigaCliente() {
     document.getElementById('liga-recibida').classList.add('hidden');
     document.getElementById('sin-solicitar').classList.remove('hidden');
     const btn = document.getElementById('btnGenerarLigaCliente');
-    if (btn) { btn.disabled = false; btn.innerHTML = '🔗 Generar Liga de Pago'; }
+    if (btn) { btn.disabled = false; btn.innerHTML = 'Generar Liga de Pago'; }
 }
 
 // Scroll al comprobante cuando hacen clic en "Ir a la plataforma"
@@ -3772,10 +3772,10 @@ function copiarTexto(btn, texto, isAll = false) {
     _clipboardCopy(texto, () => {
         const orig = btn.innerHTML;
         btn.classList.add('copied');
-        btn.innerHTML = isAll ? '✓ ¡Copiado!' : '✓ Copiado';
+        btn.innerHTML = isAll ? '¡Copiado!' : 'Copiado';
         setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
     }, () => {
-        btn.innerHTML = '✗ Error'; setTimeout(() => { btn.innerHTML = isAll ? '📋 Copiar todo' : '📋 Copiar'; }, 2000);
+        btn.innerHTML = 'Error'; setTimeout(() => { btn.innerHTML = isAll ? 'Copiar todo' : 'Copiar'; }, 2000);
     });
 }
 
@@ -3786,7 +3786,7 @@ function copiarTextoData(btn) {
 
 function compartirEnlacePago() {
     const url = location.origin + location.pathname + '?pedido_id=<?= $pedido['id'] ?>&telefono=<?= urlencode($telefono) ?>';
-    const text = '🛒 Pago pedido #<?= $pedido['id'] ?> — $<?= number_format($pedido['total'], 2) ?> MXN\n' + url;
+    const text = 'Pago pedido #<?= $pedido['id'] ?> — $<?= number_format($pedido['total'], 2) ?> MXN\n' + url;
     if (navigator.share) {
         navigator.share({ title: 'Liga de pago', text: text }).catch(() => {});
     } else {
@@ -3803,7 +3803,7 @@ let _ligaGeneradaUrl = '';
 function generarLigaRep() {
     const btn = document.getElementById('btnGenerarLiga');
     btn.disabled = true;
-    btn.innerHTML = '⏳ Generando...';
+    btn.innerHTML = 'Generando...';
 
     const fd = new FormData();
     fd.append('action', 'generar_liga_rep');
@@ -3817,15 +3817,15 @@ function generarLigaRep() {
                 _ligaGeneradaUrl = data.liga;
                 mostrarLigaGeneradaRep(data.liga, data.monto, data.concepto);
             } else {
-                alert('❌ ' + (data.message || 'No se pudo generar la liga'));
+                alert('' + (data.message || 'No se pudo generar la liga'));
                 btn.disabled = false;
-                btn.innerHTML = '🔗 Generar Liga de Pago';
+                btn.innerHTML = 'Generar Liga de Pago';
             }
         })
         .catch(() => {
             alert('Error de red al generar la liga');
             btn.disabled = false;
-            btn.innerHTML = '🔗 Generar Liga de Pago';
+            btn.innerHTML = 'Generar Liga de Pago';
         });
 }
 
@@ -3845,7 +3845,7 @@ function mostrarLigaGeneradaRep(liga, monto, concepto) {
     if (btnConf) {
         btnConf.disabled = false;
         btnConf.style.background = '#126c6a';
-        btnConf.innerHTML = '✅ Liga enviada — Confirmar';
+        btnConf.innerHTML = 'Liga enviada — Confirmar';
     }
 
     repLigaGenerada.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -3858,17 +3858,17 @@ function regenerarLigaRep() {
     const btnConf = document.getElementById('btnConfirmarPagoRep');
     if (btnConf) { btnConf.disabled = true; btnConf.style.background = '#94a3b8'; }
     const btnGen = document.getElementById('btnGenerarLiga');
-    if (btnGen) { btnGen.disabled = false; btnGen.innerHTML = '🔗 Generar Liga de Pago'; }
+    if (btnGen) { btnGen.disabled = false; btnGen.innerHTML = 'Generar Liga de Pago'; }
 }
 
 function copiarTextoRep(btn, texto) {
     _clipboardCopy(texto, () => {
         const orig = btn.innerHTML;
-        btn.innerHTML = '✅ Copiado';
+        btn.innerHTML = 'Copiado';
         setTimeout(() => { btn.innerHTML = orig; }, 2000);
     }, () => {
-        btn.innerHTML = '✗ Error';
-        setTimeout(() => { btn.innerHTML = '📋 Copiar'; }, 2000);
+        btn.innerHTML = 'Error';
+        setTimeout(() => { btn.innerHTML = 'Copiar'; }, 2000);
     });
 }
 
@@ -3877,11 +3877,11 @@ function copiarLigaRep() {
     const btn = event.currentTarget;
     _clipboardCopy(_ligaGeneradaUrl, () => {
         const orig = btn.innerHTML;
-        btn.innerHTML = '✅ Copiado';
+        btn.innerHTML = 'Copiado';
         setTimeout(() => { btn.innerHTML = orig; }, 2000);
     }, () => {
-        btn.innerHTML = '✗ Error';
-        setTimeout(() => { btn.innerHTML = '📋 Copiar'; }, 2000);
+        btn.innerHTML = 'Error';
+        setTimeout(() => { btn.innerHTML = 'Copiar'; }, 2000);
     });
 }
 
@@ -3890,7 +3890,7 @@ function compartirLigaWhatsApp() {
     const nombre = '<?= addslashes($pedido['nombre'] ?? 'cliente') ?>';
     const total  = '$<?= number_format($pedido['total'], 2) ?>';
     const pedNum = '<?= $pedido['id'] ?>';
-    const texto  = `Hola ${nombre}, aquí está tu liga de pago seguro para el pedido #${pedNum}:\n\n💳 ${_ligaGeneradaUrl}\n\nTotal: ${total} MXN\n\nPuedes pagar con tarjeta de forma segura.`;
+    const texto  = `Hola ${nombre}, aquí está tu liga de pago seguro para el pedido #${pedNum}:\n\n${_ligaGeneradaUrl}\n\nTotal: ${total} MXN\n\nPuedes pagar con tarjeta de forma segura.`;
     const url    = 'https://wa.me/<?= preg_replace('/\D/', '', $telefono) ?>?text=' + encodeURIComponent(texto);
     window.open(url, '_blank');
 }
@@ -3902,7 +3902,7 @@ function abrirLigaRep() {
 function previsualizarArchivoRep(input) {
     const label = document.getElementById('rep-nombre-archivo');
     if (input.files && input.files[0]) {
-        label.textContent = '📎 ' + input.files[0].name;
+        label.textContent = '' + input.files[0].name;
         label.classList.remove('hidden');
     } else {
         label.classList.add('hidden');
@@ -3922,7 +3922,7 @@ function confirmarPagoRep() {
     const btn = document.getElementById('btnConfirmarPagoRep');
     const orig = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '⏳ Procesando...';
+    btn.innerHTML = 'Procesando...';
 
     const formData = new FormData();
     formData.append('action', 'subir_comprobante');
@@ -3954,7 +3954,7 @@ function confirmarPagoRep() {
         .then(r => r.json())
         .then(data => {
             if (data.success) {
-                btn.innerHTML = '✅ ¡Cobro confirmado!';
+                btn.innerHTML = '¡Cobro confirmado!';
                 btn.style.background = '#059669';
                 setTimeout(() => {
                     window.location.href = '<?= rtrim(str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['PHP_SELF']), '/') ?>/representante/index.php';
@@ -4026,7 +4026,7 @@ if (document.getElementById('paypal-button-container')) {
                 const result = await response.json();
                 
                 if (result.success) {
-                    mostrarAlerta('✅ Pago completado exitosamente. ID: ' + details.id, 'success');
+                    mostrarAlerta('Pago completado exitosamente. ID: ' + details.id, 'success');
                     
                     // Marcar como pago completado
                     comprobanteSubido = true;
@@ -4042,17 +4042,17 @@ if (document.getElementById('paypal-button-container')) {
                 
             } catch (error) {
                 console.error('Error en PayPal:', error);
-                mostrarAlerta('❌ Error al procesar el pago: ' + error.message, 'error');
+                mostrarAlerta('Error al procesar el pago: ' + error.message, 'error');
             }
         },
         
         onCancel: function(data) {
-            mostrarAlerta('⚠️ Pago cancelado. Puedes intentar nuevamente cuando estés listo.', 'info');
+            mostrarAlerta('Pago cancelado. Puedes intentar nuevamente cuando estés listo.', 'info');
         },
         
         onError: function(err) {
             console.error('Error PayPal:', err);
-            mostrarAlerta('❌ Ocurrió un error con PayPal. Intenta más tarde o selecciona otro método de pago.', 'error');
+            mostrarAlerta('Ocurrió un error con PayPal. Intenta más tarde o selecciona otro método de pago.', 'error');
         }
         
     }).render('#paypal-button-container');
@@ -4155,7 +4155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     seleccionarMetodo('mercado_pago');
     comprobanteSubido = true;
     validarFormularioCompleto();
-    mostrarAlerta('✅ ¡Pago con Mercado Pago aprobado! Puedes confirmar tu pedido abajo.', 'success');
+    mostrarAlerta('¡Pago con Mercado Pago aprobado! Puedes confirmar tu pedido abajo.', 'success');
     setTimeout(() => {
         const seccion = document.getElementById('seccionConfirmacion');
         if (seccion) seccion.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -4185,13 +4185,13 @@ function iniciarPagoEcartPay() {
             if (data.success && data.pay_link) {
                 window.location.href = data.pay_link;
             } else {
-                mostrarAlerta('❌ ' + (data.message || 'Error al iniciar EcartPay'), 'error');
+                mostrarAlerta('' + (data.message || 'Error al iniciar EcartPay'), 'error');
                 if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
                 if (loading) loading.classList.add('hidden');
             }
         })
         .catch(() => {
-            mostrarAlerta('❌ Error de conexión con EcartPay', 'error');
+            mostrarAlerta('Error de conexión con EcartPay', 'error');
             if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
             if (loading) loading.classList.add('hidden');
         });
@@ -4202,7 +4202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     seleccionarMetodo('ecartpay');
     comprobanteSubido = true;
     validarFormularioCompleto();
-    mostrarAlerta('✅ ¡Pago con EcartPay aprobado! Puedes confirmar tu pedido abajo.', 'success');
+    mostrarAlerta('¡Pago con EcartPay aprobado! Puedes confirmar tu pedido abajo.', 'success');
     setTimeout(() => {
         const seccion = document.getElementById('seccionConfirmacion');
         if (seccion) seccion.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -4323,7 +4323,7 @@ document.addEventListener('DOMContentLoaded', function() {
     seleccionarMetodo('openpay');
     comprobanteSubido = true;
     validarFormularioCompleto();
-    mostrarAlerta('✅ ¡Pago con OpenPay aprobado! Puedes confirmar tu pedido abajo.', 'success');
+    mostrarAlerta('¡Pago con OpenPay aprobado! Puedes confirmar tu pedido abajo.', 'success');
     setTimeout(() => {
         const seccion = document.getElementById('seccionConfirmacion');
         if (seccion) seccion.scrollIntoView({ behavior: 'smooth', block: 'center' });

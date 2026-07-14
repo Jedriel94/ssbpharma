@@ -29,7 +29,7 @@ class MensajePedido {
             if ($stmt->execute()) {
                 $mensaje_id = $this->db->lastInsertId();
                 
-                // ✅ NUEVA FUNCIONALIDAD: Detectar URLs en mensajes del admin
+                // NUEVA FUNCIONALIDAD: Detectar URLs en mensajes del admin
                 if ($usuario_tipo === 'admin') {
                     $this->detectarYGuardarLigaPago($pedido_id, $mensaje);
                 }

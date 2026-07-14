@@ -133,9 +133,9 @@ function money_ventas($value) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="<?= asset('css/representante.css') ?>">
 </head>
-<body class="bg-[#fbfaf7] text-slate-950">
+<body class="bg-[#f0f5fa] text-slate-950">
     <main class="max-w-3xl mx-auto px-4 py-5 pb-24">
-        <div class="sticky top-0 -mx-4 px-4 py-3 bg-[#fbfaf7]/95 backdrop-blur border-b border-stone-200 mb-4">
+        <div class="sticky top-0 -mx-4 px-4 py-3 bg-[#f0f5fa]/95 backdrop-blur border-b border-stone-200 mb-4">
             <div class="flex items-center justify-between gap-3">
                 <div>
                     <p class="text-xs font-bold uppercase text-slate-500">Entrega directa &amp; Tienda</p>
@@ -224,16 +224,16 @@ function money_ventas($value) {
                         <?php if ($puedeOperar): ?>
                         <div class="mt-3 pt-3 border-t border-stone-100 flex flex-col gap-2">
                             <?php if ($sinMetodo): ?>
-                                <p class="text-xs text-amber-700 font-bold">⚠️ Pago pendiente — no se ha seleccionado un método de pago</p>
+                                <p class="text-xs text-amber-700 font-bold">Pago pendiente — no se ha seleccionado un método de pago</p>
                                 <a href="<?= url('procesar-pago.php') ?>?pedido_id=<?= (int)$venta['id'] ?>&telefono=<?= urlencode($venta['cliente_telefono']) ?>&modo=rep"
                                    class="w-full flex items-center justify-center gap-2 rounded-lg bg-slate-950 text-white font-bold py-2.5 px-4 text-sm hover:bg-slate-700 transition">
-                                    💳 Cobrar este pedido →
+                                    Cobrar este pedido →
                                 </a>
                             <?php endif; ?>
                             <button type="button"
                                     onclick="cancelarPedido(<?= (int)$venta['id'] ?>)"
                                     class="w-full flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 text-red-700 font-bold py-2 px-4 text-sm hover:bg-red-100 transition">
-                                ✕ Cancelar pedido
+                                Cancelar pedido
                             </button>
                         </div>
                         <?php endif; ?>
@@ -243,7 +243,7 @@ function money_ventas($value) {
                         <div class="mt-3 pt-3 border-t border-stone-100">
                             <?php if ($tieneComprobante): ?>
                                 <div class="flex items-center gap-2 text-sm">
-                                    <span class="text-green-600 font-bold">✓ Comprobante subido</span>
+                                    <span class="text-green-600 font-bold">Comprobante subido</span>
                                     <a href="<?= url('uploads/comprobantes/' . htmlspecialchars($venta['comprobante_pago'])) ?>"
                                        target="_blank"
                                        class="text-xs text-blue-600 underline">Ver</a>
@@ -255,7 +255,7 @@ function money_ventas($value) {
                                 <button type="button"
                                         onclick="abrirUpload(<?= $venta['id'] ?>)"
                                         class="w-full flex items-center justify-center gap-2 rounded-lg border border-dashed border-stone-300 bg-stone-50 py-2 px-3 text-sm font-bold text-stone-600 hover:border-stone-400 hover:bg-stone-100 transition">
-                                    📎 Subir comprobante de pago
+                                    Subir comprobante de pago
                                 </button>
                             <?php endif; ?>
 
@@ -356,28 +356,28 @@ function money_ventas($value) {
                                 <a href="<?= url('uploads/comprobantes/' . htmlspecialchars($venta['comprobante_pago'])) ?>"
                                    target="_blank"
                                    class="flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800">
-                                    🧾 Comprobante de pago ↗
+                                    Comprobante de pago ↗
                                 </a>
                                 <?php endif; ?>
                                 <?php if (!empty($venta['comprobante_envio'])): ?>
                                 <a href="<?= url('uploads/guias/' . htmlspecialchars($venta['comprobante_envio'])) ?>"
                                    target="_blank"
                                    class="flex items-center gap-1 text-xs font-bold text-emerald-600 hover:text-emerald-800">
-                                    📦 Guía de envío ↗
+                                    Guía de envío ↗
                                 </a>
                                 <?php endif; ?>
                                 <?php if (!empty($venta['factura_pdf'])): ?>
                                 <a href="<?= url('uploads/facturas/' . htmlspecialchars($venta['factura_pdf'])) ?>"
                                    target="_blank"
                                    class="flex items-center gap-1 text-xs font-bold text-violet-600 hover:text-violet-800">
-                                    📄 Factura PDF ↗
+                                    Factura PDF ↗
                                 </a>
                                 <?php endif; ?>
                                 <?php if (!empty($venta['factura_xml'])): ?>
                                 <a href="<?= url('uploads/facturas/' . htmlspecialchars($venta['factura_xml'])) ?>"
                                    download
                                    class="flex items-center gap-1 text-xs font-bold text-violet-600 hover:text-violet-800">
-                                    🗂 Descargar XML
+                                    Descargar XML
                                 </a>
                                 <?php endif; ?>
                             </div>
@@ -460,7 +460,7 @@ function money_ventas($value) {
                 const res  = await fetch(window.location.pathname, { method: 'POST', body: fd });
                 const data = await res.json();
                 if (data.success) {
-                    mostrarMsg(msgEl, '✓ Comprobante guardado', 'ok');
+                    mostrarMsg(msgEl, 'Comprobante guardado', 'ok');
                     setTimeout(() => location.reload(), 900);
                 } else {
                     mostrarMsg(msgEl, data.message || 'Error al subir', 'error');
@@ -507,7 +507,7 @@ function money_ventas($value) {
             el.scrollIntoView({ behavior: 'smooth', block: 'center' });
             // Resaltar brevemente la card
             el.style.transition = 'box-shadow .3s, outline .3s';
-            el.style.outline = '2px solid #126c6a';
+            el.style.outline = '2px solid #4a70a9';
             el.style.boxShadow = '0 0 0 4px rgba(18,108,106,.15)';
             setTimeout(() => {
                 el.style.outline = '';

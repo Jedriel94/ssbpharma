@@ -62,15 +62,15 @@ $nombreTienda = Configuracion::get('nombre_tienda', 'Solumedic');
     <link rel="stylesheet" href="<?= asset('css/representante.css') ?>">
     <style>
         :root {
-            --ink:        #101820;
-            --muted:      #65717f;
-            --paper:      #fbfaf7;
+            --ink:        #102040;
+            --muted:      #6a90b8;
+            --paper:      #f0f5fa;
             --panel:      #ffffff;
-            --line:       #e6e0d6;
-            --field:      #f2eee7;
-            --brand:      #126c6a;
-            --brand-dark: #0b4f4e;
-            --accent:     #d86f4d;
+            --line:       #bfcfe8;
+            --field:      #eef4fa;
+            --brand:      #4a70a9;
+            --brand-dark: #3a5a90;
+            --accent:     #8fabd4;
             --danger:     #b42318;
             --green:      #1a7a4a;
             --radius:     12px;

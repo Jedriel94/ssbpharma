@@ -64,7 +64,7 @@ require_once '../includes/header.php';
 
         <div class="flex items-center gap-3 py-3 border-b border-slate-100">
             <div class="w-9 h-9 rounded-xl bg-slate-100 grid place-items-center flex-shrink-0">
-                <span class="text-lg">👤</span>
+                <span class="text-lg"></span>
             </div>
             <div>
                 <p class="text-xs text-slate-400">Nombre</p>
@@ -75,7 +75,7 @@ require_once '../includes/header.php';
         <?php if (!empty($admin['email'])): ?>
         <div class="flex items-center gap-3 py-3 border-b border-slate-100">
             <div class="w-9 h-9 rounded-xl bg-slate-100 grid place-items-center flex-shrink-0">
-                <span class="text-lg">✉️</span>
+                <span class="text-lg"></span>
             </div>
             <div>
                 <p class="text-xs text-slate-400">Correo</p>
@@ -86,7 +86,7 @@ require_once '../includes/header.php';
 
         <div class="flex items-center gap-3 py-3">
             <div class="w-9 h-9 rounded-xl bg-slate-100 grid place-items-center flex-shrink-0">
-                <span class="text-lg">🔐</span>
+                <span class="text-lg"></span>
             </div>
             <div>
                 <p class="text-xs text-slate-400">Rol</p>

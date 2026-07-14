@@ -275,11 +275,11 @@ $productosSinImagen = count(array_filter($productos, fn($p) => empty($p['imagen'
     <div class="mb-8">
         <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
             <div>
-                <h1 class="text-3xl font-bold text-slate-800 mb-2">📦 Gestión de Productos</h1>
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">Gestión de Productos</h1>
                 <p class="text-slate-600">Inventario, códigos de barras, disponibilidad y rangos de precios.</p>
             </div>
             <button onclick="abrirModalProducto()" class="btn-primary px-5 py-3 rounded-xl shadow flex items-center gap-2">
-            ➕ Nuevo Producto
+            Nuevo Producto
             </button>
         </div>
 
@@ -608,7 +608,7 @@ $productosSinImagen = count(array_filter($productos, fn($p) => empty($p['imagen'
 <div id="modalRangos" class="modal-backdrop fixed inset-0 z-50 hidden flex items-center justify-center p-4">
     <div class="card rounded-3xl shadow-2xl max-w-2xl w-full p-8 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-slate-900">💰 Rangos de Precios</h2>
+            <h2 class="text-2xl font-bold text-slate-900">Rangos de Precios</h2>
             <button onclick="cerrarModalRangos()" class="text-slate-600 hover:text-slate-900">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -649,7 +649,7 @@ $productosSinImagen = count(array_filter($productos, fn($p) => empty($p['imagen'
                 </button>
                 <button type="submit" id="btnGuardarRango"
                         class="flex-1 btn-secondary text-white py-2 rounded-lg text-sm">
-                    ➕ Agregar Rango
+                    Agregar Rango
                 </button>
             </div>
         </form>
@@ -1000,7 +1000,7 @@ function editarRango(id, event) {
             
             // Cambiar UI del formulario
             document.getElementById('tituloFormRango').textContent = 'Editar Rango de Precio';
-            document.getElementById('btnGuardarRango').innerHTML = '💾 Actualizar Rango';
+            document.getElementById('btnGuardarRango').innerHTML = 'Actualizar Rango';
             document.getElementById('btnCancelarRango').classList.remove('hidden');
             
             // Scroll al formulario
@@ -1019,7 +1019,7 @@ function cancelarEdicionRango() {
     document.getElementById('formRango').reset();
     document.getElementById('rango_id').value = '';
     document.getElementById('tituloFormRango').textContent = 'Agregar Nuevo Rango';
-    document.getElementById('btnGuardarRango').innerHTML = '➕ Agregar Rango';
+    document.getElementById('btnGuardarRango').innerHTML = 'Agregar Rango';
     document.getElementById('btnCancelarRango').classList.add('hidden');
 }
 

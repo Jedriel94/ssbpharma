@@ -34,12 +34,12 @@ $detalle = $pedidoModel->getDetalle($pedido_id);
 $cliente = $clienteModel->getById($pedido['cliente_id']);
 
 $estados = [
-    'pendiente' => ['emoji' => '⏳', 'color' => 'bg-yellow-100 text-yellow-700', 'nombre' => 'Pendiente'],
-    'por_verificar' => ['emoji' => '🔍', 'color' => 'bg-orange-100 text-orange-700', 'nombre' => 'Por Verificar'],
-    'confirmado' => ['emoji' => '✅', 'color' => 'bg-blue-100 text-blue-700', 'nombre' => 'Confirmado'],
-    'en_ruta' => ['emoji' => '🚚', 'color' => 'bg-purple-100 text-purple-700', 'nombre' => 'En Ruta'],
-    'entregado' => ['emoji' => '📦', 'color' => 'bg-green-100 text-green-700', 'nombre' => 'Entregado'],
-    'cancelado' => ['emoji' => '❌', 'color' => 'bg-red-100 text-red-700', 'nombre' => 'Cancelado'],
+    'pendiente' => ['emoji' => '', 'color' => 'bg-yellow-100 text-yellow-700', 'nombre' => 'Pendiente'],
+    'por_verificar' => ['emoji' => '', 'color' => 'bg-orange-100 text-orange-700', 'nombre' => 'Por Verificar'],
+    'confirmado' => ['emoji' => '', 'color' => 'bg-blue-100 text-blue-700', 'nombre' => 'Confirmado'],
+    'en_ruta' => ['emoji' => '', 'color' => 'bg-purple-100 text-purple-700', 'nombre' => 'En Ruta'],
+    'entregado' => ['emoji' => '', 'color' => 'bg-green-100 text-green-700', 'nombre' => 'Entregado'],
+    'cancelado' => ['emoji' => '', 'color' => 'bg-red-100 text-red-700', 'nombre' => 'Cancelado'],
 ];
 
 $estado = $estados[$pedido['estado']];
@@ -66,7 +66,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
             <?= $estado['emoji'] ?> <?= $estado['nombre'] ?>
         </span>
         <button onclick="cerrarModal()" class="text-slate-400 hover:text-slate-600 text-2xl">
-            ✕
+            
         </button>
     </div>
 </div>
@@ -102,12 +102,12 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
 <!-- Información del Cliente -->
 <div class="mb-6">
     <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-        👤 Información del Cliente
+        Información del Cliente
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl">
         <div>
             <p class="text-xs font-semibold text-slate-500 mb-1">Teléfono</p>
-            <p class="font-semibold text-slate-900">📱 <?= htmlspecialchars($pedido['telefono']) ?></p>
+            <p class="font-semibold text-slate-900"><?= htmlspecialchars($pedido['telefono']) ?></p>
         </div>
         <?php if (!empty($pedido['nombre'])): ?>
             <div>
@@ -122,48 +122,48 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
 <?php if (!empty($pedido['calle']) || !empty($pedido['cp_envio'])): ?>
     <div class="mb-6">
         <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-            📦 Datos de Envío
+            Datos de Envío
         </h3>
         <div class="bg-blue-50 p-4 rounded-xl border-2 border-blue-200">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                 <?php if (!empty($pedido['calle']) || !empty($pedido['numero'])): ?>
                     <div>
-                        <p class="font-semibold text-blue-900">📍 Dirección:</p>
+                        <p class="font-semibold text-blue-900">Dirección:</p>
                         <p class="text-blue-800"><?= htmlspecialchars($pedido['calle']) ?> <?= htmlspecialchars($pedido['numero']) ?></p>
                     </div>
                 <?php endif; ?>
                 
                 <?php if (!empty($pedido['colonia'])): ?>
                     <div>
-                        <p class="font-semibold text-blue-900">🏘️ Colonia:</p>
+                        <p class="font-semibold text-blue-900">Colonia:</p>
                         <p class="text-blue-800"><?= htmlspecialchars($pedido['colonia']) ?></p>
                     </div>
                 <?php endif; ?>
                 
                 <?php if (!empty($pedido['ciudad']) || !empty($pedido['estado_envio'])): ?>
                     <div>
-                        <p class="font-semibold text-blue-900">🗺️ Ciudad/Estado:</p>
+                        <p class="font-semibold text-blue-900">Ciudad/Estado:</p>
                         <p class="text-blue-800"><?= htmlspecialchars($pedido['ciudad']) ?>, <?= htmlspecialchars($pedido['estado_envio']) ?></p>
                     </div>
                 <?php endif; ?>
                 
                 <?php if (!empty($pedido['cp_envio'])): ?>
                     <div>
-                        <p class="font-semibold text-blue-900">📮 CP:</p>
+                        <p class="font-semibold text-blue-900">CP:</p>
                         <p class="text-blue-800"><?= htmlspecialchars($pedido['cp_envio']) ?></p>
                     </div>
                 <?php endif; ?>
                 
                 <?php if (!empty($pedido['referencias'])): ?>
                     <div class="md:col-span-2">
-                        <p class="font-semibold text-blue-900">📌 Referencias:</p>
+                        <p class="font-semibold text-blue-900">Referencias:</p>
                         <p class="text-blue-800"><?= htmlspecialchars($pedido['referencias']) ?></p>
                     </div>
                 <?php endif; ?>
                 
                 <?php if (!empty($pedido['quien_recibe'])): ?>
                     <div>
-                        <p class="font-semibold text-blue-900">🙋 Recibe:</p>
+                        <p class="font-semibold text-blue-900">Recibe:</p>
                         <p class="text-blue-800"><?= htmlspecialchars($pedido['quien_recibe']) ?></p>
                     </div>
                 <?php endif; ?>
@@ -176,27 +176,27 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
 <?php if (!empty($pedido['nombre_medico']) || !empty($pedido['telefono_medico']) || !empty($pedido['nombre_representante'])): ?>
     <div class="mb-6">
         <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-            👨‍⚕️ Datos Adicionales
+            Datos Adicionales
         </h3>
         <div class="bg-purple-50 p-4 rounded-xl border-2 border-purple-200">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                 <?php if (!empty($pedido['nombre_medico'])): ?>
                     <div>
-                        <p class="font-semibold text-purple-900">👨‍⚕️ Médico:</p>
+                        <p class="font-semibold text-purple-900">Médico:</p>
                         <p class="text-purple-800"><?= htmlspecialchars($pedido['nombre_medico']) ?></p>
                     </div>
                 <?php endif; ?>
                 
                 <?php if (!empty($pedido['telefono_medico'])): ?>
                     <div>
-                        <p class="font-semibold text-purple-900">📱 Teléfono del Médico:</p>
+                        <p class="font-semibold text-purple-900">Teléfono del Médico:</p>
                         <p class="text-purple-800"><?= htmlspecialchars($pedido['telefono_medico']) ?></p>
                     </div>
                 <?php endif; ?>
                 
                 <?php if (!empty($pedido['nombre_representante'])): ?>
                     <div>
-                        <p class="font-semibold text-purple-900">👔 Representante:</p>
+                        <p class="font-semibold text-purple-900">Representante:</p>
                         <p class="text-purple-800"><?= htmlspecialchars($pedido['nombre_representante']) ?></p>
                     </div>
                 <?php endif; ?>
@@ -209,7 +209,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
 <?php if ($pedido['requiere_factura']): ?>
     <div class="mb-6">
         <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-            🧾 Datos Fiscales
+            Datos Fiscales
         </h3>
         <div class="bg-amber-50 p-4 rounded-xl border-2 border-amber-200">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
@@ -262,7 +262,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
 <!-- Productos del Pedido -->
 <div class="mb-6">
     <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-        🛒 Productos (<?= count($detalle) ?>)
+        Productos (<?= count($detalle) ?>)
     </h3>
     <div class="space-y-3">
         <?php foreach ($detalle as $item): ?>
@@ -299,7 +299,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
 <!-- Total del Pedido -->
 <div class="mb-6 p-4 bg-gradient-to-r from-terracotta-50 to-terracotta-100 rounded-xl border-2 border-terracotta-300">
     <div class="flex justify-between items-center">
-        <span class="text-lg font-bold text-terracotta-900">💰 Total del Pedido:</span>
+        <span class="text-lg font-bold text-terracotta-900">Total del Pedido:</span>
         <span class="text-3xl font-bold text-terracotta-600">
             $<?= number_format($pedido['total'], 2) ?>
         </span>
@@ -310,7 +310,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
 <?php if (!empty($pedido['notas'])): ?>
     <div class="mb-6">
         <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-            📝 Notas
+            Notas
         </h3>
         <div class="bg-yellow-50 p-4 rounded-xl border-l-4 border-yellow-400">
             <p class="text-sm text-yellow-800"><?= nl2br(htmlspecialchars($pedido['notas'])) ?></p>
@@ -322,7 +322,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
 <?php if (!empty($pedido['metodo_pago'])): ?>
     <div class="mb-6">
         <h3 class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-            💳 Información de Pago
+            Información de Pago
         </h3>
         <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-400">
             <p class="text-sm font-semibold text-blue-800 mb-2">
@@ -332,7 +332,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
                 <a href="../uploads/comprobantes/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" 
                    target="_blank"
                    class="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-semibold">
-                    📎 Ver Comprobante de Pago
+                    Ver Comprobante de Pago
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
@@ -346,7 +346,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
 <div class="flex gap-3 pt-4 border-t-2 border-slate-200">
     <a href="chat-admin.php?pedido_id=<?= $pedido['id'] ?>&return=<?= htmlspecialchars($return_to) ?>" 
        class="flex-1 bg-sage-500 hover:bg-sage-600 text-white px-6 py-3 rounded-xl font-semibold text-center transition">
-        💬 Ir al Chat
+        Ir al Chat
     </a>
     <button onclick="cerrarModal()" 
             class="flex-1 bg-slate-500 hover:bg-slate-600 text-white px-6 py-3 rounded-xl font-semibold transition">

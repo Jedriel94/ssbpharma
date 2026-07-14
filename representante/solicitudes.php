@@ -52,9 +52,9 @@ function estado_sol($estado) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="<?= asset('css/representante.css') ?>">
 </head>
-<body class="bg-[#fbfaf7] text-slate-950">
+<body class="bg-[#f0f5fa] text-slate-950">
     <main class="max-w-3xl mx-auto px-4 py-5 pb-24">
-        <div class="sticky top-0 -mx-4 px-4 py-3 bg-[#fbfaf7]/95 backdrop-blur border-b border-stone-200 mb-4">
+        <div class="sticky top-0 -mx-4 px-4 py-3 bg-[#f0f5fa]/95 backdrop-blur border-b border-stone-200 mb-4">
             <div class="flex items-center justify-between gap-3">
                 <div>
                     <p class="text-xs font-bold uppercase text-slate-500">Consignacion</p>
@@ -62,7 +62,7 @@ function estado_sol($estado) {
                 </div>
                 <div class="flex items-center gap-2">
                     <a href="<?= url('representante/index.php') ?>" class="min-h-11 px-4 rounded-lg bg-slate-950 text-white font-bold grid place-items-center">Inicio</a>
-                    <a href="<?= url('representante/solicitar-inventario.php') ?>" class="min-h-11 px-4 rounded-lg bg-[#126c6a] text-white font-bold grid place-items-center">Nueva</a>
+                    <a href="<?= url('representante/solicitar-inventario.php') ?>" class="min-h-11 px-4 rounded-lg bg-[#4a70a9] text-white font-bold grid place-items-center">Nueva</a>
                 </div>
             </div>
         </div>
@@ -92,10 +92,10 @@ function estado_sol($estado) {
                                 <div class="text-[11px] uppercase font-black text-slate-500">Guia de envio</div>
                                 <div class="font-black text-slate-900"><?= htmlspecialchars($solicitud['paqueteria'] ?? '') ?> &middot; <?= htmlspecialchars($solicitud['numero_guia']) ?></div>
                                 <?php if (!empty($solicitud['url_rastreo'])): ?>
-                                    <a href="<?= htmlspecialchars($solicitud['url_rastreo']) ?>" target="_blank" class="mt-1 inline-block text-xs font-bold text-[#126c6a] underline">Ver rastreo</a>
+                                    <a href="<?= htmlspecialchars($solicitud['url_rastreo']) ?>" target="_blank" class="mt-1 inline-block text-xs font-bold text-[#4a70a9] underline">Ver rastreo</a>
                                 <?php endif; ?>
                                 <?php if (!empty($solicitud['guia_archivo'])): ?>
-                                    <a href="<?= url('uploads/guias_consignacion/' . htmlspecialchars($solicitud['guia_archivo'])) ?>" target="_blank" class="mt-1 ml-3 inline-block text-xs font-bold text-[#126c6a] underline">Ver archivo</a>
+                                    <a href="<?= url('uploads/guias_consignacion/' . htmlspecialchars($solicitud['guia_archivo'])) ?>" target="_blank" class="mt-1 ml-3 inline-block text-xs font-bold text-[#4a70a9] underline">Ver archivo</a>
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
@@ -106,8 +106,8 @@ function estado_sol($estado) {
                             type="button"
                             data-btn-confirmar
                             onclick="confirmarEntrega(this, <?= (int)$solicitud['id'] ?>)"
-                            class="mt-3 w-full min-h-11 rounded-xl bg-[#126c6a] text-white text-sm font-black">
-                            ✅ Confirmar que recibí el pedido
+                            class="mt-3 w-full min-h-11 rounded-xl bg-[#4a70a9] text-white text-sm font-black">
+                            Confirmar que recibí el pedido
                         </button>
                         <?php endif; ?>
 
@@ -149,7 +149,7 @@ function estado_sol($estado) {
                                         <div class="text-sm font-bold text-slate-900 truncate"><?= htmlspecialchars($item['producto']) ?></div>
                                         <div class="text-xs text-slate-500">
                                             Solic.: <b><?= (int)$item['cantidad_solicitada'] ?></b>
-                                            <?php if ((int)$item['cantidad_aprobada'] > 0): ?> &middot; Aprobado: <b class="text-[#126c6a]"><?= (int)$item['cantidad_aprobada'] ?></b><?php endif; ?>
+                                            <?php if ((int)$item['cantidad_aprobada'] > 0): ?> &middot; Aprobado: <b class="text-[#4a70a9]"><?= (int)$item['cantidad_aprobada'] ?></b><?php endif; ?>
                                             <?php if ((int)$item['cantidad_entregada'] > 0): ?> &middot; Entregado: <b class="text-emerald-700"><?= (int)$item['cantidad_entregada'] ?></b><?php endif; ?>
                                         </div>
                                     </div>
@@ -186,12 +186,12 @@ function estado_sol($estado) {
                 } else {
                     showToast(data.msg || 'No se pudo confirmar', 'error');
                     btn.disabled = false;
-                    btn.textContent = '✅ Confirmar que recibí el pedido';
+                    btn.textContent = 'Confirmar que recibí el pedido';
                 }
             } catch {
                 showToast('Error de conexión', 'error');
                 btn.disabled = false;
-                btn.textContent = '✅ Confirmar que recibí el pedido';
+                btn.textContent = 'Confirmar que recibí el pedido';
             }
             });
         }
@@ -250,7 +250,7 @@ function estado_sol($estado) {
             requestAnimationFrame(() => {
                 el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 el.style.transition = 'box-shadow .3s, outline .3s';
-                el.style.outline = '2px solid #126c6a';
+                el.style.outline = '2px solid #4a70a9';
                 el.style.boxShadow = '0 0 0 4px rgba(18,108,106,.15)';
                 setTimeout(() => { el.style.outline = ''; el.style.boxShadow = ''; }, 2200);
             });

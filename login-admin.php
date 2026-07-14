@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <!-- Header -->
         <div class="text-center mb-8">
-            <div class="text-6xl mb-4">🔐</div>
+            <div class="text-6xl mb-4"></div>
             <h1 class="text-3xl font-bold text-slate-900 mb-2">Acceso personal</h1>
             <p class="text-slate-600">Ingresa tu correo y contraseña para continuar</p>
         </div>
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Mensaje de error -->
         <?php if (isset($error)): ?>
             <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
-                ❌ <?= htmlspecialchars($error) ?>
+                <?= htmlspecialchars($error) ?>
             </div>
         <?php endif; ?>
         
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <div class="mb-4">
                 <label class="block text-sm font-semibold text-slate-700 mb-2">
-                    ✉️ Correo electrónico
+                    Correo electrónico
                 </label>
                 <input type="email" 
                        name="email" 
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <div class="mb-6">
                 <label class="block text-sm font-semibold text-slate-700 mb-2">
-                    🔑 Contraseña
+                    Contraseña
                 </label>
                 <input type="password" 
                        name="password" 
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="space-y-3">
                 <button type="submit" 
                         class="w-full btn-primary text-white py-4 rounded-xl font-semibold shadow-lg">
-                    🚀 Iniciar Sesión
+                    Iniciar Sesión
                 </button>
                 
                 <a href="recuperar-password.php" 

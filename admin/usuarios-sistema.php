@@ -76,7 +76,7 @@ foreach ($raices as $r) {
     <div class="mb-8">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
             <div>
-                <h1 class="text-3xl font-bold text-slate-800 mb-2">👥 Gestión de Usuarios</h1>
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">Gestión de Usuarios</h1>
                 <p class="text-slate-600">Administra usuarios del sistema, roles jerárquicos y perfiles de representantes.</p>
             </div>
 
@@ -141,11 +141,11 @@ foreach ($raices as $r) {
         <div class="flex bg-slate-100 rounded-2xl p-1 gap-1">
             <button id="btnVistaLista" onclick="setVista('lista')"
                     class="vista-tab active-tab px-5 py-2 rounded-xl text-sm font-semibold transition-all">
-                📋 Lista
+                Lista
             </button>
             <button id="btnVistaJerarquia" onclick="setVista('jerarquia')"
                     class="vista-tab px-5 py-2 rounded-xl text-sm font-semibold transition-all text-slate-500">
-                🌳 Jerarquía
+                Jerarquía
             </button>
         </div>
         <div id="controles-jerarquia" class="hidden flex items-center gap-2">
@@ -170,14 +170,14 @@ foreach ($raices as $r) {
                 $isN0 = (int)($top['nivel_jerarquico'] ?? 0) === 0;
             ?>
             <div class="org-apex <?= $isN0 ? 'org-apex-n0' : 'org-apex-n1' ?> <?= empty($top['activo']) ? 'opacity-50' : '' ?>">
-                <span class="org-apex-icon"><?= $isN0 ? '⚙️' : '★' ?></span>
+                <span class="org-apex-icon"><?= $isN0 ? '' : '' ?></span>
                 <div>
                     <div class="org-apex-name"><?= htmlspecialchars($top['nombre']) ?></div>
                     <div class="org-apex-role"><?= htmlspecialchars($top['rol_nombre'] ?? 'Administrador') ?></div>
                 </div>
                 <span class="org-dot <?= !empty($top['activo']) ? 'org-dot-on' : 'org-dot-off' ?>"></span>
                 <?php if ($es_super_admin): ?>
-                <button class="org-apex-edit" onclick="editarUsuario(<?= $top['id'] ?>)" title="Editar">✏️</button>
+                <button class="org-apex-edit" onclick="editarUsuario(<?= $top['id'] ?>)" title="Editar"></button>
                 <?php endif; ?>
             </div>
             <?php endforeach; ?>
@@ -200,7 +200,7 @@ foreach ($raices as $r) {
         <div class="org-n2-wrap" data-rol="<?= $du['rol_id'] ?>" data-estado="<?= $du['activo'] ?>">
             <div class="org-n2-hdr" role="button" tabindex="0" onclick="orgToggle('n2-<?= $du['id'] ?>', this)" aria-expanded="false">
                 <span class="org-lv-pill org-lv-n2">N2</span>
-                <span class="org-hdr-icon">🏢</span>
+                <span class="org-hdr-icon"></span>
                 <span class="org-hdr-name"><?= htmlspecialchars($du['nombre']) ?></span>
                 <span class="org-hdr-sub">
                     Director de Unidad<?= !empty($du['ruta']) ? ' &middot; ' . htmlspecialchars($du['ruta']) : '' ?>
@@ -211,7 +211,7 @@ foreach ($raices as $r) {
                 </span>
                 <span class="org-status <?= $duActivo ? 'org-on' : 'org-off' ?>"><?= $duActivo ? 'Activo' : 'Inactivo' ?></span>
                 <?php if ($es_super_admin): ?>
-                <button class="org-edit-btn" onclick="event.stopPropagation(); editarUsuario(<?= $du['id'] ?>)" title="Editar">✏️</button>
+                <button class="org-edit-btn" onclick="event.stopPropagation(); editarUsuario(<?= $du['id'] ?>)" title="Editar"></button>
                 <?php endif; ?>
                 <svg class="org-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </div>
@@ -231,18 +231,18 @@ foreach ($raices as $r) {
                 <div class="org-n3-wrap" data-rol="<?= $ger['rol_id'] ?>" data-estado="<?= $ger['activo'] ?>" data-gerente-id="<?= $ger['id'] ?>">
                     <div class="org-n3-hdr" role="button" tabindex="0" onclick="orgToggle('n3-<?= $ger['id'] ?>', this)" aria-expanded="false">
                         <span class="org-lv-pill org-lv-n3">N3</span>
-                        <span class="org-hdr-icon org-av-n3">👤</span>
+                        <span class="org-hdr-icon org-av-n3"></span>
                         <span class="org-hdr-name"><?= htmlspecialchars($ger['nombre']) ?></span>
                         <span class="org-hdr-sub">
                             Gerente de Distrito<?= !empty($ger['ruta']) ? ' &middot; ' . htmlspecialchars($ger['ruta']) : '' ?>
-                            <?= !empty($ger['celular']) ? ' &middot; 📱' . htmlspecialchars($ger['celular']) : '' ?>
+                            <?= !empty($ger['celular']) ? ' &middot; ' . htmlspecialchars($ger['celular']) : '' ?>
                         </span>
                         <span class="org-hdr-counts">
                             <span class="org-cnt org-cnt-n4"><?= $totalRepGer ?> <i>rep.</i></span>
                         </span>
                         <span class="org-status <?= $gerActivo ? 'org-on' : 'org-off' ?>"><?= $gerActivo ? 'Activo' : 'Inactivo' ?></span>
                         <?php if ($es_super_admin): ?>
-                        <button class="org-edit-btn" onclick="event.stopPropagation(); editarUsuario(<?= $ger['id'] ?>)" title="Editar">✏️</button>
+                        <button class="org-edit-btn" onclick="event.stopPropagation(); editarUsuario(<?= $ger['id'] ?>)" title="Editar"></button>
                         <?php endif; ?>
                         <svg class="org-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                     </div>
@@ -270,8 +270,8 @@ foreach ($raices as $r) {
                                 <div class="org-rep-name"><?= htmlspecialchars($rep['nombre']) ?></div>
                                 <div class="org-rep-user">@<?= htmlspecialchars($rep['usuario']) ?></div>
                                 <div class="org-rep-meta">
-                                    <?php if (!empty($rep['ruta'])): ?><span>🗺 <?= htmlspecialchars($rep['ruta']) ?></span><?php endif; ?>
-                                    <?php if (!empty($rep['celular'])): ?><span>📱 <?= htmlspecialchars($rep['celular']) ?></span><?php endif; ?>
+                                    <?php if (!empty($rep['ruta'])): ?><span><?= htmlspecialchars($rep['ruta']) ?></span><?php endif; ?>
+                                    <?php if (!empty($rep['celular'])): ?><span><?= htmlspecialchars($rep['celular']) ?></span><?php endif; ?>
                                 </div>
                                 <?php if ($es_super_admin): ?>
                                 <div class="org-rep-actions">
@@ -303,7 +303,7 @@ foreach ($raices as $r) {
         if (!empty($huerfanos)): ?>
         <div class="mt-8" id="orphan-section">
             <div class="flex items-center gap-3 mb-4">
-                <span class="text-xs font-bold text-amber-600 uppercase tracking-widest bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">⚠️ Sin asignar en árbol</span>
+                <span class="text-xs font-bold text-amber-600 uppercase tracking-widest bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">Sin asignar en árbol</span>
                 <span class="text-xs text-slate-400" id="orphan-count"><?= count($huerfanos) ?> usuario(s)</span>
             </div>
             <div class="org-body-inner" id="orphan-zone">
@@ -323,7 +323,7 @@ foreach ($raices as $r) {
                     <div class="org-rep-name"><?= htmlspecialchars($h['nombre']) ?></div>
                     <div class="org-rep-user">@<?= htmlspecialchars($h['usuario']) ?></div>
                     <div class="org-rep-meta">
-                        <span>⚠️ <?= $h['superior_nombre'] ? htmlspecialchars($h['superior_nombre']) : 'Sin superior' ?></span>
+                        <span><?= $h['superior_nombre'] ? htmlspecialchars($h['superior_nombre']) : 'Sin superior' ?></span>
                     </div>
                     <?php if ($es_super_admin): ?>
                     <div class="org-rep-actions">
@@ -417,7 +417,7 @@ foreach ($raices as $r) {
                                     <span class="text-slate-400">—</span>
                                 <?php endif; ?>
                                 <?php if (!empty($user['celular'])): ?>
-                                    <div class="text-xs text-slate-600 mt-0.5">📱 <?= htmlspecialchars($user['celular']) ?></div>
+                                    <div class="text-xs text-slate-600 mt-0.5"><?= htmlspecialchars($user['celular']) ?></div>
                                 <?php endif; ?>
                             </td>
                             <td class="px-4 py-3">
@@ -1279,7 +1279,7 @@ foreach ($raices as $r) {
 
     <!-- Left sidebar: user identity -->
     <div id="meLeft">
-      <div class="me-avatar">👤</div>
+      <div class="me-avatar"></div>
       <div class="me-user-name" id="meSidebarName">—</div>
       <div class="me-user-role" id="meSidebarRole">—</div>
       <div class="me-divider"></div>
@@ -1291,7 +1291,7 @@ foreach ($raices as $r) {
         </div>
       </div>
       <div class="me-meta-row">
-        <div class="me-meta-icon">✉</div>
+        <div class="me-meta-icon"></div>
         <div>
           <div class="me-meta-label">Email</div>
           <div class="me-meta-val" id="meSidebarEmail">—</div>
@@ -1841,7 +1841,7 @@ function _filtrarJerarquia(rol, estado, busqueda) {
     function createGhost(name) {
         const g = document.createElement('div');
         g.id = 'dnd-ghost';
-        g.innerHTML = `<span class="dnd-ghost-icon">👤</span>
+        g.innerHTML = `<span class="dnd-ghost-icon"></span>
             <span>${name}</span>
             <span class="dnd-ghost-sub">arrastrando…</span>`;
         document.body.appendChild(g);

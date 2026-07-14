@@ -237,14 +237,14 @@ body.theme-dark .rv-badge-recompra { background:#1e3a5f; color:#bfdbfe; }
     <!-- Encabezado -->
     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
         <div>
-            <h1 class="text-2xl font-bold" style="color:var(--text-primary)">📊 Reporte Semanal de Ventas</h1>
+            <h1 class="text-2xl font-bold" style="color:var(--text-primary)">Reporte Semanal de Ventas</h1>
             <p style="color:var(--text-muted);font-size:13px;margin-top:4px">
                 Layout Columbia · Estado mínimo: <strong><?= htmlspecialchars($umbral) ?></strong>
             </p>
         </div>
         <a href="?<?= http_build_query(array_merge($_GET, ['export'=>'csv'])) ?>"
            class="rv-btn rv-btn-green flex items-center gap-2">
-            ⬇ Descargar CSV
+            Descargar CSV
         </a>
     </div>
 

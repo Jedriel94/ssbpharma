@@ -36,14 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="card rounded-3xl shadow-2xl max-w-md w-full p-8">
 
         <div class="text-center mb-8">
-            <div class="text-6xl mb-4">📧</div>
+            <div class="text-6xl mb-4"></div>
             <h1 class="text-3xl font-bold text-slate-900 mb-2">Recuperar contraseña</h1>
             <p class="text-slate-600">Te enviaremos un enlace para restablecer tu contraseña</p>
         </div>
 
         <?php if ($enviado): ?>
             <div class="p-5 bg-teal-50 border border-teal-200 rounded-2xl text-center">
-                <div class="text-4xl mb-3">✅</div>
+                <div class="text-4xl mb-3"></div>
                 <p class="font-semibold text-teal-800 mb-1">Correo enviado</p>
                 <p class="text-teal-700 text-sm">Si el correo está registrado, recibirás un enlace válido por <strong>1 hora</strong>. Revisa también tu carpeta de spam.</p>
             </div>
@@ -53,13 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php else: ?>
             <?php if ($error): ?>
                 <div class="mb-5 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
-                    ❌ <?= htmlspecialchars($error) ?>
+                    <?= htmlspecialchars($error) ?>
                 </div>
             <?php endif; ?>
 
             <form method="POST" action="recuperar-password.php">
                 <div class="mb-5">
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">✉️ Correo electrónico</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Correo electrónico</label>
                     <input type="email"
                            name="email"
                            required

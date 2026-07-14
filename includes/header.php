@@ -784,7 +784,7 @@ $_headerEsViewer    = $_headerRolCodigo === 'viewer';
         });
     </script>
 </head>
-<body class="antialiased">
+<body class="antialiased theme-ocean">
 <!-- Contenedor global de toasts — Módulo Sistema -->
 <div id="_sys-toast-c" aria-live="polite"></div>
 <script>
@@ -1027,38 +1027,6 @@ $_headerEsViewer    = $_headerRolCodigo === 'viewer';
                 </a>
             <?php endif; ?>
 
-            <div class="h-px bg-slate-200 my-4"></div>
-
-            <!-- Selector de Tema -->
-            <button id="menu-theme-toggle"
-                    onclick="toggleMenuTheme()"
-                    class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-50 transition">
-                <div class="flex items-center gap-3">
-                    <span class="text-xl">🎨</span>
-                    <span class="font-medium">Tema</span>
-                </div>
-                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-            </button>
-            <div id="menu-theme-submenu">
-                <button class="theme-opt-btn" onclick="setTheme('minimal')">
-                    <span class="theme-swatch" style="background:#0F172A;border:1px solid #CBD5E1"></span> Minimal
-                </button>
-                <button class="theme-opt-btn" onclick="setTheme('terracotta')">
-                    <span class="theme-swatch" style="background:#E07856"></span> Terracota
-                </button>
-                <button class="theme-opt-btn" onclick="setTheme('ocean')">
-                    <span class="theme-swatch" style="background:#4A70A9"></span> Ocean
-                </button>
-                <button class="theme-opt-btn" onclick="setTheme('dark')">
-                    <span class="theme-swatch" style="background:#0D1117;border:1px solid #30363D"></span> Oscuro
-                </button>
-                <button class="theme-opt-btn" onclick="setTheme('lavender')">
-                    <span class="theme-swatch" style="background:#7C3AED"></span> Lavanda
-                </button>
-            </div>
-
         </nav>
     </div>
 
@@ -1090,10 +1058,9 @@ $_headerEsViewer    = $_headerRolCodigo === 'viewer';
         btn.classList.toggle('open');
     }
 
-    // Aplicar tema guardado al cargar
+    // Tema fijo: Ocean (personalización de tema deshabilitada)
     document.addEventListener('DOMContentLoaded', function() {
-        const saved = localStorage.getItem('botikit-theme') || 'minimal';
-        setTheme(saved, false);
+        setTheme('ocean', false);
     });
 
     /* ---- Menú ---- */

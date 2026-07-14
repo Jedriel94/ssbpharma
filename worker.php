@@ -23,7 +23,7 @@ define('MACRO_PATH', __DIR__ . '/macro-simulador.bat');  // Ruta al ejecutable d
 
 // Banner de inicio
 echo str_repeat("=", 60) . "\n";
-echo "🚀 WORKER - GENERADOR AUTOMÁTICO DE LIGAS DE PAGO\n";
+echo "WORKER - GENERADOR AUTOMÁTICO DE LIGAS DE PAGO\n";
 echo str_repeat("=", 60) . "\n";
 echo "Iniciado: " . date('Y-m-d H:i:s') . "\n";
 echo "Intervalo: " . WORKER_INTERVAL . " segundos\n";
@@ -34,9 +34,9 @@ echo str_repeat("=", 60) . "\n\n";
 try {
     $db = Database::getInstance();
     $pdo = $db->getConnection();
-    echo "✅ Conexión a base de datos establecida\n\n";
+    echo "Conexión a base de datos establecida\n\n";
 } catch (Exception $e) {
-    die("❌ ERROR: No se pudo conectar a la base de datos: " . $e->getMessage() . "\n");
+    die("ERROR: No se pudo conectar a la base de datos: " . $e->getMessage() . "\n");
 }
 
 // Contador de ciclos sin actividad (para heartbeat visual)
@@ -61,7 +61,7 @@ while (true) {
             $ciclosSinActividad = 0;
             
             echo "\n" . str_repeat("-", 60) . "\n";
-            echo "📋 NUEVO JOB #" . $job['id'] . "\n";
+            echo "NUEVO JOB #" . $job['id'] . "\n";
             echo "   Pedido: #" . $job['pedido_id'] . "\n";
             echo "   Monto: $" . number_format($job['monto'], 2) . "\n";
             echo "   Cliente: " . $job['nombre_cliente'] . "\n";
@@ -77,7 +77,7 @@ while (true) {
             ");
             $stmt->execute([$job['id']]);
             
-            echo "[" . date('H:i:s') . "] ⏳ Ejecutando macro...\n";
+            echo "[" . date('H:i:s') . "] Ejecutando macro...\n";
             
             // 3. EJECUTAR MACRO
             // Formato: macro.exe 999.00 123 "Cliente" 1 --headless
@@ -89,7 +89,7 @@ while (true) {
                 addslashes($job['nombre_cliente'])
             );
             
-            echo "[" . date('H:i:s') . "] 💻 Comando: $comando\n";
+            echo "[" . date('H:i:s') . "] Comando: $comando\n";
             
             // Ejecutar y capturar salida
             $output = shell_exec($comando . " 2>&1");
@@ -107,26 +107,26 @@ while (true) {
                 }
             }
             
-            echo "[" . date('H:i:s') . "] 📤 Respuesta de macro: " . substr($output, 0, 200) . "...\n";
-            echo "[" . date('H:i:s') . "] 🔗 URL extraída: $enlace\n";
+            echo "[" . date('H:i:s') . "] Respuesta de macro: " . substr($output, 0, 200) . "...\n";
+            echo "[" . date('H:i:s') . "] URL extraída: $enlace\n";
             
             // 4. Validar que retornó un enlace válido
             if (empty($enlace)) {
                 throw new Exception("La macro no retornó ninguna URL válida");
             }
             
-            echo "[" . date('H:i:s') . "] ✅ Liga generada exitosamente\n";
+            echo "[" . date('H:i:s') . "] Liga generada exitosamente\n";
             
             // 5. RECONECTAR A LA BASE DE DATOS
             // (La macro puede tardar más de 1 minuto, y MySQL cierra la conexión)
-            echo "[" . date('H:i:s') . "] 🔄 Reconectando a base de datos...\n";
+            echo "[" . date('H:i:s') . "] Reconectando a base de datos...\n";
             try {
                 $pdo = null; // Cerrar conexión anterior
                 $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
                 $pdo = new PDO($dsn, DB_USER, DB_PASS);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $pdo->exec("SET time_zone = '-06:00'");
-                echo "[" . date('H:i:s') . "] ✅ Conexión restablecida\n";
+                echo "[" . date('H:i:s') . "] Conexión restablecida\n";
             } catch (PDOException $e) {
                 throw new Exception("Error al reconectar: " . $e->getMessage());
             }
@@ -135,7 +135,7 @@ while (true) {
             $stmt = $pdo->prepare("UPDATE pedidos SET liga_pago = ? WHERE id = ?");
             $stmt->execute([$enlace, $job['pedido_id']]);
             
-            echo "[" . date('H:i:s') . "] 💾 Enlace guardado en pedido #" . $job['pedido_id'] . "\n";
+            echo "[" . date('H:i:s') . "] Enlace guardado en pedido #" . $job['pedido_id'] . "\n";
             
             // 7. Marcar job como completado
             $stmt = $pdo->prepare("
@@ -148,7 +148,7 @@ while (true) {
             ");
             $stmt->execute([$enlace, $job['id']]);
             
-            echo "[" . date('H:i:s') . "] 🎉 Job completado exitosamente\n";
+            echo "[" . date('H:i:s') . "] Job completado exitosamente\n";
             echo str_repeat("=", 60) . "\n";
             
         } else {
@@ -157,14 +157,14 @@ while (true) {
             
             // Mostrar heartbeat cada 6 ciclos (1 minuto si interval=10s)
             if ($ciclosSinActividad % 6 == 0) {
-                echo "[" . date('H:i:s') . "] 💤 Esperando trabajos... (" . ($ciclosSinActividad * WORKER_INTERVAL) . "s sin actividad)\n";
+                echo "[" . date('H:i:s') . "] Esperando trabajos... (" . ($ciclosSinActividad * WORKER_INTERVAL) . "s sin actividad)\n";
             } else {
                 echo ".";
             }
         }
         
     } catch (Exception $e) {
-        echo "\n❌ ERROR: " . $e->getMessage() . "\n";
+        echo "\nERROR: " . $e->getMessage() . "\n";
         
         // Marcar job como error (si existe)
         if (isset($job) && $job) {
@@ -197,13 +197,13 @@ while (true) {
                 ]);
                 
                 if ($nuevoEstado === 'error') {
-                    echo "⚠️  Job marcado como ERROR después de " . MAX_INTENTOS . " intentos\n";
+                    echo " Job marcado como ERROR después de " . MAX_INTENTOS . " intentos\n";
                 } else {
-                    echo "🔄 Job regresado a cola para reintento\n";
+                    echo "Job regresado a cola para reintento\n";
                 }
                 
             } catch (Exception $updateError) {
-                echo "⚠️  No se pudo actualizar el estado del job: " . $updateError->getMessage() . "\n";
+                echo " No se pudo actualizar el estado del job: " . $updateError->getMessage() . "\n";
             }
         }
         

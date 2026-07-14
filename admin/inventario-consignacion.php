@@ -171,7 +171,7 @@ body.theme-dark .modal-header { background: var(--bg-card-hover) !important; bor
     <!-- Título -->
     <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
         <div>
-            <h1 class="text-2xl font-bold text-slate-900">📦 Inventario a Consignación</h1>
+            <h1 class="text-2xl font-bold text-slate-900">Inventario a Consignación</h1>
             <p class="text-sm text-slate-500 mt-0.5">Stock disponible y en reserva por representante</p>
         </div>
         <a href="solicitudes-consignacion.php"
@@ -182,7 +182,7 @@ body.theme-dark .modal-header { background: var(--bg-card-hover) !important; bor
 
     <?php if (empty($representantes)): ?>
     <div class="text-center py-20 text-slate-400">
-        <div class="text-5xl mb-3">📭</div>
+        <div class="text-5xl mb-3"></div>
         <p class="font-semibold">No hay representantes con inventario asignado</p>
     </div>
     <?php else: ?>
@@ -216,7 +216,7 @@ body.theme-dark .modal-header { background: var(--bg-card-hover) !important; bor
     <div class="mb-4">
         <input type="text" id="buscadorRep"
                oninput="filtrarTarjetas(this.value)"
-               placeholder="🔍 Buscar representante..."
+               placeholder="Buscar representante..."
                style="background:var(--bg-primary);color:var(--text-primary);border-color:var(--border-color)"
                class="w-full sm:w-80 px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 shadow-sm">
         <span id="contadorTarjetas" class="ml-3 text-sm text-slate-400"></span>
@@ -241,14 +241,14 @@ body.theme-dark .modal-header { background: var(--bg-card-hover) !important; bor
             </div>
             <div class="flex gap-2 flex-wrap">
                 <span class="badge-disponible text-xs font-bold px-3 py-1 rounded-full">
-                    ✓ <?= number_format($rep['disponible']) ?> disponible
+                    <?= number_format($rep['disponible']) ?> disponible
                 </span>
                 <span class="badge-reservada text-xs font-bold px-3 py-1 rounded-full">
-                    ⏳ <?= number_format($rep['reservada']) ?> reserva
+                    <?= number_format($rep['reservada']) ?> reserva
                 </span>
                 <?php if ($rep['vendida'] > 0): ?>
                 <span class="badge-vendida text-xs font-bold px-3 py-1 rounded-full">
-                    💰 <?= number_format($rep['vendida']) ?> vendido
+                    <?= number_format($rep['vendida']) ?> vendido
                 </span>
                 <?php endif; ?>
             </div>
@@ -275,7 +275,7 @@ body.theme-dark .modal-header { background: var(--bg-card-hover) !important; bor
                     <option value="">Todos los productos</option>
                 </select>
                 <button onclick="cerrarModal()"
-                        class="text-slate-400 hover:text-slate-700 text-xl leading-none font-bold px-2">✕</button>
+                        class="text-slate-400 hover:text-slate-700 text-xl leading-none font-bold px-2"></button>
             </div>
         </div>
 
@@ -380,10 +380,10 @@ function construirMovimientosVista(movs) {
 
 function verMovimientos(repId, repNombre) {
     currentRepId = repId;
-    document.getElementById('modalTitle').textContent = '📋 ' + repNombre;
+    document.getElementById('modalTitle').textContent = '' + repNombre;
     document.getElementById('modalSubtitle').textContent = 'Cargando movimientos...';
     document.getElementById('tablaMovimientos').innerHTML =
-        '<tr><td colspan="8" class="text-center py-10 text-slate-400">⏳ Cargando...</td></tr>';
+        '<tr><td colspan="8" class="text-center py-10 text-slate-400">Cargando...</td></tr>';
     document.getElementById('resumenRep').innerHTML = '';
     document.getElementById('filtroProducto').innerHTML = '<option value="">Todos los productos</option>';
     document.getElementById('modalMovimientos').classList.add('open');

@@ -3,6 +3,11 @@
 # ═══════════════════════════════════════════════════════════════
 /config/database.local.php
 
+# Respaldos/importaciones de BD (datos operativos, no van al repo)
+/database/import_catalogo_ssbpharma.sql
+*_test.sql
+*_dbshop.sql
+
 # ═══════════════════════════════════════════════════════════════
 #  Archivos subidos (datos de clientes: comprobantes, facturas,
 #  guías, imágenes de productos). Se conserva solo la estructura
@@ -28,3 +33,7 @@ Thumbs.db
 .idea/
 *.code-workspace
 .claude/settings.local.json
+
+# Preview local (solo esta Mac)
+/iniciar-preview-local.command
+/.claude/launch.json

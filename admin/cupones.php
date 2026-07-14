@@ -175,7 +175,7 @@ $cupones = $cuponModel->getAll();
 $estadisticas = $cuponModel->getEstadisticas();
 ?>
 <?php
-$_pageTitle = '🎟️ Cupones';
+$_pageTitle = 'Cupones';
 ?>
 <?php include '../includes/header.php'; ?>
 
@@ -229,7 +229,7 @@ $_pageTitle = '🎟️ Cupones';
         <div class="mb-8">
             <div class="flex justify-between items-center mb-6">
                 <div>
-                    <h1 class="text-3xl font-bold mb-2" style="color:var(--text-primary)">🎟️ Gestión de Cupones</h1>
+                    <h1 class="text-3xl font-bold mb-2" style="color:var(--text-primary)">Gestión de Cupones</h1>
                     <p style="color:var(--text-secondary)">Administra cupones de descuento y promociones</p>
                 </div>
                 <a href="cupon-form.php" 
@@ -288,7 +288,7 @@ $_pageTitle = '🎟️ Cupones';
                             </td>
                             <td class="px-4 py-3">
                                 <span class="text-xs px-2 py-1 rounded-full <?= $cupon['tipo_descuento'] === 'porcentaje' ? 'bg-purple-100 text-purple-800' : 'bg-green-100 text-green-800' ?>">
-                                    <?= $cupon['tipo_descuento'] === 'porcentaje' ? '📊 %' : '💵 $' ?>
+                                    <?= $cupon['tipo_descuento'] === 'porcentaje' ? '%' : '$' ?>
                                 </span>
                             </td>
                             <td class="px-4 py-3 font-bold">
@@ -301,11 +301,11 @@ $_pageTitle = '🎟️ Cupones';
                             <td class="px-4 py-3">
                                 <?php
                                 $iconos = [
-                                    'general' => '🌐',
-                                    'productos' => '📦',
-                                    'tags' => '🏷️',
-                                    'kits' => '🎁',
-                                    'representantes' => '👤'
+                                    'general' => '',
+                                    'productos' => '',
+                                    'tags' => '',
+                                    'kits' => '',
+                                    'representantes' => ''
                                 ];
                                 $nombres = [
                                     'general' => 'General',
@@ -381,7 +381,7 @@ $_pageTitle = '🎟️ Cupones';
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Código -->
                     <div>
-                        <label class="cup-label">🎟️ Código del Cupón*</label>
+                        <label class="cup-label">Código del Cupón*</label>
                         <input type="text" id="cupon_codigo" name="codigo" required maxlength="50"
                                placeholder="Ej: VERANO2026"
                                class="cup-input font-mono" style="text-transform:uppercase">
@@ -389,7 +389,7 @@ $_pageTitle = '🎟️ Cupones';
                     
                     <!-- Tipo de Descuento -->
                     <div>
-                        <label class="cup-label">📊 Tipo de Descuento*</label>
+                        <label class="cup-label">Tipo de Descuento*</label>
                         <select id="cupon_tipo_descuento" name="tipo_descuento" required onchange="actualizarPlaceholder()"
                                 class="cup-input">
                             <option value="porcentaje">Porcentaje (%)</option>
@@ -400,7 +400,7 @@ $_pageTitle = '🎟️ Cupones';
                 
                 <!-- Valor del Descuento -->
                 <div>
-                    <label class="cup-label">💰 Valor del Descuento*</label>
+                    <label class="cup-label">Valor del Descuento*</label>
                     <input type="number" id="cupon_valor_descuento" name="valor_descuento" required min="0" step="0.01"
                            placeholder="Ej: 10 o 100.00"
                            class="cup-input">
@@ -409,7 +409,7 @@ $_pageTitle = '🎟️ Cupones';
                 
                 <!-- Descripción -->
                 <div>
-                    <label class="cup-label">📝 Descripción</label>
+                    <label class="cup-label">Descripción</label>
                     <textarea id="cupon_descripcion" name="descripcion" rows="2"
                               placeholder="Descripción del cupón para administración"
                               class="cup-input"></textarea>
@@ -417,14 +417,14 @@ $_pageTitle = '🎟️ Cupones';
                 
                 <!-- Tipo de Aplicación -->
                 <div>
-                    <label class="cup-label">🎯 Aplicar A*</label>
+                    <label class="cup-label">Aplicar A*</label>
                     <select id="cupon_tipo_aplicacion" name="tipo_aplicacion" required onchange="actualizarCamposAplicacion()"
                             class="cup-input">
-                        <option value="general">🌐 General (Todos los productos)</option>
-                        <option value="productos">📦 Productos Específicos</option>
-                        <option value="tags">🏷️ Grupo de Productos (Tags)</option>
-                        <option value="kits">🎁 Kits Específicos</option>
-                        <option value="representantes">👤 Representantes Específicos</option>
+                        <option value="general">General (Todos los productos)</option>
+                        <option value="productos">Productos Específicos</option>
+                        <option value="tags">Grupo de Productos (Tags)</option>
+                        <option value="kits">Kits Específicos</option>
+                        <option value="representantes">Representantes Específicos</option>
                     </select>
                 </div>
                 
@@ -434,7 +434,7 @@ $_pageTitle = '🎟️ Cupones';
                     
                     <!-- Buscador y contador -->
                     <div class="mb-2">
-                        <input type="text" id="buscador_items" placeholder="🔍 Buscar..." 
+                        <input type="text" id="buscador_items" placeholder="Buscar..." 
                                oninput="filtrarItems()" 
                                class="cup-input" style="font-size:13px;padding:8px 12px">
                     </div>
@@ -452,7 +452,7 @@ $_pageTitle = '🎟️ Cupones';
                 
                 <!-- Campo para Tags -->
                 <div id="campo_tags" class="hidden">
-                    <label class="cup-label">🏷️ Tags Aplicables</label>
+                    <label class="cup-label">Tags Aplicables</label>
                     <input type="text" id="cupon_aplicacion_tags" name="aplicacion_tags"
                            placeholder="Ej: natural,vegano,premium"
                            class="cup-input">
@@ -462,13 +462,13 @@ $_pageTitle = '🎟️ Cupones';
                 <!-- Restricciones -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 cup-divider pt-4">
                     <div>
-                        <label class="cup-label">💳 Mínimo de Compra</label>
+                        <label class="cup-label">Mínimo de Compra</label>
                         <input type="number" id="cupon_minimo_compra" name="minimo_compra" min="0" step="0.01" value="0"
                                class="cup-input">
                     </div>
                     
                     <div>
-                        <label class="cup-label">🔢 Usos Máximos</label>
+                        <label class="cup-label">Usos Máximos</label>
                         <input type="number" id="cupon_usos_maximos" name="usos_maximos" min="1"
                                placeholder="Dejar vacío para ilimitado"
                                class="cup-input">
@@ -478,13 +478,13 @@ $_pageTitle = '🎟️ Cupones';
                 <!-- Fechas -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="cup-label">📅 Fecha Inicio*</label>
+                        <label class="cup-label">Fecha Inicio*</label>
                         <input type="datetime-local" id="cupon_fecha_inicio" name="fecha_inicio" required
                                class="cup-input">
                     </div>
                     
                     <div>
-                        <label class="cup-label">📅 Fecha Expiración*</label>
+                        <label class="cup-label">Fecha Expiración*</label>
                         <input type="datetime-local" id="cupon_fecha_expiracion" name="fecha_expiracion" required
                                class="cup-input">
                     </div>
@@ -495,7 +495,7 @@ $_pageTitle = '🎟️ Cupones';
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" id="cupon_activo" name="activo" value="1" checked
                                class="w-5 h-5 rounded">
-                        <span class="text-sm font-medium" style="color:var(--text-secondary)">✓ Cupón Activo</span>
+                        <span class="text-sm font-medium" style="color:var(--text-secondary)">Cupón Activo</span>
                     </label>
                 </div>
                 
@@ -516,7 +516,7 @@ $_pageTitle = '🎟️ Cupones';
     <div id="modalHistorial" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div class="cup-modal-bg rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div class="cup-modal-hdr p-6 rounded-t-2xl">
-                <h2 class="text-2xl font-bold">📊 Historial de Uso</h2>
+                <h2 class="text-2xl font-bold">Historial de Uso</h2>
             </div>
             
             <div class="p-6">
@@ -581,10 +581,10 @@ $_pageTitle = '🎟️ Cupones';
             if (datosCache.productos.length > 0) {
                 console.log('Primeros productos:', datosCache.productos.slice(0, 3));
             } else {
-                console.warn('⚠️ No se cargaron productos. Verificar respuesta de API.');
+                console.warn('No se cargaron productos. Verificar respuesta de API.');
             }
         } catch (error) {
-            console.error('❌ Error cargando datos:', error);
+            console.error('Error cargando datos:', error);
         }
     }
     
@@ -700,7 +700,7 @@ $_pageTitle = '🎟️ Cupones';
                 break;
                 
             case 'productos':
-                labelIds.textContent = '📦 Seleccionar Productos';
+                labelIds.textContent = 'Seleccionar Productos';
                 selectorIds.innerHTML = generarCheckboxes(datosCache.productos, 'producto');
                 campoIds.classList.remove('hidden');
                 actualizarContador();
@@ -712,14 +712,14 @@ $_pageTitle = '🎟️ Cupones';
                 break;
                 
             case 'kits':
-                labelIds.textContent = '🎁 Seleccionar Kits';
+                labelIds.textContent = 'Seleccionar Kits';
                 selectorIds.innerHTML = generarCheckboxes(datosCache.kits, 'nombre');
                 campoIds.classList.remove('hidden');
                 actualizarContador();
                 break;
                 
             case 'representantes':
-                labelIds.textContent = '👤 Seleccionar Representantes';
+                labelIds.textContent = 'Seleccionar Representantes';
                 selectorIds.innerHTML = generarCheckboxes(datosCache.representantes, 'nombre', 'codigo');
                 campoIds.classList.remove('hidden');
                 actualizarContador();

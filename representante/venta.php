@@ -152,13 +152,13 @@ function money_rep_venta($value) {
     <link rel="stylesheet" href="<?= asset('css/representante.css') ?>">
     <style>
         :root {
-            --ink:#101820;
-            --muted:#65717f;
-            --paper:#fbfaf7;
-            --line:#e6e0d6;
-            --field:#f2eee7;
-            --brand:#126c6a;
-            --accent:#d86f4d;
+            --ink:#102040;
+            --muted:#6a90b8;
+            --paper:#f0f5fa;
+            --line:#bfcfe8;
+            --field:#eef4fa;
+            --brand:#4a70a9;
+            --accent:#8fabd4;
         }
         body {
             margin:0;
@@ -606,9 +606,9 @@ function money_rep_venta($value) {
                             <div style="display:flex;gap:8px;align-items:stretch">
                                 <div style="position:relative;flex:1">
                                     <input id="telefono" name="telefono" type="tel" inputmode="numeric" autocomplete="tel" required maxlength="10" pattern="[0-9]{10}" placeholder="10 digitos" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10)">
-                                    <span id="tel-badge" style="display:none;position:absolute;top:50%;right:10px;transform:translateY(-50%);font-size:11px;font-weight:900;background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:99px">✓ Cliente existente</span>
+                                    <span id="tel-badge" style="display:none;position:absolute;top:50%;right:10px;transform:translateY(-50%);font-size:11px;font-weight:900;background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:99px">Cliente existente</span>
                                 </div>
-                                <button type="button" class="btn-buscar" onclick="abrirBusqueda()" title="Buscar cliente por nombre o teléfono">🔍</button>
+                                <button type="button" class="btn-buscar" onclick="abrirBusqueda()" title="Buscar cliente por nombre o teléfono"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
                             </div>
                         </div>
                         <div>
@@ -721,7 +721,7 @@ function money_rep_venta($value) {
                                autocomplete="off"
                                oninput="filtrarProductos(this.value)"
                                style="padding-left:38px;min-height:46px;font-size:15px">
-                        <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none">🔍</span>
+                        <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none"></span>
                     </div>
                     <div id="prod-lista" class="grid gap-2">
                         <?php foreach ($inventario as $item): ?>
@@ -781,8 +781,8 @@ function money_rep_venta($value) {
                     </div>
                     <div id="cupon-msg" style="margin-top:6px;font-size:13px;display:none"></div>
                     <div id="cupon-aplicado" style="display:none;margin-top:8px;background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:6px;font-size:13px;font-weight:900;align-items:center;justify-content:space-between;gap:8px">
-                        <span>✓ <span id="cupon-codigo-text"></span> — <span id="cupon-desc-text" style="font-weight:600"></span></span>
-                        <button type="button" onclick="removerCupon()" style="border:0;background:none;color:#b91c1c;cursor:pointer;font-size:16px;line-height:1">✕</button>
+                        <span><span id="cupon-codigo-text"></span> — <span id="cupon-desc-text" style="font-weight:600"></span></span>
+                        <button type="button" onclick="removerCupon()" style="border:0;background:none;color:#b91c1c;cursor:pointer;font-size:16px;line-height:1">&times;</button>
                     </div>
                     <input type="hidden" name="cupon_id" id="hidden_cupon_id" value="">
                     <input type="hidden" name="cupon_codigo" id="hidden_cupon_codigo" value="">
@@ -871,12 +871,12 @@ function money_rep_venta($value) {
                         <label style="display:flex;align-items:center;gap:10px;margin-top:12px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 12px;cursor:pointer;font-weight:400;text-transform:none;font-size:13px;color:var(--ink)">
                             <input type="checkbox" id="notif_factura" name="notif_factura" value="1"
                                    class="w-5 h-5 min-h-0" style="flex-shrink:0" checked>
-                            📧 Recibir factura electrónica por correo
+                            Recibir factura electrónica por correo
                         </label>
                         <div style="margin-top:10px">
                             <label for="constancia_fiscal">Constancia fiscal <span style="font-weight:400;text-transform:none;font-size:11px;color:var(--muted)">(opcional · PDF o imagen)</span></label>
                             <div id="constancia-drop" onclick="document.getElementById('constancia_fiscal').click()" style="border:2px dashed #d4cbbb;border-radius:8px;padding:16px 14px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;background:#fffdf9">
-                                <div id="constancia-placeholder" style="color:var(--muted);font-size:13px">📄 Toca para seleccionar archivo</div>
+                                <div id="constancia-placeholder" style="color:var(--muted);font-size:13px">Toca para seleccionar archivo</div>
                                 <div id="constancia-filename" style="display:none;font-size:13px;font-weight:700;color:var(--brand)"></div>
                             </div>
                             <input id="constancia_fiscal" name="constancia_fiscal" type="file" accept=".pdf,image/*" style="display:none"
@@ -890,7 +890,7 @@ function money_rep_venta($value) {
                         <div>
                             <div class="total-label">Total</div>
                             <div id="descuento-line" style="display:none;font-size:11px;color:#166534;font-weight:900">Desc. −<span id="totalDescuento"></span></div>
-                            <div style="font-size:11px;color:#166534;font-weight:900">✓ Sin cargo de envío</div>
+                            <div style="font-size:11px;color:#166534;font-weight:900">Sin cargo de envío</div>
                             <div class="total" id="totalVenta">$0.00</div>
                         </div>
                         <button type="submit" class="submit" id="submitBtn">Registrar → Cobrar</button>
@@ -906,7 +906,7 @@ function money_rep_venta($value) {
             <div class="srch-handle"></div>
             <div class="srch-header">
                 <span>Buscar cliente</span>
-                <button class="srch-close" onclick="cerrarBusqueda()" aria-label="Cerrar">✕</button>
+                <button class="srch-close" onclick="cerrarBusqueda()" aria-label="Cerrar">&times;</button>
             </div>
             <div class="srch-input-wrap">
                 <input type="search" id="srch-input" placeholder="Nombre, teléfono, ciudad…"
@@ -1448,7 +1448,7 @@ function money_rep_venta($value) {
                     <div class="srch-avatar">${inicial}</div>
                     <div class="srch-item-info">
                         <div class="srch-item-name">${nombre}</div>
-                        ${lugar ? `<div class="srch-item-meta">📍 ${lugar}</div>` : ''}
+                        ${lugar ? `<div class="srch-item-meta">${lugar}</div>` : ''}
                     </div>
                     <div class="srch-item-tel">${escHtml(c.telefono)}</div>
                 </div>`;

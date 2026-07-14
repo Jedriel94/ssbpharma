@@ -908,13 +908,13 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
     <div class="mb-6">
         <div class="flex justify-between items-center flex-wrap gap-4" style="padding-right:3.5rem">
             <div>
-                <h1 class="text-3xl font-bold mb-2" style="color:var(--text-primary)">📊 Pedidos</h1>
+                <h1 class="text-3xl font-bold mb-2" style="color:var(--text-primary)">Pedidos</h1>
                 <p style="color:var(--text-secondary)"><?= $vista === 'lista' ? 'Vista Lista · todos los pedidos' : 'Vista Tablero · estados finales últimos 7 días' ?></p>
             </div>
             <div class="flex flex-wrap items-center gap-3">
                 <div class="flex gap-1 p-1 rounded-xl" style="background:var(--bg-input);border:1px solid var(--border-card)">
                     <a href="?vista=tablero" class="vista-tab <?= $vista === 'tablero' ? 'active' : '' ?>">⊞ Tablero</a>
-                    <a href="?vista=lista"   class="vista-tab <?= $vista === 'lista'   ? 'active' : '' ?>">☰ Lista</a>
+                    <a href="?vista=lista"   class="vista-tab <?= $vista === 'lista'   ? 'active' : '' ?>">Lista</a>
                 </div>
             </div>
         </div>
@@ -994,7 +994,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                     <span class="kanban-status-dot"></span>
-                    ⏳ Pendiente
+                    Pendiente
                 </h2>
                 <span class="kanban-count text-sm font-semibold px-2 py-1 rounded-full"><?= $pendientes ?></span>
             </div>
@@ -1013,7 +1013,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                     <span class="kanban-status-dot"></span>
-                    🔍 Por Verificar
+                    Por Verificar
                 </h2>
                 <span class="kanban-count text-sm font-semibold px-2 py-1 rounded-full"><?= $por_verificar ?></span>
             </div>
@@ -1032,7 +1032,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                     <span class="kanban-status-dot"></span>
-                    ✅ Confirmado
+                    Confirmado
                 </h2>
                 <span class="kanban-count text-sm font-semibold px-2 py-1 rounded-full"><?= $confirmados ?></span>
             </div>
@@ -1051,7 +1051,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                     <span class="kanban-status-dot"></span>
-                    🚚 En Ruta
+                    En Ruta
                 </h2>
                 <span class="kanban-count text-sm font-semibold px-2 py-1 rounded-full"><?= $en_ruta ?></span>
             </div>
@@ -1070,7 +1070,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
                     <span class="kanban-status-dot"></span>
-                    📦 Entregado
+                    Entregado
                 </h2>
                 <span class="kanban-count text-sm font-semibold px-2 py-1 rounded-full"><?= $entregados ?></span>
             </div>
@@ -1087,7 +1087,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
     </div>
 
     <p class="text-xs text-slate-500 text-center mt-6">
-        💡 Los pedidos entregados se muestran solo los últimos 7 días.
+        Los pedidos entregados se muestran solo los últimos 7 días.
     </p>
     <?php endif; /* tablero */ ?>
 
@@ -1095,12 +1095,12 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
     <?php
         // Contadores para la vista lista
         $pdx_estados_def = [
-            'pendiente'   => ['emoji'=>'⏳','nombre'=>'Pendiente'],
-            'por_verificar'=>['emoji'=>'🔍','nombre'=>'Por Verificar'],
-            'confirmado'  => ['emoji'=>'✅','nombre'=>'Confirmado'],
-            'en_ruta'     => ['emoji'=>'🚚','nombre'=>'En Ruta'],
-            'entregado'   => ['emoji'=>'📦','nombre'=>'Entregado'],
-            'cancelado'   => ['emoji'=>'❌','nombre'=>'Cancelado'],
+            'pendiente'   => ['emoji'=>'','nombre'=>'Pendiente'],
+            'por_verificar'=>['emoji'=>'','nombre'=>'Por Verificar'],
+            'confirmado'  => ['emoji'=>'','nombre'=>'Confirmado'],
+            'en_ruta'     => ['emoji'=>'','nombre'=>'En Ruta'],
+            'entregado'   => ['emoji'=>'','nombre'=>'Entregado'],
+            'cancelado'   => ['emoji'=>'','nombre'=>'Cancelado'],
         ];
         $pdx_total    = count($todos_pedidos);
         $pdx_pend     = count(array_filter($todos_pedidos, fn($p)=>$p['estado']==='pendiente'));
@@ -1177,7 +1177,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
 
         <!-- Lista -->
         <?php if (empty($todos_pedidos)): ?>
-        <div class="pdx-empty"><div class="pdx-empty-icon">📦</div><div class="pdx-empty-title">Sin pedidos</div></div>
+        <div class="pdx-empty"><div class="pdx-empty-icon"></div><div class="pdx-empty-title">Sin pedidos</div></div>
         <?php else: ?>
         <div class="pdx-list-wrap">
             <div class="pdx-list-head">
@@ -1279,10 +1279,10 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                     </div>
                     <div class="pdx-actions" onclick="event.stopPropagation()">
                         <a href="chat-admin.php?pedido_id=<?= $pedido['id'] ?>&return=kanban?vista=lista" class="pdx-act pdx-act-chat" title="Chat">
-                            💬<?php if ($msgs_noleidos>0): ?><span class="pdx-badge"><?= $msgs_noleidos ?></span><?php endif; ?>
+                            <?php if ($msgs_noleidos>0): ?><span class="pdx-badge"><?= $msgs_noleidos ?></span><?php endif; ?>
                         </a>
                         <?php if ($pedido['estado']==='por_verificar' && !empty($pedido['comprobante_pago'])): ?>
-                            <button onclick="pdxAprobar(<?= $pedido['id'] ?>)" class="pdx-act pdx-act-approve" title="Aprobar pago">✅</button>
+                            <button onclick="pdxAprobar(<?= $pedido['id'] ?>)" class="pdx-act pdx-act-approve" title="Aprobar pago"></button>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -1297,11 +1297,11 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                             <?php if ($item['imagen']): ?>
                                 <img src="../uploads/kits/<?= htmlspecialchars($item['imagen']) ?>" alt="" class="pdx-prod-img" style="border-radius:8px">
                             <?php else: ?>
-                                <div class="pdx-prod-ph" style="background:#e0e7ff"><span style="font-size:18px">📦</span></div>
+                                <div class="pdx-prod-ph" style="background:#e0e7ff"><span style="font-size:18px"></span></div>
                             <?php endif; ?>
                             <div style="min-width:0;flex:1">
                                 <div class="pdx-prod-name" style="color:#3730a3;font-weight:700">
-                                    📦 Kit: <?= htmlspecialchars($item['nombre']) ?>
+                                    Kit: <?= htmlspecialchars($item['nombre']) ?>
                                 </div>
                                 <div class="pdx-prod-qty"><?= $item['cantidad'] ?> kit<?= $item['cantidad']!=1?'s':'' ?> &nbsp;·&nbsp;
                                     <?php
@@ -1427,7 +1427,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                             <div class="pdx-info-ttl">Pago</div>
                             <div style="font-size:13px;font-weight:600;color:var(--sub);text-transform:capitalize"><?= htmlspecialchars($pedido['metodo_pago']) ?></div>
                             <?php if (!empty($pedido['comprobante_pago'])): ?>
-                                <a href="../uploads/comprobantes/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" target="_blank" style="display:inline-flex;align-items:center;gap:4px;margin-top:7px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none">🧾 Ver comprobante ↗</a>
+                                <a href="../uploads/comprobantes/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" target="_blank" style="display:inline-flex;align-items:center;gap:4px;margin-top:7px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none">Ver comprobante ↗</a>
                             <?php endif; ?>
                         </div>
                         <?php endif; ?>
@@ -1435,8 +1435,8 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                         <div class="pdx-info" style="border-left:2px solid #c4b5fd">
                             <div class="pdx-info-ttl">Factura<?php if (!empty($pedido['num_factura'])): ?> <span style="font-weight:400;font-size:11px;color:var(--faint)">#<?= htmlspecialchars($pedido['num_factura']) ?></span><?php endif; ?></div>
                             <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap">
-                                <?php if (!empty($pedido['factura_pdf'])): ?><a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_pdf']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">📄 PDF ↗</a><?php endif; ?>
-                                <?php if (!empty($pedido['factura_xml'])): ?><a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_xml']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">🗂 XML ↗</a><?php endif; ?>
+                                <?php if (!empty($pedido['factura_pdf'])): ?><a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_pdf']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">PDF ↗</a><?php endif; ?>
+                                <?php if (!empty($pedido['factura_xml'])): ?><a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_xml']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">XML ↗</a><?php endif; ?>
                             </div>
                         </div>
                         <?php endif; ?>
@@ -1467,7 +1467,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
             </div>
         </div>
         <div id="pdxNoResults" class="pdx-empty" style="display:none;margin-top:10px">
-            <div class="pdx-empty-icon">🔍</div>
+            <div class="pdx-empty-icon"></div>
             <div class="pdx-empty-title">Sin resultados</div>
             <div class="pdx-empty-sub">No hay pedidos con los filtros seleccionados.</div>
         </div>
@@ -1578,7 +1578,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
 <div id="modalNumFactura" class="modal-backdrop fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-75">
     <div class="card rounded-2xl shadow-2xl max-w-sm w-full p-6 bg-white">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-lg font-bold text-slate-900">🔢 Número de Factura</h2>
+            <h2 class="text-lg font-bold text-slate-900">Número de Factura</h2>
             <button onclick="cerrarModalNumFactura()" class="text-slate-400 hover:text-slate-600">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -1624,7 +1624,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
 <div id="modalComprobanteEnvio" class="modal-backdrop fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-75">
     <div class="card rounded-2xl shadow-2xl max-w-md w-full p-6 bg-white">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-bold text-slate-900">📤 Subir Comprobante de Envío</h2>
+            <h2 class="text-xl font-bold text-slate-900">Subir Comprobante de Envío</h2>
             <button onclick="cerrarModalEnvio()" class="text-slate-500 hover:text-slate-700">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -1637,7 +1637,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
             
             <div class="mb-4">
                 <label class="block text-sm font-medium text-slate-700 mb-2">
-                    📎 Comprobante (Guía, foto del paquete, etc.)
+                    Comprobante (Guía, foto del paquete, etc.)
                 </label>
                 <input type="file" 
                        name="comprobante_envio"
@@ -1663,7 +1663,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
 <div id="modalFactura" class="modal-backdrop fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-75">
     <div class="card rounded-2xl shadow-2xl max-w-md w-full p-6 bg-white">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-bold text-slate-900">🧾 Subir Factura Electrónica</h2>
+            <h2 class="text-xl font-bold text-slate-900">Subir Factura Electrónica</h2>
             <button onclick="cerrarModalFactura()" class="text-slate-500 hover:text-slate-700">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -1673,7 +1673,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
         
         <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 mb-4">
             <p class="text-sm text-blue-800">
-                ℹ️ Sube los archivos de la factura generada. Puedes subir solo el PDF, solo el XML, o ambos.
+                ℹSube los archivos de la factura generada. Puedes subir solo el PDF, solo el XML, o ambos.
             </p>
         </div>
         
@@ -1683,7 +1683,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-2">
-                        📄 Factura PDF
+                        Factura PDF
                     </label>
                     <input type="file" 
                            name="factura_pdf"
@@ -1694,7 +1694,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                 
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-2">
-                        📋 Factura XML
+                        Factura XML
                     </label>
                     <input type="file" 
                            name="factura_xml"
@@ -1706,7 +1706,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
             
             <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 my-4">
                 <p class="text-xs text-amber-800">
-                    ⚠️ <strong>Importante:</strong> Debes subir al menos un archivo (PDF o XML)
+                    <strong>Importante:</strong> Debes subir al menos un archivo (PDF o XML)
                 </p>
             </div>
             
@@ -1735,7 +1735,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
 
         <!-- Sección fecha retroactiva (solo visible cuando aplica) -->
         <div id="seccionFechaRetroactiva" class="hidden mb-4 p-3 bg-amber-50 border border-amber-300 rounded-xl">
-            <p class="text-xs font-bold text-amber-800 mb-2">⚠️ Pedido del último día hábil del mes anterior</p>
+            <p class="text-xs font-bold text-amber-800 mb-2">Pedido del último día hábil del mes anterior</p>
             <label class="flex items-start gap-2 cursor-pointer">
                 <input type="checkbox" id="chkFechaRetroactiva" class="mt-0.5 accent-amber-600">
                 <span class="text-xs text-amber-900">
@@ -1839,7 +1839,7 @@ function guardarNumFactura(e) {
     const btn = e.target.querySelector('button[type="submit"]');
     const orig = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '⏳ Guardando…';
+    btn.innerHTML = 'Guardando…';
 
     const fd = new FormData(e.target);
     fd.append('action', 'guardar_num_factura');
@@ -1860,10 +1860,10 @@ function guardarNumFactura(e) {
                         const btn2 = card.querySelector('[data-nf-btn]');
                         if (btn2) btn2.parentNode.insertBefore(badge, btn2.nextSibling);
                     }
-                    badge.textContent = '🔢 ' + d.num_factura;
+                    badge.textContent = '' + d.num_factura;
                     // Cambiar texto del botón a "Editar N° Factura"
                     const nfBtn = card.querySelector('[data-nf-btn]');
-                    if (nfBtn) nfBtn.textContent = '✏️ Editar N° Factura';
+                    if (nfBtn) nfBtn.textContent = 'Editar N° Factura';
                 }
             } else {
                 mostrarAlerta(d.message || 'Error', 'error');
@@ -1920,7 +1920,7 @@ function subirFactura(e) {
     const btn = e.target.querySelector('button[type="submit"]');
     const btnText = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '⏳ Subiendo...';
+    btn.innerHTML = 'Subiendo...';
     
     fetch('kanban.php', {
         method: 'POST',
@@ -1959,7 +1959,7 @@ function subirComprobanteEnvio(e) {
     const btn = e.target.querySelector('button[type="submit"]');
     const btnText = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '⏳ Subiendo...';
+    btn.innerHTML = 'Subiendo...';
     
     fetch('kanban.php', {
         method: 'POST',
@@ -1990,7 +1990,7 @@ function cambiarEstado(pedidoId, nuevoEstado) {
         'confirmado': {
             titulo: 'Aprobar Pago',
             mensaje: '¿Confirmar que el pago ha sido verificado correctamente?',
-            icono: '✅',
+            icono: '',
             iconoBg: 'bg-blue-100',
             iconoColor: 'text-blue-600',
             btnColor: 'bg-blue-500 hover:bg-blue-600'
@@ -1998,7 +1998,7 @@ function cambiarEstado(pedidoId, nuevoEstado) {
         'entregado': {
             titulo: 'Marcar como Entregado',
             mensaje: '¿Confirmar que el pedido ha sido entregado al cliente?',
-            icono: '📦',
+            icono: '',
             iconoBg: 'bg-green-100',
             iconoColor: 'text-green-600',
             btnColor: 'bg-green-500 hover:bg-green-600'
@@ -2008,7 +2008,7 @@ function cambiarEstado(pedidoId, nuevoEstado) {
     const config = configuraciones[nuevoEstado] || {
         titulo: 'Cambiar Estado',
         mensaje: `¿Cambiar estado a "${nuevoEstado}"?`,
-        icono: '❓',
+        icono: '',
         iconoBg: 'bg-gray-100',
         iconoColor: 'text-gray-600',
         btnColor: 'bg-sage-500 hover:bg-sage-600'
@@ -2044,7 +2044,7 @@ function confirmarPago(pedidoId, fechaVerificar) {
     mostrarModalConfirmacion(
         'Confirmar Pago',
         '¿Confirmar que el pago fue validado por Solumedic?',
-        '✅',
+        '',
         'bg-blue-100',
         'text-blue-600',
         'bg-blue-500 hover:bg-blue-600',
@@ -2196,7 +2196,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             const response = await fetch(window.BASE_PATH + 'api/check-notifications.php', { method: 'POST', body: formData });
                             const data = await response.json();
                             if (data.has_new_messages && !sessionStorage.getItem('notified_' + pedidoId)) {
-                                notificationManager.show('💬 Nuevo mensaje de cliente', {
+                                notificationManager.show('Nuevo mensaje de cliente', {
                                     body: `Pedido #${pedidoId} - ${data.count} mensaje(s) nuevo(s)`,
                                     tag: 'chat-admin-' + pedidoId,
                                     url: window.BASE_PATH + `admin/chat-admin.php?pedido_id=${pedidoId}&return=kanban`
@@ -2286,20 +2286,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (badge) {
                             // Actualizar el badge existente
                             badge.textContent = count;
-                            console.log(`✅ Badge actualizado para pedido ${pedidoId}: ${count} mensajes`);
+                            console.log(`Badge actualizado para pedido ${pedidoId}: ${count} mensajes`);
                         } else {
                             // Crear el badge si no existe
                             const newBadge = document.createElement('span');
                             newBadge.className = 'badge-mensajes absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center';
                             newBadge.textContent = count;
                             chatLink.appendChild(newBadge);
-                            console.log(`🆕 Badge creado para pedido ${pedidoId}: ${count} mensajes`);
+                            console.log(`Badge creado para pedido ${pedidoId}: ${count} mensajes`);
                         }
                     } else {
                         // Remover el badge si no hay mensajes
                         if (badge) {
                             badge.remove();
-                            console.log(`🗑️ Badge eliminado para pedido ${pedidoId}`);
+                            console.log(`Badge eliminado para pedido ${pedidoId}`);
                         }
                     }
                 });
@@ -2321,7 +2321,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // Si cambió el estado, re-renderizar la tarjeta completa desde el servidor
                         if (estadoActual !== estadoNuevo) {
-                            console.log(`🔄 Pedido ${pedidoId} cambió de estado: ${estadoActual} → ${estadoNuevo}`);
+                            console.log(`Pedido ${pedidoId} cambió de estado: ${estadoActual} → ${estadoNuevo}`);
                             
                             const columnaDest = document.querySelector(`.kanban-cards[data-estado="${estadoNuevo}"]`);
                             
@@ -2354,7 +2354,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     }, 50);
                                     
                                     actualizarContadores();
-                                    mostrarToast(`📦 Pedido #${pedidoId} movido a ${getNombreEstado(estadoNuevo)}`, 'info');
+                                    mostrarToast(`Pedido #${pedidoId} movido a ${getNombreEstado(estadoNuevo)}`, 'info');
                                 }, 300);
                             }
                         }
@@ -2364,7 +2364,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error en respuesta:', data);
             }
         } catch (error) {
-            console.error('❌ Error actualizando badges de mensajes:', error);
+            console.error('Error actualizando badges de mensajes:', error);
         }
     }
     
@@ -2380,7 +2380,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Ejecutar inmediatamente y luego cada 10 s (solo pestaña activa)
-    console.log('🚀 Iniciando sistema de actualización de badges...');
+    console.log('Iniciando sistema de actualización de badges...');
     let _tBadges = null;
     async function _tickBadges() {
         await actualizarBadgesMensajes();
@@ -2412,7 +2412,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
             
             if (data.success && data.hay_nuevos) {
-                console.log(`🆕 ${data.cantidad} nuevo(s) pedido(s) detectado(s)!`);
+                console.log(`${data.cantidad} nuevo(s) pedido(s) detectado(s)!`);
                 
                 // Actualizar el timestamp
                 ultimoTimestamp = data.ultimo_timestamp;
@@ -2429,7 +2429,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 actualizarContadores();
             }
         } catch (error) {
-            console.error('❌ Error verificando nuevos pedidos:', error);
+            console.error('Error verificando nuevos pedidos:', error);
         }
     }
     
@@ -2474,7 +2474,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tarjeta.style.transform = 'translateY(0)';
         }, 50);
         
-        console.log(`✅ Pedido #${pedido.id} agregado a columna ${estado}`);
+        console.log(`Pedido #${pedido.id} agregado a columna ${estado}`);
     }
     
     function generarHTMLTarjeta(pedido, detalle, mensajes_no_leidos) {
@@ -2509,7 +2509,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const comprobanteHTML = pedido.comprobante_pago ? 
             `<div class="mb-2">
                 <a href="../uploads/comprobantes/${pedido.comprobante_pago}" target="_blank" class="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1">
-                    💳 Ver comprobante pago
+                    Ver comprobante pago
                 </a>
             </div>` : '';
 
@@ -2548,7 +2548,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             
             <div class="mb-3 pb-3 border-b border-slate-100">
-                <p class="text-xs text-slate-600">👤 Cliente:</p>
+                <p class="text-xs text-slate-600">Cliente:</p>
                 <p class="font-semibold text-slate-900 text-sm truncate">${pedido.telefono}</p>
                 ${pedido.nombre ? `<p class="text-xs text-slate-600 truncate">${pedido.nombre}</p>` : ''}
             </div>
@@ -2556,7 +2556,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ${badgesHTML}
             
             <div class="mb-3">
-                <p class="text-xs text-slate-600 mb-1">📦 ${detalle.length} producto${detalle.length != 1 ? 's' : ''}</p>
+                <p class="text-xs text-slate-600 mb-1">${detalle.length} producto${detalle.length != 1 ? 's' : ''}</p>
                 <div class="text-xs text-slate-500 line-clamp-2">${productosHTML}</div>
             </div>
             
@@ -2567,7 +2567,7 @@ document.addEventListener('DOMContentLoaded', function() {
                    data-pedido-id="${pedido.id}"
                    data-chat-link
                    class="w-full bg-sage-500 hover:bg-sage-600 text-white px-3 py-2 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition relative">
-                    💬 Chat
+                    Chat
                     ${badgeHTML}
                 </a>
             </div>
@@ -2578,7 +2578,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const notif = document.createElement('div');
         notif.className = 'fixed top-20 right-4 bg-green-600 text-white px-6 py-4 rounded-xl shadow-2xl z-50 flex items-center gap-3';
         notif.innerHTML = `
-            <div class="text-3xl">🎉</div>
+            <div class="text-3xl"></div>
             <div>
                 <p class="font-bold">${cantidad} Nuevo${cantidad > 1 ? 's' : ''} Pedido${cantidad > 1 ? 's' : ''}!</p>
                 <p class="text-sm opacity-90">Se ${cantidad > 1 ? 'han agregado' : 'ha agregado'} automáticamente</p>
@@ -2634,7 +2634,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Verificar nuevos pedidos cada 10 s (solo pestaña activa)
-    console.log('🔄 Iniciando verificación de nuevos pedidos...');
+    console.log('Iniciando verificación de nuevos pedidos...');
     let _tPedidos = null;
     async function _tickPedidos() {
         await verificarNuevosPedidos();

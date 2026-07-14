@@ -79,7 +79,7 @@ $pageTitle = 'Generador de QR - ' . $representante['nombre'];
             </svg>
             Volver a Usuarios
         </a>
-        <h1 class="text-3xl font-bold text-slate-900">📱 Código QR</h1>
+        <h1 class="text-3xl font-bold text-slate-900">Código QR</h1>
                 <p class="text-slate-600 mt-1"><?= htmlspecialchars($representante['nombre']) ?></p>
                 <p class="text-xs text-slate-500 mt-1">Usuario representante #<?= (int)$representante['admin_id'] ?></p>
     </div>
@@ -129,7 +129,7 @@ $pageTitle = 'Generador de QR - ' . $representante['nombre'];
                 
                 <button onclick="compartirWhatsApp()" 
                         class="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-xl font-semibold flex items-center justify-center gap-2 transition">
-                    <span class="text-xl">💬</span>
+                    <span class="text-xl"></span>
                     Compartir por WhatsApp
                 </button>
             </div>
@@ -140,7 +140,7 @@ $pageTitle = 'Generador de QR - ' . $representante['nombre'];
             
             <!-- Enlace del Representante -->
             <div class="card rounded-2xl shadow-lg p-6">
-                <h2 class="text-lg font-bold text-slate-900 mb-4">🔗 Enlace de Referido</h2>
+                <h2 class="text-lg font-bold text-slate-900 mb-4">Enlace de Referido</h2>
                 <p class="text-sm text-slate-600 mb-4">Comparte este enlace con tus clientes:</p>
                 
                 <div class="flex gap-2 mb-4">
@@ -160,13 +160,13 @@ $pageTitle = 'Generador de QR - ' . $representante['nombre'];
                 
                 <button onclick="abrirEnlace()" 
                         class="w-full bg-terracotta-500 hover:bg-terracotta-600 text-white py-3 px-6 rounded-xl font-semibold transition">
-                    🔗 Probar Enlace
+                    Probar Enlace
                 </button>
             </div>
             
             <!-- Estadísticas del Representante -->
             <div class="card rounded-2xl shadow-lg p-6">
-                <h2 class="text-lg font-bold text-slate-900 mb-4">📊 Estadísticas</h2>
+                <h2 class="text-lg font-bold text-slate-900 mb-4">Estadísticas</h2>
                 
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-cream-100 rounded-xl p-4">
@@ -186,7 +186,7 @@ $pageTitle = 'Generador de QR - ' . $representante['nombre'];
             
             <!-- Instrucciones de Uso -->
             <div class="card rounded-2xl shadow-lg p-6">
-                <h2 class="text-lg font-bold text-slate-900 mb-4">📋 Instrucciones</h2>
+                <h2 class="text-lg font-bold text-slate-900 mb-4">Instrucciones</h2>
                 
                 <div class="space-y-3">
                     <details class="group">
@@ -323,7 +323,7 @@ function imprimirQR() {
             </style>
         </head>
         <body>
-            <h1>🛍️ <?= htmlspecialchars(Configuracion::get('nombre_tienda', 'Tienda')) ?> Pedidos</h1>
+            <h1><?= htmlspecialchars(Configuracion::get('nombre_tienda', 'Tienda')) ?> Pedidos</h1>
             <img src="${document.getElementById('qrImage').src}" alt="QR Code">
             <div class="info">
                 <p><strong>Representante:</strong> ${nombreRepresentante}</p>
@@ -345,7 +345,7 @@ function imprimirQR() {
 
 // Compartir por WhatsApp
 function compartirWhatsApp() {
-    const mensaje = `¡Hola! 👋\n\nTe comparto mi enlace de pedidos de <?= htmlspecialchars(Configuracion::get('nombre_tienda', 'Tienda'), ENT_QUOTES) ?>:\n\n${urlCompleta}\n\n¡Escanea el QR o haz clic en el enlace para hacer tu pedido!\n\nSaludos,\n${nombreRepresentante}`;
+    const mensaje = `¡Hola! \n\nTe comparto mi enlace de pedidos de <?= htmlspecialchars(Configuracion::get('nombre_tienda', 'Tienda'), ENT_QUOTES) ?>:\n\n${urlCompleta}\n\n¡Escanea el QR o haz clic en el enlace para hacer tu pedido!\n\nSaludos,\n${nombreRepresentante}`;
     
     const urlWhatsApp = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
     window.open(urlWhatsApp, '_blank');

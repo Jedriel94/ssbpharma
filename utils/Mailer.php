@@ -28,7 +28,7 @@ class Mailer {
 <body style="font-family:Arial,sans-serif;background:#f1f5f9;margin:0;padding:24px;">
 <div style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);">
   <div style="background:#126c6a;padding:36px 28px;text-align:center;">
-    <div style="font-size:48px;margin-bottom:8px;">🔑</div>
+    <div style="font-size:48px;margin-bottom:8px;"></div>
     <h1 style="color:#ffffff;margin:0;font-size:20px;font-weight:700;">Restablecer contraseña</h1>
     <p style="color:#a7d4d3;margin:6px 0 0;font-size:14px;">{$tienda}</p>
   </div>
@@ -320,7 +320,7 @@ HTML;
 <body style="font-family:Arial,sans-serif;background:#f1f5f9;margin:0;padding:24px;">
 <div style="max-width:580px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);">
   <div style="background:#E07856;padding:36px 28px;text-align:center;">
-    <div style="font-size:48px;margin-bottom:8px;">✅</div>
+    <div style="font-size:48px;margin-bottom:8px;"></div>
     <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:700;">¡Pedido Confirmado!</h1>
     <p style="color:#fde8d8;margin:6px 0 0;font-size:15px;">{$tienda}</p>
   </div>
@@ -482,7 +482,7 @@ HTML;
 <body style="font-family:Arial,sans-serif;background:#f1f5f9;margin:0;padding:24px;">
 <div style="max-width:580px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);">
   <div style="background:#1B3464;padding:36px 28px;text-align:center;">
-    <div style="font-size:48px;margin-bottom:8px;">📦</div>
+    <div style="font-size:48px;margin-bottom:8px;"></div>
     <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:700;">Solicitud de Inventario Recibida</h1>
     <p style="color:#29B5E8;margin:6px 0 0;font-size:15px;">{$tienda_esc}</p>
   </div>
@@ -507,7 +507,7 @@ HTML;
 <body style="font-family:Arial,sans-serif;background:#f1f5f9;margin:0;padding:24px;">
 <div style="max-width:580px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);">
   <div style="background:#6366f1;padding:36px 28px;text-align:center;">
-    <div style="font-size:48px;margin-bottom:8px;">🧾</div>
+    <div style="font-size:48px;margin-bottom:8px;"></div>
     <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:700;">Factura Electrónica</h1>
     <p style="color:#e0e7ff;margin:6px 0 0;font-size:15px;">{$tienda}</p>
   </div>
@@ -552,7 +552,7 @@ HTML;
         $tel_s    = htmlspecialchars($telefono);
         $total_s  = htmlspecialchars($total);
 
-        $asunto   = "⚠️ Pedido #{$pedido_s} en Por Verificar — {$tienda}";
+        $asunto   = "Pedido #{$pedido_s} en Por Verificar — {$tienda}";
 
         $body_text = "Nuevo pedido pendiente de verificación.\n\n"
             . "Pedido: #{$pedido_s}\n"
@@ -569,7 +569,7 @@ HTML;
 <body style="font-family:Arial,sans-serif;background:#f1f5f9;margin:0;padding:24px;">
 <div style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);">
   <div style="background:linear-gradient(135deg,#d97706,#b45309);padding:32px 28px;text-align:center;">
-    <h1 style="color:#fff;margin:0;font-size:22px;font-weight:700;">⚠️ Pedido por verificar</h1>
+    <h1 style="color:#fff;margin:0;font-size:22px;font-weight:700;">Pedido por verificar</h1>
     <p style="color:#fde68a;margin:6px 0 0;font-size:14px;">{$tienda}</p>
   </div>
   <div style="padding:28px;">

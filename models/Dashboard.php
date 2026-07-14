@@ -389,7 +389,7 @@ class Dashboard {
                 UNION ALL
 
                 SELECT k.id                     AS id,
-                       CONCAT('📦 ', k.nombre)  AS nombre,
+                       CONCAT('', k.nombre)  AS nombre,
                        SUM(kv.cantidad)         AS total_piezas,
                        SUM(kv.subtotal)         AS total_monto,
                        COUNT(DISTINCT p.id)     AS veces_vendido,

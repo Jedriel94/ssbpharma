@@ -9,15 +9,15 @@
 }
 
 :root {
-    --ink:        #101820;
-    --muted:      #65717f;
-    --paper:      #fbfaf7;
+    --ink:        #102040;
+    --muted:      #6A90B8;
+    --paper:      #F0F5FA;
     --panel:      #ffffff;
-    --line:       #e6e0d6;
-    --field:      #f2eee7;
-    --brand:      #126c6a;
-    --brand-dark: #0b4f4e;
-    --accent:     #d86f4d;
+    --line:       #BFCFE8;
+    --field:      #EEF4FA;
+    --brand:      #4A70A9;
+    --brand-dark: #3A5A90;
+    --accent:     #8FABD4;
     --warn:       #9a5b13;
     --danger:     #b42318;
 }
@@ -32,7 +32,7 @@ html, body {
     left: 0; right: 0; bottom: 0;
     z-index: 30;
     padding: 9px 12px calc(9px + env(safe-area-inset-bottom));
-    background: rgba(251,250,247,.96);
+    background: rgba(240,245,250,.96);
     border-top: 1px solid var(--line);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);

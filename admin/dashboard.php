@@ -52,12 +52,12 @@ if (!in_array($rol_codigo, ['representante'])) {
 
 // Títulos según rol
 $titulo = match($rol_codigo) {
-    'admin' => '🌍 Centro de Mando Global',
-    'director_general' => '📈 Dashboard Estratégico',
-    'director_unidad' => '🏢 Dashboard de Unidad',
-    'gerente' => '👥 Dashboard de Equipo',
-    'representante' => '🎯 Mi Dashboard Personal',
-    default => '📊 Dashboard'
+    'admin' => 'Centro de Mando Global',
+    'director_general' => 'Dashboard Estratégico',
+    'director_unidad' => 'Dashboard de Unidad',
+    'gerente' => 'Dashboard de Equipo',
+    'representante' => 'Mi Dashboard Personal',
+    default => 'Dashboard'
 };
 ?>
 
@@ -129,10 +129,10 @@ $titulo = match($rol_codigo) {
         <div class="card rounded-2xl p-6 shadow-lg">
             <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-2xl">
-                    💰
+                    
                 </div>
                 <span id="cambioVentas" class="text-sm font-semibold text-slate-500">
-                    <span class="loading-spinner">⏳</span>
+                    <span class="loading-spinner"></span>
                 </span>
             </div>
             <div class="text-3xl font-bold text-slate-900 mb-1" id="totalVentas">
@@ -145,10 +145,10 @@ $titulo = match($rol_codigo) {
         <div class="card rounded-2xl p-6 shadow-lg">
             <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-2xl">
-                    📦
+                    
                 </div>
                 <span id="cambioPiezas" class="text-sm font-semibold text-slate-500">
-                    <span class="loading-spinner">⏳</span>
+                    <span class="loading-spinner"></span>
                 </span>
             </div>
             <div class="text-3xl font-bold text-slate-900 mb-1" id="totalPiezas">
@@ -161,10 +161,10 @@ $titulo = match($rol_codigo) {
         <div class="card rounded-2xl p-6 shadow-lg">
             <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-2xl">
-                    📋
+                    
                 </div>
                 <span id="cambioPedidos" class="text-sm font-semibold text-slate-500">
-                    <span class="loading-spinner">⏳</span>
+                    <span class="loading-spinner"></span>
                 </span>
             </div>
             <div class="text-3xl font-bold text-slate-900 mb-1" id="totalPedidos">
@@ -177,10 +177,10 @@ $titulo = match($rol_codigo) {
         <div class="card rounded-2xl p-6 shadow-lg">
             <div class="flex items-start justify-between mb-4">
                 <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-2xl">
-                    📊
+                    
                 </div>
                 <span id="cambioTicket" class="text-sm font-semibold text-slate-500">
-                    <span class="loading-spinner">⏳</span>
+                    <span class="loading-spinner"></span>
                 </span>
             </div>
             <div class="text-3xl font-bold text-slate-900 mb-1" id="ticketPromedio">
@@ -294,7 +294,7 @@ $titulo = match($rol_codigo) {
         <!-- Gráfica de Tendencia (full) -->
         <div class="dashboard-card dashboard-chart-card lg:col-span-3 card rounded-2xl p-6 shadow-lg">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold text-slate-900">📈 Tendencia de Ventas</h2>
+                <h2 class="text-xl font-bold text-slate-900">Tendencia de Ventas</h2>
                 <select id="periodoGrafica" onchange="cargarTendencia()" class="input-field rounded-xl px-4 py-2 text-sm">
                     <option value="dia">Últimos 30 días</option>
                     <option value="semana">Últimas 12 semanas</option>
@@ -311,11 +311,11 @@ $titulo = match($rol_codigo) {
     <div class="dashboard-card card rounded-2xl p-6 shadow-lg">
         <h2 class="text-xl font-bold text-slate-900 mb-6">
             <?php if ($rol_codigo === 'admin' || $rol_codigo === 'director_general'): ?>
-                🥇 Ranking de Representantes
+                Ranking de Representantes
             <?php elseif ($rol_codigo === 'representante'): ?>
-                📊 Mi Posición en el Ranking
+                Mi Posición en el Ranking
             <?php else: ?>
-                👥 Desempeño del Equipo
+                Desempeño del Equipo
             <?php endif; ?>
         </h2>
         <div class="dashboard-table-scroll overflow-x-auto">
@@ -345,7 +345,7 @@ $titulo = match($rol_codigo) {
     <div class="dashboard-card card rounded-2xl p-6 shadow-lg mt-8" id="seccionTopProductos">
         <!-- Header + filtros -->
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-            <h2 class="text-xl font-bold text-slate-900">🏆 Productos más vendidos</h2>
+            <h2 class="text-xl font-bold text-slate-900">Productos más vendidos</h2>
             <div class="flex flex-wrap items-center gap-2">
                 <!-- Filtro Ruta -->
                 <select id="filProdRuta" onchange="cargarTopProductos()" class="input-field rounded-xl px-3 py-2 text-sm">
@@ -366,7 +366,7 @@ $titulo = match($rol_codigo) {
                 <!-- Toggle kits -->
                 <label class="flex items-center gap-2 cursor-pointer select-none text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl px-3 py-2 transition">
                     <input type="checkbox" id="filProdKits" onchange="cargarTopProductos()" class="w-4 h-4 rounded accent-primary-500">
-                    📦 Mostrar Kits
+                    Mostrar Kits
                 </label>
             </div>
         </div>
@@ -409,14 +409,14 @@ $titulo = match($rol_codigo) {
         <!-- Header -->
         <div class="px-6 pt-6 pb-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-                <h2 class="text-xl font-bold text-slate-900">📊 Reporte de Ventas</h2>
+                <h2 class="text-xl font-bold text-slate-900">Reporte de Ventas</h2>
                 <p class="text-sm text-slate-500 mt-0.5">Desglose del período seleccionado por distintas dimensiones.</p>
             </div>
             <div class="flex items-center gap-3 flex-wrap">
                 <!-- Toggle kits — solo visible en dimensión producto -->
                 <label id="rvKitsToggle" class="flex items-center gap-2 cursor-pointer select-none text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl px-3 py-2 transition">
                     <input type="checkbox" id="rvMostrarKits" onchange="cargarReporteVentas()" class="w-4 h-4 rounded accent-primary-500">
-                    📦 Mostrar Kits
+                    Mostrar Kits
                 </label>
                 <?php if (!empty($reps_para_filtro_rv)): ?>
                 <div class="flex items-center gap-2">
@@ -437,13 +437,13 @@ $titulo = match($rol_codigo) {
         <!-- Dimensión tabs — horizontalmente scrollable en móvil -->
         <div class="dashboard-tabs-scroll overflow-x-auto border-b border-slate-200">
             <div class="flex min-w-max">
-                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 -mb-px transition-colors" data-dim="producto" onclick="setReporteDim('producto', this)">📦 Por producto</button>
-                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="cliente" onclick="setReporteDim('cliente', this)">👤 Por cliente</button>
-                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="estado" onclick="setReporteDim('estado', this)">🗺️ Por estado</button>
-                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="localidad" onclick="setReporteDim('localidad', this)">🏙️ Por localidad</button>
-                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="especialidad" onclick="setReporteDim('especialidad', this)">🩺 Por especialidad</button>
-                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="cp" onclick="setReporteDim('cp', this)">📮 Por CP</button>
-                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="representante" onclick="setReporteDim('representante', this)">🤝 Por representante</button>
+                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 -mb-px transition-colors" data-dim="producto" onclick="setReporteDim('producto', this)">Por producto</button>
+                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="cliente" onclick="setReporteDim('cliente', this)">Por cliente</button>
+                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="estado" onclick="setReporteDim('estado', this)">Por estado</button>
+                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="localidad" onclick="setReporteDim('localidad', this)">Por localidad</button>
+                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="especialidad" onclick="setReporteDim('especialidad', this)">Por especialidad</button>
+                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="cp" onclick="setReporteDim('cp', this)">Por CP</button>
+                <button class="rv-dim-btn px-5 py-3 text-sm font-semibold whitespace-nowrap border-b-2 border-transparent text-slate-500 hover:text-slate-700 -mb-px transition-colors" data-dim="representante" onclick="setReporteDim('representante', this)">Por representante</button>
             </div>
         </div>
 
@@ -463,7 +463,7 @@ $titulo = match($rol_codigo) {
     <?php if ($rol_codigo === 'representante'): ?>
     <!-- Últimos Pedidos (solo para representantes) -->
     <div class="dashboard-card card rounded-2xl p-6 shadow-lg mt-6">
-        <h2 class="text-xl font-bold text-slate-900 mb-6">📦 Mis Últimos Pedidos</h2>
+        <h2 class="text-xl font-bold text-slate-900 mb-6">Mis Últimos Pedidos</h2>
         <div class="dashboard-table-scroll overflow-x-auto">
             <table class="w-full">
                 <thead class="bg-slate-100">
@@ -494,7 +494,7 @@ $titulo = match($rol_codigo) {
             <h3 id="drawerNombre" class="text-lg font-bold text-slate-900">—</h3>
             <p id="drawerCodigo" class="text-xs text-slate-500 font-mono">—</p>
         </div>
-        <button onclick="cerrarDetalleRep()" class="p-2 rounded-xl hover:bg-slate-200 transition text-slate-500 text-xl font-bold">✕</button>
+        <button onclick="cerrarDetalleRep()" class="p-2 rounded-xl hover:bg-slate-200 transition text-slate-500 text-xl font-bold">&times;</button>
     </div>
 
     <!-- KPIs del período -->
@@ -521,7 +521,7 @@ $titulo = match($rol_codigo) {
         <button class="drawer-tab active px-5 py-3 text-sm font-semibold border-b-2 border-primary-500 text-primary-600 -mb-px whitespace-nowrap" onclick="drawerTab('pedidos', this)">Pedidos</button>
         <button class="drawer-tab px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 -mb-px whitespace-nowrap" onclick="drawerTab('solicitudes', this)">Solicitudes</button>
         <button class="drawer-tab px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 -mb-px whitespace-nowrap" onclick="drawerTab('inventario', this)">Inventario</button>
-        <button class="drawer-tab px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 -mb-px whitespace-nowrap" onclick="drawerTab('ventas', this)">📊 Ventas</button>
+        <button class="drawer-tab px-5 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-500 hover:text-slate-800 -mb-px whitespace-nowrap" onclick="drawerTab('ventas', this)">Ventas</button>
     </div>
 
     <!-- Contenido scrollable -->
@@ -600,7 +600,7 @@ $titulo = match($rol_codigo) {
     <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[80vh] flex flex-col">
         <div class="flex items-center justify-between px-5 py-4 border-b border-slate-200 shrink-0">
             <h4 id="miniModalTitulo" class="font-bold text-slate-900">—</h4>
-            <button onclick="cerrarMiniModal()" class="text-slate-400 hover:text-slate-700 text-xl font-bold">✕</button>
+            <button onclick="cerrarMiniModal()" class="text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
         </div>
         <div id="miniModalBody" class="overflow-y-auto flex-1 px-5 py-4 text-sm">
             <div class="flex justify-center py-8"><div class="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div></div>
@@ -1085,7 +1085,7 @@ async function cargarComparativa() {
 
 function actualizarCambio(elementId, porcentaje) {
     const elemento = document.getElementById(elementId);
-    const icono = porcentaje >= 0 ? '↗️' : '↘️';
+    const icono = porcentaje >= 0 ? '↗' : '↘';
     const color = porcentaje >= 0 ? 'text-green-600' : 'text-red-600';
     elemento.className = `text-sm font-semibold ${color}`;
     elemento.textContent = `${icono} ${Math.abs(porcentaje)}%`;
@@ -1102,7 +1102,7 @@ async function cargarRanking() {
             tbody.innerHTML = '';
             
             result.data.forEach((item, index) => {
-                const medallas = ['🥇', '🥈', '🥉'];
+                const medallas = ['', '', ''];
                 const posicion = index < 3 ? medallas[index] + ' ' + (index + 1) : (index + 1);
                 
                 // Resaltar si es el representante actual

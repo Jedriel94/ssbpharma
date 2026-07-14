@@ -71,37 +71,37 @@ $pedidos = $pedidoModel->getAll();
 // Estados con emojis y colores
 $estados = [
     'pendiente' => [
-        'emoji' => '⏳', 
+        'emoji' => '', 
         'color' => 'bg-yellow-100 text-yellow-700 border-yellow-300', 
         'colorBoton' => 'bg-yellow-500 hover:bg-yellow-600',
         'nombre' => 'Pendiente'
     ],
     'por_verificar' => [
-        'emoji' => '🔍', 
+        'emoji' => '', 
         'color' => 'bg-orange-100 text-orange-700 border-orange-300', 
         'colorBoton' => 'bg-orange-500 hover:bg-orange-600',
         'nombre' => 'Por Verificar'
     ],
     'confirmado' => [
-        'emoji' => '✅', 
+        'emoji' => '', 
         'color' => 'bg-blue-100 text-blue-700 border-blue-300', 
         'colorBoton' => 'bg-blue-500 hover:bg-blue-600',
         'nombre' => 'Confirmado'
     ],
     'en_ruta' => [
-        'emoji' => '🚚', 
+        'emoji' => '', 
         'color' => 'bg-purple-100 text-purple-700 border-purple-300', 
         'colorBoton' => 'bg-purple-500 hover:bg-purple-600',
         'nombre' => 'En Ruta'
     ],
     'entregado' => [
-        'emoji' => '📦', 
+        'emoji' => '', 
         'color' => 'bg-green-100 text-green-700 border-green-300', 
         'colorBoton' => 'bg-green-500 hover:bg-green-600',
         'nombre' => 'Entregado'
     ],
     'cancelado' => [
-        'emoji' => '❌', 
+        'emoji' => '', 
         'color' => 'bg-red-100 text-red-700 border-red-300', 
         'colorBoton' => 'bg-red-500 hover:bg-red-600',
         'nombre' => 'Cancelado'
@@ -457,13 +457,13 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
   <!-- Header con Estadísticas -->
   <div class="pdx-header">
     <div>
-        <h1 class="pdx-title">📦 Pedidos</h1>
+        <h1 class="pdx-title">Pedidos</h1>
         <p class="pdx-subtitle">Vista Lista · <span id="pdxVisCount"><?= $total_pedidos ?></span> visibles.</p>
       </div>
       <div class="pdx-header-actions">
         <div class="flex gap-1 p-1 rounded-xl" style="background:var(--field,#f1f5f9);border:1px solid #e2e8f0">
           <a href="kanban.php"  class="vista-tab">⊞ Tablero</a>
-          <a href="pedidos.php" class="vista-tab active">☰ Lista</a>
+          <a href="pedidos.php" class="vista-tab active">Lista</a>
         </div>
 
   <!-- Stats -->
@@ -524,7 +524,7 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
   <!-- Orders -->
   <?php if (empty($pedidos)): ?>
     <div class="pdx-empty">
-      <div class="pdx-empty-icon">📦</div>
+      <div class="pdx-empty-icon"></div>
       <div class="pdx-empty-title">Sin pedidos registrados</div>
       <div class="pdx-empty-sub">Los pedidos aparecerán aquí cuando sean creados.</div>
     </div>
@@ -617,13 +617,13 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
             <div class="pdx-actions" onclick="event.stopPropagation()">
               <a href="chat-admin.php?pedido_id=<?= $pedido['id'] ?>&return=pedidos"
                  class="pdx-act pdx-act-chat" title="Chat">
-                💬
+                
                 <?php if ($msgs_noleidos > 0): ?>
                   <span class="pdx-badge"><?= $msgs_noleidos ?></span>
                 <?php endif; ?>
               </a>
               <?php if ($pedido['estado'] === 'por_verificar' && (!empty($pedido['comprobante_pago']) || ($pedido['metodo_pago'] ?? '') === 'efectivo')): ?>
-                <button onclick="pdxAprobar(<?= $pedido['id'] ?>)" class="pdx-act pdx-act-approve" title="Aprobar pago">✅</button>
+                <button onclick="pdxAprobar(<?= $pedido['id'] ?>)" class="pdx-act pdx-act-approve" title="Aprobar pago"></button>
               <?php endif; ?>
             </div>
 
@@ -666,7 +666,7 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
                   <a href="../uploads/comprobantes/<?= htmlspecialchars($pedido['comprobante_pago']) ?>"
                      target="_blank"
                      style="display:inline-flex;align-items:center;gap:4px;margin-top:7px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none;">
-                    🧾 Ver comprobante ↗
+                    Ver comprobante ↗
                   </a>
                 <?php endif; ?>
               </div>
@@ -678,7 +678,7 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
                 <a href="../uploads/guias/<?= htmlspecialchars($pedido['comprobante_envio']) ?>"
                    target="_blank"
                    style="display:inline-flex;align-items:center;gap:4px;margin-top:4px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none;">
-                  📦 Ver guía ↗
+                  Ver guía ↗
                 </a>
               </div>
               <?php endif; ?>
@@ -696,14 +696,14 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
                     <a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_pdf']) ?>"
                        target="_blank"
                        style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none;">
-                      📄 PDF ↗
+                      PDF ↗
                     </a>
                   <?php endif; ?>
                   <?php if (!empty($pedido['factura_xml'])): ?>
                     <a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_xml']) ?>"
                        target="_blank"
                        style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none;">
-                      🗂 XML ↗
+                      XML ↗
                     </a>
                   <?php endif; ?>
                 </div>
@@ -755,7 +755,7 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
     </div><!-- /pdx-list-wrap -->
 
     <div id="pdxNoResults" class="pdx-empty" style="display:none;margin-top:10px;">
-      <div class="pdx-empty-icon">🔍</div>
+      <div class="pdx-empty-icon"></div>
       <div class="pdx-empty-title">Sin resultados</div>
       <div class="pdx-empty-sub">No hay pedidos con los filtros seleccionados.</div>
     </div>

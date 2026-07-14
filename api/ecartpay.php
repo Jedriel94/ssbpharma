@@ -105,7 +105,7 @@ $mensajeModel = new MensajePedido($pdo);
 $mensajeModel->create(
     $pedidoId,
     'cliente',
-    "💳 Pago realizado con EcartPay\n✅ Order ID: {$ecartpayOrderId}\n📋 Estado: {$status}"
+    "Pago realizado con EcartPay\nOrder ID: {$ecartpayOrderId}\nEstado: {$status}"
 );
 
 echo json_encode(['received' => true]);

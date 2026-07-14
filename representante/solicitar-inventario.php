@@ -107,15 +107,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .qtybox button {
             min-height:44px;
             border:0;
-            background:#f2eee7;
-            color:#101820;
+            background:#eef4fa;
+            color:#102040;
             font-size:20px;
             font-weight:900;
             cursor:pointer;
             line-height:1;
             -webkit-tap-highlight-color:transparent;
         }
-        .qtybox button:active { background:#e6e0d6; }
+        .qtybox button:active { background:#bfcfe8; }
         .qtybox input {
             border:0;
             min-height:44px;
@@ -130,9 +130,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .qtybox input::-webkit-inner-spin-button { -webkit-appearance:none; }
         @keyframes spin { to { transform:rotate(360deg); } }
     </style>
-<body class="bg-[#fbfaf7] text-slate-950">
+<body class="bg-[#f0f5fa] text-slate-950">
     <main class="max-w-3xl mx-auto px-4 py-5 pb-24">
-        <div class="sticky top-0 -mx-4 px-4 py-3 bg-[#fbfaf7]/95 backdrop-blur border-b border-stone-200 mb-4">
+        <div class="sticky top-0 -mx-4 px-4 py-3 bg-[#f0f5fa]/95 backdrop-blur border-b border-stone-200 mb-4">
             <div class="flex items-center justify-between gap-3">
                 <div>
                     <p class="text-xs font-bold uppercase text-slate-500">Consignacion</p>
@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
         <?php if (!$tieneDireccion): ?>
         <div id="dir-banner" class="rounded-xl border-2 border-amber-300 bg-amber-50 p-4 mb-4 flex gap-3 items-start">
-            <span class="text-2xl mt-0.5">⚠️</span>
+            <span class="text-2xl mt-0.5"></span>
             <div class="flex-1 min-w-0">
                 <div class="font-black text-amber-900 text-sm">Sin dirección de envío</div>
                 <div class="text-xs text-amber-800 mt-0.5">Agrega tu dirección para que podamos enviarte el inventario.</div>
@@ -173,12 +173,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <?php else: ?>
         <div class="rounded-xl border border-stone-200 bg-white p-3 mb-4 flex gap-3 items-center shadow-sm">
-            <span class="text-xl shrink-0">📦</span>
+            <span class="text-xl shrink-0"></span>
             <div class="flex-1 min-w-0">
                 <div class="text-[10px] font-black uppercase text-slate-500 tracking-wide mb-0.5">Enviar a</div>
                 <div id="dir-card" class="text-sm text-slate-900 leading-snug"><?= htmlspecialchars(implode(' · ', $dirPartes)) ?></div>
             </div>
-            <button type="button" onclick="abrirDirModal()" class="shrink-0 text-xs font-black text-[#126c6a] bg-transparent border-none cursor-pointer">Editar</button>
+            <button type="button" onclick="abrirDirModal()" class="shrink-0 text-xs font-black text-[#4a70a9] bg-transparent border-none cursor-pointer">Editar</button>
         </div>
         <?php endif; ?>
 
@@ -229,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="text-xs font-bold uppercase text-slate-500">Unidades</div>
                             <div id="totalSolicitado" class="text-2xl font-black">0</div>
                         </div>
-                        <button type="submit" id="btnEnviar" class="min-h-14 rounded-lg bg-[#126c6a] text-white font-black">Enviar</button>
+                        <button type="submit" id="btnEnviar" class="min-h-14 rounded-lg bg-[#4a70a9] text-white font-black">Enviar</button>
                     </div>
                 </div>
             </form>
@@ -291,68 +291,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- ═══ Modal dirección de envío ═══ -->
     <div id="dir-overlay" onclick="cerrarDirModal()" style="display:none;position:fixed;inset:0;background:rgba(16,24,32,.45);z-index:3000;backdrop-filter:blur(2px)"></div>
     <div id="dir-sheet" role="dialog" aria-modal="true" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:3001;background:#fff;border-radius:20px 20px 0 0;padding:20px 16px 32px;max-height:88vh;overflow-y:auto">
-        <div style="width:36px;height:4px;background:#e6e0d6;border-radius:2px;margin:0 auto 16px"></div>
-        <h2 style="font-size:17px;font-weight:900;margin:0 0 16px;color:#101820">Dirección de envío</h2>
+        <div style="width:36px;height:4px;background:#bfcfe8;border-radius:2px;margin:0 auto 16px"></div>
+        <h2 style="font-size:17px;font-weight:900;margin:0 0 16px;color:#102040">Dirección de envío</h2>
         <form id="dir-form" onsubmit="guardarDir(event)">
             <div style="display:grid;gap:12px">
                 <div>
-                    <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#65717f;letter-spacing:.05em">Calle</label>
+                    <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#6a90b8;letter-spacing:.05em">Calle</label>
                     <input type="text" id="dir-calle" name="dir_calle" autocomplete="street-address"
                         value="<?= htmlspecialchars($miPerfil['dir_calle'] ?? '') ?>"
-                        style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #e6e0d6;border-radius:10px;padding:0 12px;font-size:15px;background:#f2eee7;color:#101820;outline:none">
+                        style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #bfcfe8;border-radius:10px;padding:0 12px;font-size:15px;background:#eef4fa;color:#102040;outline:none">
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
                     <div>
-                        <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#65717f;letter-spacing:.05em">Número</label>
+                        <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#6a90b8;letter-spacing:.05em">Número</label>
                         <input type="text" id="dir-numero" name="dir_numero"
                             value="<?= htmlspecialchars($miPerfil['dir_numero'] ?? '') ?>"
-                            style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #e6e0d6;border-radius:10px;padding:0 12px;font-size:15px;background:#f2eee7;color:#101820;outline:none">
+                            style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #bfcfe8;border-radius:10px;padding:0 12px;font-size:15px;background:#eef4fa;color:#102040;outline:none">
                     </div>
                     <div>
-                        <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#65717f;letter-spacing:.05em">C.P.</label>
+                        <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#6a90b8;letter-spacing:.05em">C.P.</label>
                         <input type="text" id="dir-cp" name="dir_cp" inputmode="numeric" maxlength="5"
                             value="<?= htmlspecialchars($miPerfil['dir_cp'] ?? '') ?>"
-                            style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #e6e0d6;border-radius:10px;padding:0 12px;font-size:15px;background:#f2eee7;color:#101820;outline:none">
+                            style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #bfcfe8;border-radius:10px;padding:0 12px;font-size:15px;background:#eef4fa;color:#102040;outline:none">
                     </div>
                 </div>
                 <div>
-                    <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#65717f;letter-spacing:.05em">Colonia</label>
+                    <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#6a90b8;letter-spacing:.05em">Colonia</label>
                     <input type="text" id="dir-colonia" name="dir_colonia"
                         value="<?= htmlspecialchars($miPerfil['dir_colonia'] ?? '') ?>"
-                        style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #e6e0d6;border-radius:10px;padding:0 12px;font-size:15px;background:#f2eee7;color:#101820;outline:none">
+                        style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #bfcfe8;border-radius:10px;padding:0 12px;font-size:15px;background:#eef4fa;color:#102040;outline:none">
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
                     <div>
-                        <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#65717f;letter-spacing:.05em">Estado</label>
+                        <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#6a90b8;letter-spacing:.05em">Estado</label>
                         <select id="dir-estado" name="dir_estado"
-                            style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #e6e0d6;border-radius:10px;padding:0 12px;font-size:15px;background:#f2eee7;color:#101820;outline:none;appearance:auto">
+                            style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #bfcfe8;border-radius:10px;padding:0 12px;font-size:15px;background:#eef4fa;color:#102040;outline:none;appearance:auto">
                             <option value="">— Seleccionar —</option>
                         </select>
                     </div>
                     <div>
-                        <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#65717f;letter-spacing:.05em">Municipio / Alcaldía</label>
+                        <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#6a90b8;letter-spacing:.05em">Municipio / Alcaldía</label>
                         <select id="dir-ciudad" name="dir_ciudad"
-                            style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #e6e0d6;border-radius:10px;padding:0 12px;font-size:15px;background:#f2eee7;color:#101820;outline:none;appearance:auto">
+                            style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #bfcfe8;border-radius:10px;padding:0 12px;font-size:15px;background:#eef4fa;color:#102040;outline:none;appearance:auto">
                             <option value="">— Primero selecciona un estado —</option>
                         </select>
                     </div>
                 </div>
                 <div>
-                    <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#65717f;letter-spacing:.05em">Referencias del domicilio</label>
+                    <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#6a90b8;letter-spacing:.05em">Referencias del domicilio</label>
                     <textarea id="dir-referencias" name="dir_referencias" rows="2"
                         placeholder="Entre calles, color de fachada…"
-                        style="margin-top:4px;width:100%;box-sizing:border-box;min-height:60px;border:1.5px solid #e6e0d6;border-radius:10px;padding:10px 12px;font-size:15px;background:#f2eee7;color:#101820;outline:none;resize:vertical"><?= htmlspecialchars($miPerfil['dir_referencias'] ?? '') ?></textarea>
+                        style="margin-top:4px;width:100%;box-sizing:border-box;min-height:60px;border:1.5px solid #bfcfe8;border-radius:10px;padding:10px 12px;font-size:15px;background:#eef4fa;color:#102040;outline:none;resize:vertical"><?= htmlspecialchars($miPerfil['dir_referencias'] ?? '') ?></textarea>
                 </div>
                 <div>
-                    <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#65717f;letter-spacing:.05em">Quién recibe</label>
+                    <label style="font-size:11px;font-weight:900;text-transform:uppercase;color:#6a90b8;letter-spacing:.05em">Quién recibe</label>
                     <input type="text" id="dir-quien" name="dir_quien_recibe"
                         value="<?= htmlspecialchars($miPerfil['dir_quien_recibe'] ?? '') ?>"
                         placeholder="Nombre de quien recibe"
-                        style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #e6e0d6;border-radius:10px;padding:0 12px;font-size:15px;background:#f2eee7;color:#101820;outline:none">
+                        style="margin-top:4px;width:100%;box-sizing:border-box;height:44px;border:1.5px solid #bfcfe8;border-radius:10px;padding:0 12px;font-size:15px;background:#eef4fa;color:#102040;outline:none">
                 </div>
             </div>
             <button type="submit" id="dir-submit"
-                style="margin-top:20px;width:100%;height:50px;background:#126c6a;color:white;font-size:16px;font-weight:900;border:none;border-radius:12px;cursor:pointer">
+                style="margin-top:20px;width:100%;height:50px;background:#4a70a9;color:white;font-size:16px;font-weight:900;border:none;border-radius:12px;cursor:pointer">
                 Guardar dirección
             </button>
         </form>
@@ -392,12 +392,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         // Primera vez: reemplazar el banner de aviso con la tarjeta compacta
                         if (banner) {
                             banner.outerHTML = `<div class="rounded-xl border border-stone-200 bg-white p-3 mb-4 flex gap-3 items-center shadow-sm">
-                                <span class="text-xl shrink-0">📦</span>
+                                <span class="text-xl shrink-0"></span>
                                 <div class="flex-1 min-w-0">
                                     <div class="text-[10px] font-black uppercase text-slate-500 tracking-wide mb-0.5">Enviar a</div>
                                     <div id="dir-card" class="text-sm text-slate-900 leading-snug"></div>
                                 </div>
-                                <button type="button" onclick="abrirDirModal()" class="shrink-0 text-xs font-black text-[#126c6a] bg-transparent border-none cursor-pointer">Editar</button>
+                                <button type="button" onclick="abrirDirModal()" class="shrink-0 text-xs font-black text-[#4a70a9] bg-transparent border-none cursor-pointer">Editar</button>
                             </div>`;
                         }
                         card = document.getElementById('dir-card');

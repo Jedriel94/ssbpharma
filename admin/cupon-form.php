@@ -122,7 +122,7 @@ if ($isEdit && $cupon) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $isEdit ? '✏️ Editar' : '➕ Crear' ?> Cupón - <?= htmlspecialchars(Configuracion::get('nombre_tienda', 'Admin')) ?> Admin</title>
+    <title><?= $isEdit ? 'Editar' : 'Crear' ?> Cupón - <?= htmlspecialchars(Configuracion::get('nombre_tienda', 'Admin')) ?> Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -152,7 +152,7 @@ if ($isEdit && $cupon) {
                 </a>
                 <div>
                     <h1 class="text-3xl font-bold text-slate-800">
-                        <?= $isEdit ? '✏️ Editar Cupón' : '➕ Crear Nuevo Cupón' ?>
+                        <?= $isEdit ? 'Editar Cupón' : 'Crear Nuevo Cupón' ?>
                     </h1>
                     <p class="text-slate-600">Completa los datos del cupón de descuento</p>
                 </div>
@@ -203,10 +203,10 @@ if ($isEdit && $cupon) {
                         <select name="tipo_descuento" required
                                 class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             <option value="porcentaje" <?= ($isEdit && $cupon['tipo_descuento'] === 'porcentaje') ? 'selected' : '' ?>>
-                                📊 Porcentaje (%)
+                                Porcentaje (%)
                             </option>
                             <option value="fijo" <?= ($isEdit && $cupon['tipo_descuento'] === 'fijo') ? 'selected' : '' ?>>
-                                💵 Monto Fijo ($)
+                                Monto Fijo ($)
                             </option>
                         </select>
                     </div>
@@ -289,7 +289,7 @@ if ($isEdit && $cupon) {
                                    onchange="toggleAplicacion()"
                                    class="peer sr-only">
                             <div class="border-2 border-slate-300 rounded-lg p-4 text-center hover:border-blue-500 peer-checked:border-blue-600 peer-checked:bg-blue-50 transition">
-                                <div class="text-3xl mb-2">🌐</div>
+                                <div class="text-3xl mb-2"></div>
                                 <div class="font-semibold text-sm">General</div>
                                 <div class="text-xs text-slate-500">Todo el sitio</div>
                             </div>
@@ -301,7 +301,7 @@ if ($isEdit && $cupon) {
                                    onchange="toggleAplicacion()"
                                    class="peer sr-only">
                             <div class="border-2 border-slate-300 rounded-lg p-4 text-center hover:border-blue-500 peer-checked:border-blue-600 peer-checked:bg-blue-50 transition">
-                                <div class="text-3xl mb-2">📦</div>
+                                <div class="text-3xl mb-2"></div>
                                 <div class="font-semibold text-sm">Productos</div>
                                 <div class="text-xs text-slate-500">Específicos</div>
                             </div>
@@ -313,7 +313,7 @@ if ($isEdit && $cupon) {
                                    onchange="toggleAplicacion()"
                                    class="peer sr-only">
                             <div class="border-2 border-slate-300 rounded-lg p-4 text-center hover:border-blue-500 peer-checked:border-blue-600 peer-checked:bg-blue-50 transition">
-                                <div class="text-3xl mb-2">🏷️</div>
+                                <div class="text-3xl mb-2"></div>
                                 <div class="font-semibold text-sm">Tags</div>
                                 <div class="text-xs text-slate-500">Por categoría</div>
                             </div>
@@ -325,7 +325,7 @@ if ($isEdit && $cupon) {
                                    onchange="toggleAplicacion()"
                                    class="peer sr-only">
                             <div class="border-2 border-slate-300 rounded-lg p-4 text-center hover:border-blue-500 peer-checked:border-blue-600 peer-checked:bg-blue-50 transition">
-                                <div class="text-3xl mb-2">🎁</div>
+                                <div class="text-3xl mb-2"></div>
                                 <div class="font-semibold text-sm">Kits</div>
                                 <div class="text-xs text-slate-500">Solo kits</div>
                             </div>
@@ -337,7 +337,7 @@ if ($isEdit && $cupon) {
                                    onchange="toggleAplicacion()"
                                    class="peer sr-only">
                             <div class="border-2 border-slate-300 rounded-lg p-4 text-center hover:border-blue-500 peer-checked:border-blue-600 peer-checked:bg-blue-50 transition">
-                                <div class="text-3xl mb-2">👤</div>
+                                <div class="text-3xl mb-2"></div>
                                 <div class="font-semibold text-sm">Representantes</div>
                                 <div class="text-xs text-slate-500">Por vendedor</div>
                             </div>
@@ -355,7 +355,7 @@ if ($isEdit && $cupon) {
                         <div class="bg-slate-50 rounded-lg p-4 max-h-96 overflow-y-auto">
                             <div class="mb-3">
                                 <input type="text" id="search-productos" 
-                                       placeholder="🔍 Buscar productos..."
+                                       placeholder="Buscar productos..."
                                        onkeyup="filtrarItems('productos')"
                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                             </div>
@@ -396,7 +396,7 @@ if ($isEdit && $cupon) {
                                            <?= in_array($tag, $selectedTags) ? 'checked' : '' ?>
                                            class="w-5 h-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500">
                                     <div class="checkbox-label">
-                                        <span class="font-semibold text-slate-800">🏷️ <?= htmlspecialchars($tag) ?></span>
+                                        <span class="font-semibold text-slate-800"><?= htmlspecialchars($tag) ?></span>
                                     </div>
                                 </label>
                                 <?php endforeach; ?>
@@ -415,7 +415,7 @@ if ($isEdit && $cupon) {
                         <div class="bg-slate-50 rounded-lg p-4 max-h-96 overflow-y-auto">
                             <div class="mb-3">
                                 <input type="text" id="search-kits" 
-                                       placeholder="🔍 Buscar kits..."
+                                       placeholder="Buscar kits..."
                                        onkeyup="filtrarItems('kits')"
                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                             </div>
@@ -451,7 +451,7 @@ if ($isEdit && $cupon) {
                         <div class="bg-slate-50 rounded-lg p-4 max-h-96 overflow-y-auto">
                             <div class="mb-3">
                                 <input type="text" id="search-representantes" 
-                                       placeholder="🔍 Buscar representantes..."
+                                       placeholder="Buscar representantes..."
                                        onkeyup="filtrarItems('representantes')"
                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                             </div>
@@ -462,7 +462,7 @@ if ($isEdit && $cupon) {
                                            <?= in_array($rep['id'], $selectedRepresentantes) ? 'checked' : '' ?>
                                            class="w-5 h-5 text-orange-600 rounded focus:ring-2 focus:ring-orange-500">
                                     <div class="flex-1 checkbox-label">
-                                        <div class="font-semibold text-slate-800">👤 <?= htmlspecialchars($rep['nombre']) ?></div>
+                                        <div class="font-semibold text-slate-800"><?= htmlspecialchars($rep['nombre']) ?></div>
                                         <div class="text-sm text-slate-500"><?= htmlspecialchars($rep['codigo']) ?><?= !empty($rep['email']) ? ' · ' . htmlspecialchars($rep['email']) : '' ?></div>
                                     </div>
                                 </label>

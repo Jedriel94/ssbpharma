@@ -116,7 +116,7 @@ $clientesNuevosHoy = count(array_filter($clientes, fn($c) => date('Y-m-d', strto
     <div class="mb-8">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
             <div>
-                <h1 class="text-3xl font-bold text-slate-800 mb-2">👥 Gestión de Clientes</h1>
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">Gestión de Clientes</h1>
                 <p class="text-slate-600">Administra la base de clientes, datos fiscales, médicos y de envío.</p>
             </div>
             <a href="../mis-datos.php"
@@ -222,14 +222,14 @@ $clientesNuevosHoy = count(array_filter($clientes, fn($c) => date('Y-m-d', strto
                         <td class="px-4 py-3 text-center">
                             <div class="flex justify-center gap-1">
                                 <?php if ($cliente['notif_confirmacion'] ?? 1): ?>
-                                    <span class="text-xs px-1.5 py-0.5 rounded bg-green-100 text-green-700" title="Recibe confirmación de pedido">✓ Conf</span>
+                                    <span class="text-xs px-1.5 py-0.5 rounded bg-green-100 text-green-700" title="Recibe confirmación de pedido">Conf</span>
                                 <?php else: ?>
-                                    <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-400" title="No recibe confirmación">✗ Conf</span>
+                                    <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-400" title="No recibe confirmación">Conf</span>
                                 <?php endif; ?>
                                 <?php if ($cliente['notif_factura'] ?? 1): ?>
-                                    <span class="text-xs px-1.5 py-0.5 rounded bg-green-100 text-green-700" title="Recibe factura por correo">✓ Fact</span>
+                                    <span class="text-xs px-1.5 py-0.5 rounded bg-green-100 text-green-700" title="Recibe factura por correo">Fact</span>
                                 <?php else: ?>
-                                    <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-400" title="No recibe factura">✗ Fact</span>
+                                    <span class="text-xs px-1.5 py-0.5 rounded bg-slate-100 text-slate-400" title="No recibe factura">Fact</span>
                                 <?php endif; ?>
                             </div>
                         </td>
@@ -311,7 +311,7 @@ $clientesNuevosHoy = count(array_filter($clientes, fn($c) => date('Y-m-d', strto
         <div id="detallesContent" class="space-y-6">
             <!-- Datos Básicos -->
             <div class="border-l-4 border-terracotta-400 pl-4">
-                <h3 class="text-lg font-semibold text-slate-900 mb-3">📋 Datos Básicos</h3>
+                <h3 class="text-lg font-semibold text-slate-900 mb-3">Datos Básicos</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <p class="text-xs text-slate-500 uppercase">Teléfono</p>
@@ -326,7 +326,7 @@ $clientesNuevosHoy = count(array_filter($clientes, fn($c) => date('Y-m-d', strto
 
             <!-- Datos de Envío -->
             <div class="border-l-4 border-sage-400 pl-4">
-                <h3 class="text-lg font-semibold text-slate-900 mb-3">📦 Datos de Envío</h3>
+                <h3 class="text-lg font-semibold text-slate-900 mb-3">Datos de Envío</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <p class="text-xs text-slate-500 uppercase">Calle</p>
@@ -361,7 +361,7 @@ $clientesNuevosHoy = count(array_filter($clientes, fn($c) => date('Y-m-d', strto
 
             <!-- Médico -->
             <div class="border-l-4 border-blue-400 pl-4">
-                <h3 class="text-lg font-semibold text-slate-900 mb-3">⚕️ Médico</h3>
+                <h3 class="text-lg font-semibold text-slate-900 mb-3">Médico</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <p class="text-xs text-slate-500 uppercase">Nombre Médico</p>
@@ -376,7 +376,7 @@ $clientesNuevosHoy = count(array_filter($clientes, fn($c) => date('Y-m-d', strto
 
             <!-- Datos Fiscales -->
             <div class="border-l-4 border-purple-400 pl-4">
-                <h3 class="text-lg font-semibold text-slate-900 mb-3">💼 Datos Fiscales</h3>
+                <h3 class="text-lg font-semibold text-slate-900 mb-3">Datos Fiscales</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <p class="text-xs text-slate-500 uppercase">RFC</p>
@@ -403,7 +403,7 @@ $clientesNuevosHoy = count(array_filter($clientes, fn($c) => date('Y-m-d', strto
 
             <!-- Notificaciones -->
             <div class="border-l-4 border-amber-400 pl-4">
-                <h3 class="text-lg font-semibold text-slate-900 mb-3">📬 Notificaciones por correo</h3>
+                <h3 class="text-lg font-semibold text-slate-900 mb-3">Notificaciones por correo</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <label class="flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3 cursor-pointer">
                         <input type="checkbox" id="det_notif_conf" class="w-4 h-4 accent-green-600">
@@ -425,7 +425,7 @@ $clientesNuevosHoy = count(array_filter($clientes, fn($c) => date('Y-m-d', strto
 
             <!-- Fecha Registro -->
             <div class="border-l-4 border-slate-300 pl-4">
-                <h3 class="text-lg font-semibold text-slate-900 mb-3">📅 Registro</h3>
+                <h3 class="text-lg font-semibold text-slate-900 mb-3">Registro</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <p class="text-xs text-slate-500 uppercase">Fecha de Registro</p>
@@ -448,7 +448,7 @@ $clientesNuevosHoy = count(array_filter($clientes, fn($c) => date('Y-m-d', strto
                href="#" 
                target="_blank"
                class="flex-1 btn-primary text-white py-3 rounded-xl font-medium text-center hover:opacity-90">
-                ✏️ Editar en Mis Datos
+                Editar en Mis Datos
             </a>
         </div>
     </div>
@@ -496,7 +496,7 @@ function verDetalles(id) {
             if (c.constancia_fiscal) {
                 const filename = c.constancia_fiscal.split('/').pop();
                 document.getElementById('det_constancia_fiscal').innerHTML = 
-                    `<a href="../descargar-fiscal.php?file=${encodeURIComponent(filename)}" target="_blank" class="text-terracotta-500 hover:underline">📄 ${filename}</a>`;
+                    `<a href="../descargar-fiscal.php?file=${encodeURIComponent(filename)}" target="_blank" class="text-terracotta-500 hover:underline">${filename}</a>`;
             } else {
                 document.getElementById('det_constancia_fiscal').textContent = '-';
             }

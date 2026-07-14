@@ -299,7 +299,7 @@ foreach ($kits as $kit) {
     
     <!-- Header -->
     <div class="cliente-page-head mb-3 sm:mb-6">
-        <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">Realiza tu Pedido 🛒</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">Realiza tu Pedido </h1>
         <p class="text-slate-600">
             Cliente: <span class="font-semibold text-terracotta-600"><?= htmlspecialchars($telefono) ?></span>
             <?php if (!empty($cliente['nombre'])): ?>
@@ -312,7 +312,7 @@ foreach ($kits as $kit) {
     <!-- Indicador de representante (una línea) -->
     <div class="mb-4 flex items-center gap-2">
         <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-100 text-purple-800 border border-purple-200 rounded-full text-sm font-medium">
-            👤 Rep: <?= htmlspecialchars($nombre_representante) ?>
+            Rep: <?= htmlspecialchars($nombre_representante) ?>
         </span>
     </div>
     <?php endif; ?>
@@ -320,7 +320,7 @@ foreach ($kits as $kit) {
     <?php if (!empty($items_carrusel)): ?>
     <!-- Carrusel de productos/kits destacados -->
     <div class="mb-4 sm:mb-6">
-        <h2 class="text-sm sm:text-base font-semibold text-slate-700 mb-2">🏷️ Promociones</h2>
+        <h2 class="text-sm sm:text-base font-semibold text-slate-700 mb-2">Promociones</h2>
         <div class="relative max-w-lg mx-auto">
             <!-- Botón anterior -->
             <button id="carrusel-prev" onclick="moverCarrusel(-1)"
@@ -343,7 +343,7 @@ foreach ($kits as $kit) {
                         </div>
                         <?php else: ?>
                         <div class="w-full aspect-[4/3] bg-cream-100 flex items-center justify-center text-3xl">
-                            <?= $item['tipo'] === 'kit' ? '📦' : '🛍️' ?>
+                            <?= $item['tipo'] === 'kit' ? '' : '' ?>
                         </div>
                         <?php endif; ?>
                         <!-- Info -->
@@ -464,7 +464,7 @@ foreach ($kits as $kit) {
                 <input 
                     type="text" 
                     id="buscadorProductos"
-                    placeholder="🔍 Buscar productos por nombre..."
+                    placeholder="Buscar productos por nombre..."
                     class="w-full pl-12 pr-12 py-3 sm:py-4 bg-white rounded-2xl shadow-lg border-2 border-transparent focus:border-terracotta-500 focus:outline-none transition-all text-slate-900 placeholder-slate-400"
                     autocomplete="off"
                     oninput="buscarProductos()"
@@ -519,7 +519,7 @@ foreach ($kits as $kit) {
                 <?php if ($producto['sin_cargo_envio']): ?>
                 <div class="mb-2">
                     <span class="inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-semibold">
-                        📦 Envío Gratis
+                        Envío Gratis
                     </span>
                 </div>
                 <?php endif; ?>
@@ -574,7 +574,7 @@ foreach ($kits as $kit) {
             <!-- Badge de Kit -->
             <div class="absolute top-2 left-2 z-10">
                 <span class="bg-purple-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-lg">
-                    📦 KIT
+                    KIT
                 </span>
             </div>
             
@@ -658,7 +658,7 @@ foreach ($kits as $kit) {
         <!-- Botón para expandir/colapsar -->
         <button onclick="toggleResumen()" class="w-full flex justify-between items-center mb-3">
             <div class="flex items-center gap-2">
-                <span class="text-2xl">🛒</span>
+                <span class="text-2xl"></span>
                 <div class="text-left">
                     <p class="font-bold text-slate-900">
                         <span id="totalItems">0</span> productos
@@ -728,7 +728,7 @@ foreach ($kits as $kit) {
         
         <!-- Campo de Cupón -->
         <div class="mb-6 border-t border-slate-200 pt-4">
-            <label class="block text-sm font-medium text-slate-700 mb-2">🎟️ ¿Tienes un cupón?</label>
+            <label class="block text-sm font-medium text-slate-700 mb-2">¿Tienes un cupón?</label>
             <div class="flex gap-2">
                 <input type="text" id="input_cupon" placeholder="Código del cupón"
                        class="min-w-0 flex-1 px-3 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 uppercase text-sm"
@@ -742,7 +742,7 @@ foreach ($kits as $kit) {
             <div id="descuento_aplicado" class="hidden mt-2 p-3 bg-green-50 border border-green-200 rounded-xl">
                 <div class="flex justify-between items-center">
                     <div>
-                        <p class="text-sm font-semibold text-green-800">✓ Cupón aplicado: <span id="cupon_codigo"></span></p>
+                        <p class="text-sm font-semibold text-green-800">Cupón aplicado: <span id="cupon_codigo"></span></p>
                         <p class="text-xs text-green-600" id="cupon_descripcion"></p>
                     </div>
                     <button type="button" onclick="removerCupon()" class="text-red-600 hover:text-red-800">
@@ -770,7 +770,7 @@ foreach ($kits as $kit) {
     <div class="card rounded-3xl shadow-2xl max-w-md w-full p-8 text-center" onclick="event.stopPropagation()">
         <!-- Icono de éxito -->
         <div class="w-20 h-20 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
-            <span class="text-5xl">✅</span>
+            <span class="text-5xl"></span>
         </div>
         
         <h2 class="text-2xl font-bold text-slate-900 mb-2">¡Pedido Creado Exitosamente!</h2>
@@ -791,14 +791,14 @@ foreach ($kits as $kit) {
             <!-- Botón principal: Proceder al Pago -->
             <button onclick="procederAlPago()" 
                     class="w-full btn-primary text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2">
-                <span class="text-xl">💳</span>
+                <span class="text-xl"></span>
                 <span>Proceder al Pago</span>
             </button>
             
             <!-- Botón secundario: Ver seguimiento -->
             <button onclick="verSeguimiento()" 
                     class="w-full btn-secondary text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2">
-                <span class="text-xl">📦</span>
+                <span class="text-xl"></span>
                 <span>Ver Seguimiento del Pedido</span>
             </button>
             
@@ -810,7 +810,7 @@ foreach ($kits as $kit) {
         </div>
         
         <p class="text-xs text-slate-500 mt-4">
-            💡 Puedes consultar el estado de tu pedido en cualquier momento desde "Seguimiento"
+            Puedes consultar el estado de tu pedido en cualquier momento desde "Seguimiento"
         </p>
     </div>
 </div>
@@ -861,13 +861,13 @@ function buscarProductos() {
         mensajeSinResultados.id = 'mensajeSinResultados';
         mensajeSinResultados.className = 'col-span-full card rounded-2xl shadow-lg p-12 text-center sin-resultados';
         mensajeSinResultados.innerHTML = `
-            <div class="text-6xl mb-4">🔍</div>
+            <div class="text-6xl mb-4"></div>
             <p class="text-slate-900 text-xl font-bold mb-2">No se encontraron productos</p>
             <p class="text-slate-600 mb-4">
                 No hay productos que coincidan con "<span class="font-semibold text-terracotta-600">${filtro}</span>"
             </p>
             <button onclick="limpiarBusqueda()" class="bg-terracotta-500 hover:bg-terracotta-600 text-white px-6 py-3 rounded-xl font-semibold transition">
-                🔄 Limpiar búsqueda
+                Limpiar búsqueda
             </button>
         `;
         grid.appendChild(mensajeSinResultados);
@@ -897,19 +897,19 @@ function actualizarContadorResultados(cantidad, filtro) {
         if (cantidad === 0) {
             contador.innerHTML = `
                 <span class="text-red-600 font-semibold">
-                    ❌ No se encontraron productos con "${filtro}"
+                    No se encontraron productos con "${filtro}"
                 </span>
             `;
         } else if (cantidad === 1) {
             contador.innerHTML = `
                 <span class="text-green-600 font-semibold">
-                    ✅ <span id="resultadosEncontrados">${cantidad}</span> producto encontrado
+                    <span id="resultadosEncontrados">${cantidad}</span> producto encontrado
                 </span>
             `;
         } else {
             contador.innerHTML = `
                 <span class="text-green-600 font-semibold">
-                    ✅ <span id="resultadosEncontrados">${cantidad}</span> productos encontrados
+                    <span id="resultadosEncontrados">${cantidad}</span> productos encontrados
                 </span>
             `;
         }
@@ -1149,13 +1149,13 @@ function actualizarResumen() {
         if (tieneProductoSinCargoEnvio) {
             infoEnvio.innerHTML = `
                 <div class="text-xs text-green-600 font-semibold">
-                    ✅ ¡Envío gratis! (producto especial)
+                    ¡Envío gratis! (producto especial)
                 </div>
             `;
         } else if (costoEnvio > 0) {
             infoEnvio.innerHTML = `
                 <div class="text-xs text-orange-600 font-semibold">
-                    📦 Envío: $${formatearPrecio(COSTO_ENVIO)}
+                    Envío: $${formatearPrecio(COSTO_ENVIO)}
                 </div>
             `;
         } else {
@@ -1163,13 +1163,13 @@ function actualizarResumen() {
             if (faltante > 0 && faltante < MONTO_MINIMO_ENVIO_GRATIS) {
                 infoEnvio.innerHTML = `
                     <div class="text-xs text-green-600 font-semibold">
-                        🎉 ¡Agrega $${formatearPrecio(faltante)} más para envío gratis!
+                        ¡Agrega $${formatearPrecio(faltante)} más para envío gratis!
                     </div>
                 `;
             } else {
                 infoEnvio.innerHTML = `
                     <div class="text-xs text-green-600 font-semibold">
-                        ✅ ¡Envío gratis!
+                        ¡Envío gratis!
                     </div>
                 `;
             }
@@ -1210,7 +1210,7 @@ function actualizarResumen() {
                 ${item.imagen ? 
                     `<img src="${window.BASE_PATH}uploads/${carpetaImagen}/${item.imagen}" class="w-12 h-12 object-cover rounded-lg">` :
                     `<div class="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center">
-                        ${item.es_kit ? '📦' : '📷'}
+                        ${item.es_kit ? '' : ''}
                     </div>`
                 }
                 <div class="flex-1 min-w-0">
@@ -1266,7 +1266,7 @@ function mostrarModalConfirmacion() {
                 ${item.imagen ? 
                     `<img src="${window.BASE_PATH}uploads/${carpetaImagen}/${item.imagen}" class="w-12 h-12 object-cover rounded-lg">` :
                     `<div class="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center">
-                        ${item.es_kit ? '📦' : '📷'}
+                        ${item.es_kit ? '' : ''}
                     </div>`
                 }
                 <div class="flex-1">
@@ -1413,10 +1413,10 @@ document.getElementById('modalExito').addEventListener('click', function(e) {
 
 function mostrarAlerta(mensaje, tipo = 'info') {
     const iconos = {
-        'success': '✅',
-        'error': '❌',
-        'warning': '⚠️',
-        'info': 'ℹ️'
+        'success': '',
+        'error': '',
+        'warning': '',
+        'info': 'ℹ'
     };
     
     const colores = {

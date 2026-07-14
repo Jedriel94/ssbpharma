@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $admin) {
 
         <?php if ($exito): ?>
             <div class="text-center">
-                <div class="text-6xl mb-4">🎉</div>
+                <div class="text-6xl mb-4"></div>
                 <h1 class="text-2xl font-bold text-slate-900 mb-2">¡Contraseña actualizada!</h1>
                 <p class="text-slate-600 mb-6">Ya puedes iniciar sesión con tu nueva contraseña.</p>
                 <a href="login-admin.php" class="w-full btn-primary text-white py-3 rounded-xl font-semibold block text-center">
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $admin) {
 
         <?php elseif ($error && !$admin): ?>
             <div class="text-center">
-                <div class="text-6xl mb-4">⚠️</div>
+                <div class="text-6xl mb-4"></div>
                 <h1 class="text-2xl font-bold text-slate-900 mb-2">Enlace no válido</h1>
                 <p class="text-slate-600 mb-6"><?= htmlspecialchars($error) ?></p>
                 <a href="recuperar-password.php" class="w-full btn-primary text-white py-3 rounded-xl font-semibold block text-center">
@@ -60,20 +60,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $admin) {
 
         <?php else: ?>
             <div class="text-center mb-8">
-                <div class="text-6xl mb-4">🔒</div>
+                <div class="text-6xl mb-4"></div>
                 <h1 class="text-3xl font-bold text-slate-900 mb-2">Nueva contraseña</h1>
                 <p class="text-slate-600">Hola, <strong><?= htmlspecialchars($admin['nombre'] ?? '') ?></strong>. Elige una contraseña segura.</p>
             </div>
 
             <?php if ($error): ?>
                 <div class="mb-5 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
-                    ❌ <?= htmlspecialchars($error) ?>
+                    <?= htmlspecialchars($error) ?>
                 </div>
             <?php endif; ?>
 
             <form method="POST" action="restablecer-password.php?token=<?= urlencode($token) ?>">
                 <div class="mb-4">
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">🔑 Nueva contraseña</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nueva contraseña</label>
                     <input type="password"
                            name="password"
                            required
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $admin) {
                            placeholder="Mínimo 8 caracteres">
                 </div>
                 <div class="mb-6">
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">🔑 Confirmar contraseña</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Confirmar contraseña</label>
                     <input type="password"
                            name="password_confirm"
                            required

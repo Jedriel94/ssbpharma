@@ -149,7 +149,7 @@ if (isset($_GET['logout'])) {
 <div class="w-full px-4 py-8 max-w-4xl mx-auto">
     
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-slate-900 mb-2">📝 Mis Datos</h1>
+        <h1 class="text-3xl font-bold text-slate-900 mb-2">Mis Datos</h1>
         <p class="text-slate-600">Ingresa tu teléfono para ver o actualizar tu información</p>
     </div>
 
@@ -158,7 +158,7 @@ if (isset($_GET['logout'])) {
             <form method="GET" action="mis-datos.php">
                 <div class="mb-6">
                     <label class="block text-sm font-medium text-slate-700 mb-2">
-                        📱 Número de Teléfono <span class="text-red-500">*</span>
+                        Número de Teléfono <span class="text-red-500">*</span>
                     </label>
                     <input type="tel" name="telefono" required pattern="[0-9]{10}" maxlength="10"
                            class="input-field w-full px-4 py-3 rounded-xl" placeholder="Ejemplo: 5551234567"
@@ -175,11 +175,11 @@ if (isset($_GET['logout'])) {
         <div class="card rounded-2xl shadow-lg p-8">
             <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-terracotta-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-3xl">🔒</span>
+                    <span class="text-3xl"></span>
                 </div>
                 <h2 class="text-2xl font-bold text-slate-900 mb-2">Verificación Requerida</h2>
                 <p class="text-slate-600">Este teléfono está protegido con contraseña</p>
-                <p class="text-sm text-terracotta-600 mt-2">📱 <?= htmlspecialchars($telefono) ?></p>
+                <p class="text-sm text-terracotta-600 mt-2"><?= htmlspecialchars($telefono) ?></p>
             </div>
             <form id="formPassword" onsubmit="verificarPassword(event)">
                 <div class="mb-4">
@@ -203,10 +203,10 @@ if (isset($_GET['logout'])) {
             <div class="flex justify-between items-center mb-6 pb-4 border-b">
                 <div>
                     <h2 class="text-xl font-bold text-slate-900">Información del Cliente</h2>
-                    <p class="text-sm text-terracotta-600">📱 <?= htmlspecialchars($telefono) ?></p>
+                    <p class="text-sm text-terracotta-600"><?= htmlspecialchars($telefono) ?></p>
                 </div>
                 <?php if ($requierePassword): ?>
-                    <a href="?logout=1" class="text-sm text-slate-500 hover:text-red-600">🔓 Cerrar Sesión</a>
+                    <a href="?logout=1" class="text-sm text-slate-500 hover:text-red-600">Cerrar Sesión</a>
                 <?php endif; ?>
             </div>
             <form id="formDatos" onsubmit="actualizarDatos(event)" enctype="multipart/form-data">
@@ -219,13 +219,13 @@ if (isset($_GET['logout'])) {
                         Datos Básicos
                     </h3>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-slate-700 mb-2">📱 Teléfono</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Teléfono</label>
                         <input type="tel" value="<?= htmlspecialchars($cliente['telefono']) ?>" disabled
                                class="input-field w-full px-4 py-3 rounded-xl bg-slate-100 text-slate-500">
                         <p class="text-xs text-slate-500 mt-1">El teléfono no se puede modificar</p>
                     </div>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-slate-700 mb-2">👤 Nombre Completo</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Nombre Completo</label>
                         <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($cliente['nombre'] ?? '') ?>"
                                class="input-field w-full px-4 py-3 rounded-xl" placeholder="Nombre del cliente">
                     </div>
@@ -239,45 +239,45 @@ if (isset($_GET['logout'])) {
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🏠 Calle</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Calle</label>
                             <input type="text" id="calle" name="calle" value="<?= htmlspecialchars($cliente['calle'] ?? '') ?>"
                                    class="input-field w-full px-4 py-3 rounded-xl" placeholder="Nombre de la calle">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🔢 Número</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Número</label>
                             <input type="text" id="numero" name="numero" value="<?= htmlspecialchars($cliente['numero'] ?? '') ?>"
                                    class="input-field w-full px-4 py-3 rounded-xl" placeholder="Ej: 123 o 45-A">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🏘️ Colonia</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Colonia</label>
                             <input type="text" id="colonia" name="colonia" value="<?= htmlspecialchars($cliente['colonia'] ?? '') ?>"
                                    class="input-field w-full px-4 py-3 rounded-xl" placeholder="Nombre de la colonia">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">📮 Código Postal</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Código Postal</label>
                             <input type="text" id="cp" name="cp" value="<?= htmlspecialchars($cliente['cp'] ?? '') ?>"
                                    maxlength="5" class="input-field w-full px-4 py-3 rounded-xl" placeholder="12345"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🗺️ Estado</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Estado</label>
                             <select id="estado" name="estado" class="input-field w-full px-4 py-3 rounded-xl">
                                 <option value="">Selecciona un estado</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🏙️ Municipio / Alcaldía</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Municipio / Alcaldía</label>
                             <select id="ciudad" name="ciudad" class="input-field w-full px-4 py-3 rounded-xl" disabled>
                                 <option value="">— Primero selecciona un estado —</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🙋 Quien Recibe</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Quien Recibe</label>
                             <input type="text" id="quien_recibe" name="quien_recibe" value="<?= htmlspecialchars($cliente['quien_recibe'] ?? '') ?>"
                                    class="input-field w-full px-4 py-3 rounded-xl" placeholder="Nombre de quien recibe">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-slate-700 mb-2">📍 Referencias</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Referencias</label>
                             <textarea id="referencias" name="referencias" rows="2"
                                       class="input-field w-full px-4 py-3 rounded-xl"
                                       placeholder="Referencias para encontrar el domicilio..."><?= htmlspecialchars($cliente['referencias'] ?? '') ?></textarea>
@@ -293,7 +293,7 @@ if (isset($_GET['logout'])) {
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">⚕️ Nombre del Médico</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Nombre del Médico</label>
                             <input type="text" id="nombre_medico" name="nombre_medico" value="<?= htmlspecialchars($cliente['nombre_medico'] ?? '') ?>"
                                    class="input-field w-full px-4 py-3 rounded-xl" placeholder="Dr. Juan Pérez">
                         </div>
@@ -305,7 +305,7 @@ if (isset($_GET['logout'])) {
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">�👔 Nombre del Representante</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">�Nombre del Representante</label>
                             <input type="text" id="nombre_representante" name="nombre_representante" value="<?= htmlspecialchars($cliente['nombre_representante'] ?? '') ?>"
                                    class="input-field w-full px-4 py-3 rounded-xl" placeholder="María García">
                         </div>
@@ -322,22 +322,22 @@ if (isset($_GET['logout'])) {
                     <!-- DEBUG: Mostrar valores actuales -->
                     <?php if (!empty($cliente['rfc']) || !empty($cliente['razon_social'])): ?>
                     <div class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl text-xs">
-                        <strong>📊 Valores fiscales guardados:</strong>
+                        <strong>Valores fiscales guardados:</strong>
                         <ul class="mt-2 space-y-1">
                             <li>� RFC: <strong><?= htmlspecialchars($cliente['rfc'] ?? 'No definido') ?></strong></li>
-                            <li>�🏢 Razón Social: <strong><?= htmlspecialchars($cliente['razon_social'] ?? 'No definido') ?></strong></li>
-                            <li>📧 Email Factura: <strong><?= htmlspecialchars($cliente['email_factura'] ?? 'No definido') ?></strong></li>
-                            <li>📮 CP Fiscal: <strong><?= htmlspecialchars($cliente['codigo_postal'] ?? 'No definido') ?></strong></li>
-                            <li>📊 Régimen: <strong><?= htmlspecialchars($cliente['regimen'] ?? 'No definido') ?></strong></li>
-                            <li>📊 Régimen Fiscal: <strong><?= htmlspecialchars($cliente['regimen_fiscal'] ?? 'No definido') ?></strong></li>
-                            <li>📄 Uso CFDI: <strong><?= htmlspecialchars($cliente['uso_cfdi'] ?? 'No definido') ?></strong></li>
+                            <li>�Razón Social: <strong><?= htmlspecialchars($cliente['razon_social'] ?? 'No definido') ?></strong></li>
+                            <li>Email Factura: <strong><?= htmlspecialchars($cliente['email_factura'] ?? 'No definido') ?></strong></li>
+                            <li>CP Fiscal: <strong><?= htmlspecialchars($cliente['codigo_postal'] ?? 'No definido') ?></strong></li>
+                            <li>Régimen: <strong><?= htmlspecialchars($cliente['regimen'] ?? 'No definido') ?></strong></li>
+                            <li>Régimen Fiscal: <strong><?= htmlspecialchars($cliente['regimen_fiscal'] ?? 'No definido') ?></strong></li>
+                            <li>Uso CFDI: <strong><?= htmlspecialchars($cliente['uso_cfdi'] ?? 'No definido') ?></strong></li>
                         </ul>
                     </div>
                     <?php endif; ?>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🆔 RFC</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">RFC</label>
                             <input type="text" id="rfc" name="rfc" value="<?= htmlspecialchars($cliente['rfc'] ?? '') ?>"
                                    maxlength="13" class="input-field w-full px-4 py-3 rounded-xl uppercase"
                                    placeholder="XAXX010101000" 
@@ -345,32 +345,32 @@ if (isset($_GET['logout'])) {
                             <p class="text-xs text-slate-500 mt-1" id="rfc-hint">12 caracteres = Persona Moral, 13 = Persona Física</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">🏢 Razón Social</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Razón Social</label>
                             <input type="text" id="razon_social" name="razon_social" value="<?= htmlspecialchars($cliente['razon_social'] ?? '') ?>"
                                    class="input-field w-full px-4 py-3 rounded-xl" placeholder="Nombre completo o razón social">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">📧 Email para Factura</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Email para Factura</label>
                             <input type="email" id="email_factura" name="email_factura" value="<?= htmlspecialchars($cliente['email_factura'] ?? '') ?>"
                                    class="input-field w-full px-4 py-3 rounded-xl" placeholder="correo@ejemplo.com"
                                    autocomplete="off">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">📮 Código Postal (Fiscal)</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Código Postal (Fiscal)</label>
                             <input type="text" id="codigo_postal" name="codigo_postal" value="<?= htmlspecialchars($cliente['codigo_postal'] ?? '') ?>"
                                    maxlength="5" class="input-field w-full px-4 py-3 rounded-xl" placeholder="12345"
                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                             <p class="text-xs text-slate-500 mt-1">CP del domicilio fiscal (puede ser diferente al de envío)</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">📊 Régimen Fiscal</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Régimen Fiscal</label>
                             <select id="regimen_fiscal" name="regimen_fiscal" class="input-field w-full px-4 py-3 rounded-xl" data-valor-guardado="<?= htmlspecialchars($cliente['regimen_fiscal'] ?? '') ?>">
                                 <option value="">Primero ingresa tu RFC</option>
                             </select>
                             <p class="text-xs text-slate-500 mt-1" id="regimen-hint">El RFC determina los regímenes disponibles</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">📄 Uso de CFDI</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Uso de CFDI</label>
                             <select id="uso_cfdi" name="uso_cfdi" class="input-field w-full px-4 py-3 rounded-xl">
                                 <option value="">Selecciona un uso</option>
                                 <?php
@@ -390,10 +390,10 @@ if (isset($_GET['logout'])) {
                             </select>
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-slate-700 mb-2">📎 Constancia Fiscal</label>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Constancia Fiscal</label>
                             <?php if (!empty($cliente['constancia_fiscal'])): ?>
                                 <div class="mb-3 p-3 bg-green-50 border border-green-200 rounded-xl text-sm">
-                                    <span class="text-green-600">✓ Archivo actual: </span>
+                                    <span class="text-green-600">Archivo actual: </span>
                                     <a href="descargar-fiscal.php?file=<?= urlencode($cliente['constancia_fiscal']) ?>" 
                                        target="_blank" class="text-terracotta-600 hover:underline">
                                         <?= htmlspecialchars($cliente['constancia_fiscal']) ?>
@@ -413,7 +413,7 @@ if (isset($_GET['logout'])) {
                 <!-- SEGURIDAD -->
                 <div class="mb-8">
                     <h3 class="text-lg font-semibold text-slate-900 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-slate-400 text-white rounded-full flex items-center justify-center mr-3 text-sm">🔐</span>
+                        <span class="w-8 h-8 bg-slate-400 text-white rounded-full flex items-center justify-center mr-3 text-sm"></span>
                         Seguridad
                     </h3>
                     
@@ -421,7 +421,7 @@ if (isset($_GET['logout'])) {
                         <!-- Ya tiene contraseña configurada -->
                         <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-4">
                             <p class="text-sm text-green-800">
-                                <strong>✅ Contraseña Configurada:</strong> Tu cuenta está protegida con contraseña.
+                                <strong>Contraseña Configurada:</strong> Tu cuenta está protegida con contraseña.
                             </p>
                             <p class="text-xs text-green-700 mt-1">
                                 Deja los campos vacíos si no deseas cambiarla.
@@ -435,7 +435,7 @@ if (isset($_GET['logout'])) {
                                        onchange="toggleCambiarPassword()"
                                        class="w-5 h-5 text-terracotta-500 rounded focus:ring-2 focus:ring-terracotta-500">
                                 <span class="text-slate-900 font-semibold group-hover:text-terracotta-600 transition">
-                                    🔄 Deseo cambiar mi contraseña
+                                    Deseo cambiar mi contraseña
                                 </span>
                             </label>
                         </div>
@@ -443,14 +443,14 @@ if (isset($_GET['logout'])) {
                         <div id="camposPassword" class="hidden">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">🔐 Nueva Contraseña</label>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Nueva Contraseña</label>
                                     <input type="password" id="password" name="password" value=""
                                            class="input-field w-full px-4 py-3 rounded-xl"
                                            placeholder="Mínimo 4 caracteres"
                                            autocomplete="new-password">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">🔐 Confirmar Contraseña</label>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Confirmar Contraseña</label>
                                     <input type="password" id="password_confirm" name="password_confirm" value=""
                                            class="input-field w-full px-4 py-3 rounded-xl" placeholder="Repite la contraseña"
                                            autocomplete="new-password">
@@ -461,19 +461,19 @@ if (isset($_GET['logout'])) {
                         <!-- No tiene contraseña -->
                         <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
                             <p class="text-sm text-amber-800">
-                                <strong>💡 Consejo:</strong> Configura una contraseña para proteger tus datos.
+                                <strong>Consejo:</strong> Configura una contraseña para proteger tus datos.
                             </p>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">🔐 Nueva Contraseña</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Nueva Contraseña</label>
                                 <input type="password" id="password" name="password" value=""
                                        class="input-field w-full px-4 py-3 rounded-xl"
                                        placeholder="Mínimo 4 caracteres"
                                        autocomplete="new-password">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">🔐 Confirmar Contraseña</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Confirmar Contraseña</label>
                                 <input type="password" id="password_confirm" name="password_confirm" value=""
                                        class="input-field w-full px-4 py-3 rounded-xl" placeholder="Repite la contraseña"
                                        autocomplete="new-password">
@@ -487,7 +487,7 @@ if (isset($_GET['logout'])) {
                         ← Volver al Inicio
                     </a>
                     <button type="submit" class="flex-1 btn-primary text-white py-3 rounded-xl font-medium">
-                        💾 Guardar Cambios
+                        Guardar Cambios
                     </button>
                 </div>
             </form>
@@ -549,7 +549,7 @@ function actualizarRegimenesFiscales() {
     
     if (rfcLength === 12) {
         // Persona Moral
-        rfcHint.textContent = '✓ RFC de Persona Moral (12 caracteres)';
+        rfcHint.textContent = 'RFC de Persona Moral (12 caracteres)';
         rfcHint.className = 'text-xs text-green-600 mt-1';
         regimenHint.textContent = 'Regímenes para Persona Moral';
         regimenHint.className = 'text-xs text-green-600 mt-1';
@@ -563,7 +563,7 @@ function actualizarRegimenesFiscales() {
         });
     } else if (rfcLength === 13) {
         // Persona Física
-        rfcHint.textContent = '✓ RFC de Persona Física (13 caracteres)';
+        rfcHint.textContent = 'RFC de Persona Física (13 caracteres)';
         rfcHint.className = 'text-xs text-blue-600 mt-1';
         regimenHint.textContent = 'Regímenes para Persona Física';
         regimenHint.className = 'text-xs text-blue-600 mt-1';
@@ -635,7 +635,7 @@ function actualizarDatos(e) {
     const btn = e.target.querySelector('button[type="submit"]');
     const btnText = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '⏳ Guardando...';
+    btn.innerHTML = 'Guardando...';
     
     fetch('mis-datos.php', { method: 'POST', body: formData })
     .then(res => res.json())

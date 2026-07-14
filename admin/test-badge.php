@@ -18,7 +18,7 @@ echo "<h2>Todos los mensajes:</h2>";
 echo "<table border='1' cellpadding='10'>";
 echo "<tr><th>ID</th><th>Tipo Usuario</th><th>Mensaje</th><th>Leído</th><th>Fecha</th></tr>";
 foreach ($mensajes as $msg) {
-    $leido_texto = $msg['leido'] == 1 ? '✅ Sí' : '❌ No';
+    $leido_texto = $msg['leido'] == 1 ? 'Sí' : 'No';
     echo "<tr>";
     echo "<td>{$msg['id']}</td>";
     echo "<td>{$msg['usuario_tipo']}</td>";

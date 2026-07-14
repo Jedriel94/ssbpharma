@@ -1,0 +1,65 @@
+/* ============================================
+   Módulo Representantes — Estilos base
+   Tipografía fija: "Trebuchet MS", "Segoe UI", sans-serif
+   No usa sistema de temas (colores/tipografía global)
+   ============================================ */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --ink:        #101820;
+    --muted:      #65717f;
+    --paper:      #fbfaf7;
+    --panel:      #ffffff;
+    --line:       #e6e0d6;
+    --field:      #f2eee7;
+    --brand:      #126c6a;
+    --brand-dark: #0b4f4e;
+    --accent:     #d86f4d;
+    --warn:       #9a5b13;
+    --danger:     #b42318;
+}
+
+html, body {
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+/* ── Bottom Nav (compartido en todas las páginas del representante) ── */
+.bottom-nav {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 30;
+    padding: 9px 12px calc(9px + env(safe-area-inset-bottom));
+    background: rgba(251,250,247,.96);
+    border-top: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.bottom-inner {
+    width: min(100%, 960px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.nav-item {
+    height: 50px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 900;
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-item.active {
+    background: var(--brand);
+    color: white;
+}

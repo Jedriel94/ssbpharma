@@ -1,0 +1,11 @@
+# Permitir acceso a imágenes
+<FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# Denegar acceso a otros archivos
+<FilesMatch "\.(php|sql|sh|bat)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

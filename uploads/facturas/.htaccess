@@ -1,0 +1,30 @@
+# Permitir acceso solo a archivos de factura (PDF y XML)
+# Bloquear acceso a otros archivos potencialmente peligrosos
+
+# Por defecto, denegar todo
+Order Deny,Allow
+Deny from all
+
+# Permitir acceso a PDFs y XMLs (facturas electrónicas)
+<FilesMatch "\.(pdf|xml)$">
+    Allow from all
+</FilesMatch>
+
+# Permitir scripts PHP (si los hay)
+<FilesMatch "\.(php)$">
+    Allow from all
+</FilesMatch>
+
+# Bloquear ejecución de scripts
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|sh|cgi)$">
+    SetHandler none
+    SetHandler default-handler
+    Options -ExecCGI
+    RemoveHandler .php .php3 .php4 .php5 .phtml .pl .py .jsp .asp .sh .cgi
+</FilesMatch>
+
+# Forzar descarga de archivos XML para seguridad
+<FilesMatch "\.(xml)$">
+    ForceType application/octet-stream
+    Header set Content-Disposition attachment
+</FilesMatch>

@@ -1,0 +1,3 @@
+# Denegar acceso directo a archivos fiscales
+Order Deny,Allow
+Deny from all

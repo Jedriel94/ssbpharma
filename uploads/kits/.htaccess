@@ -1,0 +1,12 @@
+# Permitir acceso a imágenes
+<FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
+    Require all granted
+</FilesMatch>
+
+# Prevenir ejecución de PHP
+<FilesMatch "\.php$">
+    Require all denied
+</FilesMatch>
+
+# Desactivar listado de directorio
+Options -Indexes

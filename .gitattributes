@@ -1,0 +1,14 @@
+# Normalizar saltos de línea a LF dentro del repositorio.
+# Evita que el proyecto se marque "todo modificado" al pasar entre
+# Windows/Laragon (CRLF) y el servidor Linux de Hostinger (LF).
+* text=auto eol=lf
+
+# Archivos binarios: no tocar saltos de línea
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary

@@ -1,0 +1,30 @@
+# ═══════════════════════════════════════════════════════════════
+#  Credenciales — NUNCA subir al repositorio
+# ═══════════════════════════════════════════════════════════════
+/config/database.local.php
+
+# ═══════════════════════════════════════════════════════════════
+#  Archivos subidos (datos de clientes: comprobantes, facturas,
+#  guías, imágenes de productos). Se conserva solo la estructura
+#  de carpetas y los .htaccess de protección.
+# ═══════════════════════════════════════════════════════════════
+/uploads/**
+!/uploads/**/
+!/uploads/**/.htaccess
+!/uploads/**/.gitkeep
+
+# ═══════════════════════════════════════════════════════════════
+#  Logs, temporales y archivos del sistema
+# ═══════════════════════════════════════════════════════════════
+*.log
+error_log
+.DS_Store
+Thumbs.db
+
+# ═══════════════════════════════════════════════════════════════
+#  Editores / IDE
+# ═══════════════════════════════════════════════════════════════
+.vscode/
+.idea/
+*.code-workspace
+.claude/settings.local.json

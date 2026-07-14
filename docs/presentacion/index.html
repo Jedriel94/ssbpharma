@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Presentacion del Sistema de Gestion de Pedidos</title>
+  <style>
+    :root {
+      --paper: #f7f5ef;
+      --ink: #121820;
+      --muted: #68717d;
+      --line: #ded8ca;
+      --card: #ffffff;
+      --accent: #126c6a;
+      --accent-2: #d86f4d;
+      --soft: #edf4f1;
+      --amber: #f5e8c8;
+      --shadow: 0 22px 60px rgba(18, 24, 32, .12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-snap-type: y mandatory;
+      background: #d9d5ca;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #d9d5ca;
+    }
+
+    .deck {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+    }
+
+    .slide {
+      width: 100%;
+      min-height: 100vh;
+      aspect-ratio: 16 / 9;
+      scroll-snap-align: start;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .canvas {
+      position: relative;
+      width: min(100%, 1180px);
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid rgba(18, 24, 32, .12);
+      box-shadow: var(--shadow);
+      padding: 54px 64px;
+    }
+
+    .slide-compact .canvas {
+      padding: 42px 56px;
+    }
+
+    .slide-compact .topline {
+      margin-bottom: 18px;
+    }
+
+    .slide-compact h2 {
+      font-size: 38px;
+      max-width: 850px;
+    }
+
+    .slide-compact .lead {
+      font-size: 18px;
+      line-height: 1.32;
+      margin-top: 16px;
+    }
+
+    .slide-compact .split {
+      gap: 28px;
+    }
+
+    .slide-compact .grid-2 {
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .slide-compact .tile {
+      min-height: 122px;
+      padding: 16px;
+      gap: 10px;
+    }
+
+    .slide-compact h3 {
+      font-size: 16px;
+    }
+
+    .slide-compact .tile p,
+    .slide-compact .panel p {
+      font-size: 13px;
+      line-height: 1.34;
+    }
+
+    .slide-compact .pill {
+      min-height: 26px;
+      padding: 0 9px;
+      font-size: 10px;
+    }
+
+    .slide-compact .diagram {
+      padding: 16px;
+    }
+
+    .slide-compact .flow {
+      gap: 9px;
+    }
+
+    .slide-compact .step {
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      padding: 9px;
+    }
+
+    .slide-compact .step b {
+      width: 34px;
+      height: 34px;
+      font-size: 13px;
+    }
+
+    .slide-compact .step span {
+      font-size: 13px;
+    }
+
+    .slide-hero h1 {
+      font-size: 56px;
+    }
+
+    .slide-hero .lead {
+      font-size: 19px;
+      max-width: 680px;
+    }
+
+    .slide-compact .phone {
+      width: 278px;
+      height: 512px;
+    }
+
+    .slide-client-flow .split,
+    .slide-rep-how .split,
+    .slide-followup .split {
+      align-items: start;
+    }
+
+    .slide-client-flow .asset {
+      min-height: 118px;
+    }
+
+    .slide-client-flow .asset img {
+      height: 88px;
+      padding: 10px;
+    }
+
+    .slide-client-flow .asset span {
+      padding: 8px 10px;
+    }
+
+    .canvas::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .55;
+      background-image:
+        linear-gradient(rgba(18, 24, 32, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 24, 32, .045) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kicker {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 62px;
+      line-height: .98;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
+
+    h2 {
+      font-size: 44px;
+      line-height: 1.04;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
+
+    h3 {
+      font-size: 18px;
+      line-height: 1.15;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1.35;
+      max-width: 760px;
+      margin-top: 22px;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 4px;
+    }
+
+    .page {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 38px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .tile,
+    .panel,
+    .metric {
+      background: rgba(255, 255, 255, .86);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 10px 28px rgba(18, 24, 32, .07);
+    }
+
+    .tile {
+      min-height: 146px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .tile .num {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .tile p,
+    .panel p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      margin-top: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      width: fit-content;
+      padding: 0 11px;
+      border-radius: 999px;
+      background: var(--soft);
+      border: 1px solid rgba(18, 108, 106, .18);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .diagram {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: 0 16px 42px rgba(18, 24, 32, .1);
+    }
+
+    .module-map {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .module {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 180px;
+      background: var(--paper);
+    }
+
+    .module strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .module span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .flow {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .step b {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .step span {
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .phone {
+      width: 302px;
+      height: 560px;
+      margin-inline: auto;
+      padding: 14px;
+      border: 10px solid #121820;
+      border-radius: 34px;
+      background: #fff;
+      box-shadow: 0 24px 58px rgba(18, 24, 32, .24);
+    }
+
+    .phone-screen {
+      height: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #fbfaf7;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-head {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .phone-head strong {
+      display: block;
+      font-size: 16px;
+    }
+
+    .phone-head span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .product-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 132px;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 82px;
+      object-fit: cover;
+      display: block;
+      background: var(--paper);
+    }
+
+    .product-card span {
+      display: block;
+      padding: 8px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .bottom-bar {
+      margin-top: auto;
+      padding: 12px;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bottom-bar strong {
+      font-size: 14px;
+    }
+
+    .cta {
+      background: var(--accent);
+      color: #fff;
+      min-height: 34px;
+      border-radius: 8px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .browser {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 18px 44px rgba(18, 24, 32, .12);
+    }
+
+    .browser-bar {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+      background: #f2efe7;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 99px;
+      background: #b9b2a4;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 18px;
+    }
+
+    .metric {
+      padding: 14px;
+      min-height: 88px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 24px;
+      margin-top: 8px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .kanban {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 0 18px 18px;
+    }
+
+    .lane {
+      min-height: 210px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .lane b {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .ticket {
+      margin-top: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent-2);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .payments {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .pay {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 104px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .pay small {
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .role-tree {
+      display: grid;
+      gap: 14px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .role-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .role {
+      min-width: 154px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-weight: 900;
+      box-shadow: 0 8px 22px rgba(18, 24, 32, .06);
+    }
+
+    .role.accent {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .benefit {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .benefit strong {
+      display: block;
+      font-size: 16px;
+    }
+
+    .benefit span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .asset-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .asset {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 138px;
+    }
+
+    .asset img {
+      width: 100%;
+      height: 112px;
+      object-fit: cover;
+      display: block;
+      background: var(--paper);
+    }
+
+    .client-flow-assets .asset img {
+      object-fit: contain;
+      object-position: center;
+      padding: 14px;
+      box-sizing: border-box;
+    }
+
+    .asset span {
+      display: block;
+      padding: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .footer-note {
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media print {
+      html, body {
+        background: #fff;
+        scroll-snap-type: none;
+      }
+
+      .deck {
+        width: 100%;
+      }
+
+      .slide {
+        min-height: 0;
+        height: 100vh;
+        padding: 0;
+        break-after: page;
+      }
+
+      .canvas {
+        width: 100%;
+        height: 100vh;
+        box-shadow: none;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide slide-compact slide-hero">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline">
+            <div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Sistema de pedidos</div>
+            <div class="page">01 / 13</div>
+          </div>
+          <div class="split">
+            <div>
+              <div class="kicker">Presentacion ejecutiva</div>
+              <h1>Sistema de Gestion de Pedidos</h1>
+              <p class="lead">Una plataforma para conectar clientes, representantes y administracion en un mismo flujo operativo: pedido, pago, seguimiento y control.</p>
+            </div>
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-head">
+                  <strong>Entrada del cliente</strong>
+                  <span>Telefono, catalogo y seguimiento</span>
+                </div>
+                <div class="product-list">
+                  <div class="product-card"><img src="../../uploads/productos/prod_68f026e0818b2.png" alt="Producto"><span>Producto</span></div>
+                  <div class="product-card"><img src="../../uploads/productos/prod_68f0270fa8ef1.png" alt="Producto"><span>Producto</span></div>
+                  <div class="product-card"><img src="../../uploads/kits/kit_1768172666_69642c7a5e6d5.png" alt="Kit"><span>Kit</span></div>
+                  <div class="product-card"><img src="../../uploads/productos/prod_68f027332402f.png" alt="Producto"><span>Producto</span></div>
+                </div>
+                <div class="bottom-bar"><strong>Total: $0.00</strong><span class="cta">Confirmar</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-note"><span>Operacion comercial, pagos y seguimiento</span><span>Proceso</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Objetivo</div><div class="page">02 / 13</div></div>
+          <div class="kicker">Problema que resuelve</div>
+          <h2>Centralizar la operacion de pedidos</h2>
+          <div class="grid-2">
+            <div class="tile"><span class="pill">Cliente</span><h3>Compra y consulta desde movil</h3><p>Crea pedidos, paga, revisa estatus y conversa con el proveedor sin un login complejo.</p></div>
+            <div class="tile"><span class="pill">Representante</span><h3>Venta en campo</h3><p>Genera ventas directas, usa enlaces o QR y consulta inventario disponible.</p></div>
+            <div class="tile"><span class="pill">Admin</span><h3>Control operativo</h3><p>Gestiona pedidos, productos, pagos, usuarios, configuracion y metricas.</p></div>
+            <div class="tile"><span class="pill">Trazabilidad</span><h3>Menos seguimiento manual</h3><p>Estados, comprobantes, chat y notificaciones reducen la dispersion de informacion.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Arquitectura funcional</div><div class="page">03 / 13</div></div>
+          <div class="kicker">Tres modulos principales</div>
+          <h2>Cada usuario opera desde una experiencia propia</h2>
+          <div class="diagram" style="margin-top: 34px;">
+            <div class="module-map">
+              <div class="module"><strong>Cliente</strong><span>Catalogo, pedido, pago, seguimiento, chat y datos fiscales. Prioridad movil y tableta.</span></div>
+              <div class="module"><strong>Representantes</strong><span>Venta directa, venta desde kit, inventario, solicitudes y links de tienda.</span></div>
+              <div class="module"><strong>Admin / Sistema</strong><span>Dashboard, pedidos, kanban, productos, kits, cupones, metodos de pago, clientes y usuarios.</span></div>
+            </div>
+          </div>
+          <div class="footer-note"><span>API compartida para ubicaciones, cupones, kits, estadisticas, pagos y notificaciones</span><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide slide-compact slide-client">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Modulo Cliente</div><div class="page">04 / 13</div></div>
+          <div class="split">
+            <div>
+              <div class="kicker">Experiencia de compra</div>
+              <h2>Del telefono al seguimiento del pedido</h2>
+              <p class="lead">El cliente accede desde la raiz del sistema, selecciona productos, confirma el pedido, elige pago y mantiene comunicacion por chat.</p>
+              <div class="grid-2">
+                <div class="panel" style="padding:18px;"><h3>Mobile-first</h3><p>Diseñado para uso rapido desde telefono o tableta.</p></div>
+                <div class="panel" style="padding:18px;"><h3>Sin friccion</h3><p>El telefono funciona como identificador principal.</p></div>
+              </div>
+            </div>
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-head"><strong>Mis pedidos</strong><span>Cliente: 10 digitos</span></div>
+                <div style="padding:14px; display:grid; gap:10px;">
+                  <div class="step"><b>1</b><span>Pedido #0048</span></div>
+                  <div class="step"><b>2</b><span>Pago por verificar</span></div>
+                  <div class="step"><b>3</b><span>Chat con proveedor</span></div>
+                  <div class="step"><b>4</b><span>Guia de envio</span></div>
+                </div>
+                <div class="bottom-bar"><strong>Estado</strong><span class="cta">Ver</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide slide-compact slide-client-flow">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Flujo Cliente</div><div class="page">05 / 13</div></div>
+          <div class="kicker">Proceso de compra</div>
+          <h2>Un flujo claro de siete pasos</h2>
+          <div class="split">
+            <div class="flow">
+              <div class="step"><b>1</b><span>Ingresa telefono</span></div>
+              <div class="step"><b>2</b><span>Selecciona productos o kits</span></div>
+              <div class="step"><b>3</b><span>Confirma pedido</span></div>
+              <div class="step"><b>4</b><span>Elige metodo de pago</span></div>
+              <div class="step"><b>5</b><span>Sube comprobante o paga por liga</span></div>
+              <div class="step"><b>6</b><span>Consulta estado</span></div>
+              <div class="step"><b>7</b><span>Usa chat si necesita soporte</span></div>
+            </div>
+            <div class="asset-strip client-flow-assets" style="grid-template-columns: 1fr 1fr; margin-top:0;">
+              <div class="asset"><img src="../../uploads/productos/prod_6962ece33eef6.png" alt="Producto"><span>Catalogo</span></div>
+              <div class="asset"><img src="../../uploads/kits/kit_1768173664_6964306034ed9.png" alt="Kit"><span>Kits</span></div>
+              <div class="asset"><img src="../../assets/images/logopaypal.png" alt="PayPal"><span>Pasarelas</span></div>
+              <div class="asset"><img src="../../assets/images/logo.png" alt="Solumedic"><span>Seguimiento</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide slide-compact slide-reps">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Representantes</div><div class="page">06 / 13</div></div>
+          <div class="split">
+            <div>
+              <div class="kicker">Operacion en campo</div>
+              <h2>Herramienta comercial para vender, controlar inventario y revisar metricas</h2>
+              <div class="grid-2">
+                <div class="tile"><span class="pill">Ventas</span><h3>Directas o por kit</h3><p>Captura pedidos de forma rapida y redirige al cobro correspondiente.</p></div>
+                <div class="tile"><span class="pill">Inventario</span><h3>Consignacion</h3><p>Consulta existencias y solicita reposicion.</p></div>
+                <div class="tile"><span class="pill">Metricas</span><h3>Desempeno propio</h3><p>El representante visualiza ventas, pedidos, piezas y clientes desde su dashboard.</p></div>
+                <div class="tile"><span class="pill">Seguimiento</span><h3>Historial comercial</h3><p>Consulta sus ventas y el avance de sus solicitudes.</p></div>
+              </div>
+            </div>
+            <div class="diagram">
+              <div class="flow">
+                <div class="step"><b>A</b><span>Dashboard con metricas del representante</span></div>
+                <div class="step"><b>B</b><span>Nueva venta / vender kit</span></div>
+                <div class="step"><b>C</b><span>Inventario disponible</span></div>
+                <div class="step"><b>D</b><span>Link o QR para cliente</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide slide-compact slide-rep-how">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Representantes</div><div class="page">07 / 13</div></div>
+          <div class="kicker">Como funciona</div>
+          <h2>El representante opera ventas, inventario y seguimiento desde su propio modulo</h2>
+          <div class="split">
+            <div class="grid-2" style="margin-top: 0;">
+              <div class="tile"><span class="pill">1. Acceso</span><h3>Entra a su panel</h3><p>Consulta su resumen comercial, ventas generadas, pedidos activos y clientes relacionados.</p></div>
+              <div class="tile"><span class="pill">2. Inventario</span><h3>Revisa disponibilidad</h3><p>Valida productos asignados, kits en consignacion y piezas disponibles antes de vender.</p></div>
+              <div class="tile"><span class="pill">3. Venta</span><h3>Captura o comparte</h3><p>Puede crear una venta directa, vender un kit o compartir liga/QR para que el cliente complete la compra.</p></div>
+              <div class="tile"><span class="pill">4. Control</span><h3>Mide su desempeno</h3><p>Da seguimiento a pedidos, pagos y metricas propias sin depender del dashboard gerencial.</p></div>
+            </div>
+            <div class="diagram">
+              <div class="flow">
+                <div class="step"><b>01</b><span>Representante inicia sesion</span></div>
+                <div class="step"><b>02</b><span>Selecciona producto, kit o cliente</span></div>
+                <div class="step"><b>03</b><span>Genera venta, pedido, link o QR</span></div>
+                <div class="step"><b>04</b><span>La venta queda acreditada a su usuario</span></div>
+                <div class="step"><b>05</b><span>Consulta metricas, historial y seguimiento</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Flujos de representante</div><div class="page">08 / 13</div></div>
+          <div class="kicker">Modelos de venta</div>
+          <h2>Cuatro caminos para acreditar o capturar ventas</h2>
+          <div class="grid-2">
+            <div class="tile"><span class="pill">Flujo A</span><h3>Venta directa</h3><p>El representante captura la venta y entrega en mano. Pago presencial.</p></div>
+            <div class="tile"><span class="pill">Flujo B</span><h3>Representante opera la tienda</h3><p>Genera el pedido desde la tienda con envio por administracion.</p></div>
+            <div class="tile"><span class="pill">Flujo C</span><h3>Cliente via QR</h3><p>El cliente compra autonomamente y la venta se acredita al representante.</p></div>
+            <div class="tile"><span class="pill">Flujo D</span><h3>Cliente directo</h3><p>Compra sin representante asociado.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Admin / Sistema</div><div class="page">09 / 13</div></div>
+          <div class="kicker">Centro de control</div>
+          <h2>Gestion operativa desde escritorio</h2>
+          <p class="lead" style="font-size:18px; max-width:940px;">El gerente cuenta con un dashboard exclusivo para revisar el desempeno de sus representantes y dar seguimiento a resultados comerciales.</p>
+          <div class="browser" style="margin-top: 22px;">
+            <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="dashboard-grid">
+              <div class="metric"><span>Ventas equipo</span><strong>$84k</strong></div>
+              <div class="metric"><span>Pedidos</span><strong>128</strong></div>
+              <div class="metric"><span>Clientes</span><strong>54</strong></div>
+              <div class="metric"><span>Piezas</span><strong>920</strong></div>
+            </div>
+            <div class="kanban">
+              <div class="lane"><b>Pendiente</b><div class="ticket">Pedido #1042</div><div class="ticket">Pedido #1043</div></div>
+              <div class="lane"><b>Por verificar</b><div class="ticket">Pedido #1044</div></div>
+              <div class="lane"><b>Confirmado</b><div class="ticket">Pedido #1045</div></div>
+              <div class="lane"><b>En ruta</b><div class="ticket">Pedido #1046</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Pagos</div><div class="page">10 / 13</div></div>
+          <div class="kicker">Metodos configurables</div>
+          <h2>El sistema adapta los pagos segun el flujo</h2>
+          <div class="payments">
+            <div class="pay"><small>Banco</small><strong>Transferencia</strong></div>
+            <div class="pay"><small>Referencia</small><strong>OXXO</strong></div>
+            <div class="pay"><small>Online</small><strong>Liga de pago</strong></div>
+            <div class="pay"><small>Pasarela</small><strong>PayPal</strong></div>
+            <div class="pay"><small>Pasarela</small><strong>Mercado Pago</strong></div>
+            <div class="pay"><small>Pasarela</small><strong>EcartPay</strong></div>
+            <div class="pay"><small>Campo</small><strong>Efectivo</strong></div>
+            <div class="pay"><small>Control</small><strong>Comprobante</strong></div>
+          </div>
+          <p class="lead" style="font-size:18px;">Cada modo muestra u oculta metodos para evitar errores de operacion.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide slide-compact slide-followup">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Seguimiento</div><div class="page">11 / 13</div></div>
+          <div class="split">
+            <div>
+              <div class="kicker">Comunicacion y trazabilidad</div>
+              <h2>El cliente sabe que esta pasando con su pedido</h2>
+              <div class="flow" style="margin-top:28px;">
+                <div class="step"><b>1</b><span>Pendiente</span></div>
+                <div class="step"><b>2</b><span>Por verificar</span></div>
+                <div class="step"><b>3</b><span>Confirmado</span></div>
+                <div class="step"><b>4</b><span>En ruta</span></div>
+                <div class="step"><b>5</b><span>Entregado</span></div>
+              </div>
+            </div>
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-head"><strong>Chat del pedido</strong><span>Pedido #0048</span></div>
+                <div style="padding:16px; display:grid; gap:12px;">
+                  <div style="justify-self:start; max-width:80%; background:#fff; border:1px solid var(--line); border-radius:16px; padding:12px; font-size:12px;">Tu pedido ya esta en preparacion.</div>
+                  <div style="justify-self:end; max-width:80%; background:var(--accent); color:#fff; border-radius:16px; padding:12px; font-size:12px;">Gracias, quedo atento.</div>
+                  <div style="justify-self:start; max-width:80%; background:#fff; border:1px solid var(--line); border-radius:16px; padding:12px; font-size:12px;">Te compartiremos la guia aqui.</div>
+                </div>
+                <div class="bottom-bar"><strong>Mensaje...</strong><span class="cta">Enviar</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Roles</div><div class="page">12 / 13</div></div>
+          <div class="kicker">Acceso diferenciado</div>
+          <h2>Jerarquia para separar operacion, supervision y administracion</h2>
+          <div class="role-tree">
+            <div class="role-row"><div class="role accent">Admin</div><div class="role accent">Director General</div></div>
+            <div class="role-row"><div class="role">Director de Unidad</div><div class="role">Gerente</div></div>
+            <div class="role-row"><div class="role">Representante</div><div class="role">Cliente</div></div>
+          </div>
+          <p class="lead" style="font-size:18px; max-width:920px;">Cada perfil accede a herramientas distintas: el gerente revisa el desempeno de sus representantes; el representante consulta sus propias metricas, inventario, ventas y seguimiento.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="canvas">
+        <div class="content">
+          <div class="topline"><div class="brand"><img src="../../assets/images/logo.png" alt="Logo"> Cierre</div><div class="page">13 / 13</div></div>
+          <div class="kicker">Beneficio operativo</div>
+          <h2>Mas control, menos dispersion de informacion</h2>
+          <div class="benefits">
+            <div class="benefit"><div class="mark">01</div><div><strong>Ordena la venta</strong><span>Cliente, representante y admin trabajan sobre el mismo pedido.</span></div></div>
+            <div class="benefit"><div class="mark">02</div><div><strong>Centraliza pagos</strong><span>Metodos, comprobantes, ligas y verificacion en un flujo controlado.</span></div></div>
+            <div class="benefit"><div class="mark">03</div><div><strong>Da visibilidad</strong><span>Estados, kanban, historial, dashboard y seguimiento.</span></div></div>
+            <div class="benefit"><div class="mark">04</div><div><strong>Mejora la atencion</strong><span>Chat y notificaciones reducen mensajes externos y reprocesos.</span></div></div>
+          </div>
+          <div class="footer-note"><span>Base lista para convertir a Google Slides o PowerPoint</span><span>Fin</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

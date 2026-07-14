@@ -1,0 +1,78 @@
+/* Estilos para visualización de guía de envío */
+
+/* Modal de imagen completa */
+#modalImagen {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+}
+
+#modalImagen img {
+    animation: zoomIn 0.3s ease;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Visor de PDF responsivo */
+iframe[src*=".pdf"] {
+    min-height: 400px;
+}
+
+@media (max-width: 640px) {
+    iframe[src*=".pdf"] {
+        min-height: 300px;
+    }
+}
+
+/* Efecto hover en imagen de guía */
+.guia-envio-img {
+    transition: all 0.3s ease;
+}
+
+.guia-envio-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Botón de cierre del modal */
+#modalImagen button {
+    transition: all 0.2s ease;
+}
+
+#modalImagen button:hover {
+    transform: scale(1.1);
+}
+
+/* Indicador de clic en imagen */
+.cursor-zoom-in {
+    cursor: zoom-in;
+}
+
+/* Mejora visual para cards de guía */
+.guia-card {
+    transition: all 0.3s ease;
+}
+
+.guia-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}

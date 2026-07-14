@@ -1,0 +1,21 @@
+Hay un polling cada 30 segundos en index.php (línea 2348). Esto es lo que hace:
+
+setInterval(_pollSolicitudes, 30000) — llama a solicitudes-estado.php cada 30 s
+visibilitychange — también dispara al volver a la pestaña (si estaba en segundo plano)
+La función actualiza los badges de estado (.badge) de cada tarjeta [data-sol-id] en tiempo real
+Si algún estado cambió, hace location.reload() para reflejar también los cambios de clickabilidad/acciones disponibles
+Si la pestaña no está visible (document.visibilityState !== 'visible'), el poll se salta (optimización)
+
+
+En produccion se tiene que descomentar y comentar el archivo httaccess
+
+    # RewriteBase se ajusta automáticamente al directorio del .htaccess
+    # Desarrollo local en Laragon: /proceso/
+    # Producción en subcarpeta:    /columbia/
+    # Producción en raíz:          /
+    # RewriteBase /proceso/
+    
+    # Para producción en https://solumedic.shop/columbia/
+    # Descomentar la línea de abajo y comentar la de arriba:
+    RewriteBase /columbia/
+    

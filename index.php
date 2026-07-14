@@ -47,14 +47,13 @@ if ($_repAdminId) {
                 echo "
                 <div class='bg-white border border-slate-200 rounded-2xl p-5 shadow-sm'>
                     <div class='flex items-start gap-3'>
-                        <div class='text-3xl'>🎉</div>
                         <div class='flex-1'>
                             <h3 class='font-bold text-slate-900 mb-1'>¡Bienvenido!</h3>
                             <p class='text-sm text-slate-700'>
                                 Fuiste referido por <strong>{$nombreRep}</strong>
                             </p>
                             <p class='text-xs text-slate-500 mt-2'>
-                                ✅ Todas tus compras serán acreditadas a tu representante
+                                Todas tus compras serán acreditadas a tu representante
                             </p>
                         </div>
                     </div>
@@ -67,7 +66,6 @@ if ($_repAdminId) {
                 echo "
                 <div class='bg-red-50 border-2 border-red-300 rounded-2xl p-5 shadow-lg'>
                     <div class='flex items-start gap-3'>
-                        <div class='text-3xl'>⚠️</div>
                         <div class='flex-1'>
                             <h3 class='font-bold text-red-900 mb-1'>Código Inválido</h3>
                             <p class='text-sm text-red-800'>
@@ -88,7 +86,7 @@ if ($_repAdminId) {
                 echo "
                 <div class='bg-slate-50 border border-slate-200 rounded-xl p-3 text-center'>
                     <p class='text-xs text-slate-600'>
-                        👤 Representante: <strong>{$nombreRep}</strong>
+                        Representante: <strong>{$nombreRep}</strong>
                     </p>
                 </div>
                 ";
@@ -102,7 +100,7 @@ if ($_repAdminId) {
                 <!-- Input Teléfono -->
                 <div class="mb-8">
                     <label for="telefono" class="block text-sm font-medium text-slate-700 mb-3">
-                        📱 Número de Teléfono
+                        Número de Teléfono
                     </label>
                     <input 
                         type="tel" 
@@ -116,7 +114,7 @@ if ($_repAdminId) {
                         required
                     >
                     <p class="text-xs text-slate-500 mt-2 ml-1">
-                        📱 Ingresa tu número de 10 dígitos para continuar
+                        Ingresa tu número de 10 dígitos para continuar
                     </p>
                 </div>
 
@@ -127,7 +125,6 @@ if ($_repAdminId) {
                         onclick="crearPedido()"
                         class="btn-primary w-full text-white font-semibold py-5 px-6 rounded-2xl shadow-lg flex items-center justify-center gap-3"
                     >
-                        <span class="text-2xl">➕</span>
                         <span class="text-lg">Crear Nuevo Pedido</span>
                     </button>
 
@@ -136,7 +133,6 @@ if ($_repAdminId) {
                         onclick="seguimientoPedidos()"
                         class="btn-secondary w-full text-white font-semibold py-5 px-6 rounded-2xl shadow-lg flex items-center justify-center gap-3"
                     >
-                        <span class="text-2xl">📦</span>
                         <span class="text-lg">Seguimiento de Pedidos</span>
                     </button>
                 </div>
@@ -146,7 +142,7 @@ if ($_repAdminId) {
             <!-- Info Card -->
             <div class="card rounded-2xl shadow-md p-6 text-center">
                 <p class="text-slate-600 text-sm">
-                    💡 <span class="font-medium">Tip:</span> Ingresa tu número de teléfono para comenzar
+                    <span class="font-medium">Tip:</span> Ingresa tu número de teléfono para comenzar
                 </p>
             </div>
 

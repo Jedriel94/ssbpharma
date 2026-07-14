@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/../includes/auth_representante.php';
+
+// Módulo de solicitud de consignación deshabilitado para representantes.
+header('Location: index.php');
+exit;
+
 require_once __DIR__ . '/../models/Producto.php';
 require_once __DIR__ . '/../models/SolicitudConsignacion.php';
 require_once __DIR__ . '/../models/RepresentantePerfil.php';

@@ -1472,26 +1472,10 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
         </section>
 
         <section class="actions" id="accionesRapidas" aria-label="Acciones rapidas">
-            <a class="action" href="<?= url('representante/venta.php') ?>">
-                <span class="action-icon"><svg viewBox="0 0 24 24"><path d="M6 2v20"/><path d="M18 2v20"/><path d="M3 6h18"/><path d="M3 18h18"/></svg></span>
-                <span><b>Nueva venta</b><small>Entrega directa</small></span>
-            </a>
-            <a class="action secondary" href="<?= url('representante/vender-kit.php') ?>">
-                <span class="action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2"/><path d="M8 7V5a2 2 0 00-4 0v2"/><path d="M12 12v5"/><path d="M9.5 14.5h5"/></svg></span>
-                <span><b>Vender kit</b><small>Precio especial</small></span>
-            </a>
-            <button type="button" class="action secondary" onclick="abrirModalCliente()" style="width:100%;border:1px solid var(--line);text-align:left;cursor:pointer;font-family:inherit;">
+            <button type="button" class="action" onclick="abrirModalCliente()" style="width:100%;border:1px solid var(--line);text-align:left;cursor:pointer;font-family:inherit;">
                 <span class="action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M19 8h-2m-1-1v2"/></svg></span>
                 <span><b>Clientes</b><small>Alta/Modif.</small></span>
             </button>
-            <a class="action secondary" href="<?= url('representante/inventario.php') ?>">
-                <span class="action-icon"><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></span>
-                <span><b>Inventario</b><small>Stock propio</small></span>
-            </a>
-            <a class="action secondary" href="<?= url('representante/solicitar-inventario.php') ?>">
-                <span class="action-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
-                <span><b>Solicitar</b><small>Consignacion</small></span>
-            </a>
             <a class="action secondary" href="<?= url('representante/ventas.php') ?>">
                 <span class="action-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16v-5"/><path d="M13 16V8"/><path d="M18 16v-3"/></svg></span>
                 <span><b>Mis ventas</b><small>Seguimiento</small></span>
@@ -1506,47 +1490,7 @@ $_rep_qr_url      = 'https://api.qrserver.com/v1/create-qr-code/?size=350x350&da
             </button>
         </section>
 
-        <?php if ($_sinDireccion): ?>
-        <a href="<?= url('representante/solicitar-inventario.php') ?>" style="display:flex;align-items:center;gap:12px;margin-top:10px;padding:12px 14px;background:#fff8f0;border:1.5px solid #f4b87a;border-radius:12px;text-decoration:none;color:var(--ink)">
-            <span style="font-size:22px;flex-shrink:0"></span>
-            <div>
-                <div style="font-size:13px;font-weight:900">Registra tu dirección de envío</div>
-                <div style="font-size:12px;color:var(--muted)">Para recibir inventario necesitamos saber dónde enviártelo</div>
-            </div>
-            <span style="margin-left:auto;font-size:18px;color:#f4b87a">›</span>
-        </a>
-        <?php endif; ?>
 
-        <section class="section">
-            <div class="section-head">
-                <h2>Inventario disponible</h2>
-                <a class="section-link" href="<?= url('representante/inventario.php') ?>">Ver todo</a>
-            </div>
-            <div class="list">
-                <?php if (empty($inventario)): ?>
-                    <div class="empty">Sin inventario disponible por ahora.</div>
-                <?php else: ?>
-                    <?php foreach (array_slice($inventario, 0, 5) as $item): ?>
-                        <div class="row">
-                            <div class="thumb">
-                                <?php if (!empty($item['imagen'])): ?>
-                                    <img src="<?= asset('uploads/productos/' . $item['imagen']) ?>" alt="">
-                                <?php else: ?>
-                                    <?= strtoupper(substr($item['producto'], 0, 1)) ?>
-                                <?php endif; ?>
-                            </div>
-                            <div class="row-main">
-                                <span class="row-title"><?= htmlspecialchars($item['producto']) ?></span>
-                                <div class="row-sub">
-                                    <?= $item['precio_base'] !== null ? money_rep($item['precio_base']) : 'Sin precio base' ?>
-                                </div>
-                            </div>
-                            <div class="qty"><?= (int)$item['cantidad_disponible'] ?></div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-        </section>
 
         <section class="section">
             <div class="section-head">

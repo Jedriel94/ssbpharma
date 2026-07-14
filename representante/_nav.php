@@ -13,12 +13,6 @@ $navActive = $navActive ?? '';
         <a class="nav-item <?= $navActive === 'inicio'  ? 'active' : '' ?>" href="<?= url('representante/index.php') ?>">
             <span>Inicio</span>
         </a>
-        <a class="nav-item <?= $navActive === 'venta'   ? 'active' : '' ?>" href="<?= url('representante/venta.php') ?>">
-            <span>Venta</span>
-        </a>
-        <a class="nav-item <?= $navActive === 'stock'   ? 'active' : '' ?>" href="<?= url('representante/inventario.php') ?>">
-            <span>Stock</span>
-        </a>
         <a class="nav-item <?= $navActive === 'ventas'  ? 'active' : '' ?>" href="<?= url('representante/ventas.php') ?>">
             <span>Ventas</span>
         </a>

@@ -62,7 +62,6 @@ function estado_sol($estado) {
                 </div>
                 <div class="flex items-center gap-2">
                     <a href="<?= url('representante/index.php') ?>" class="min-h-11 px-4 rounded-lg bg-slate-950 text-white font-bold grid place-items-center">Inicio</a>
-                    <a href="<?= url('representante/solicitar-inventario.php') ?>" class="min-h-11 px-4 rounded-lg bg-[#4a70a9] text-white font-bold grid place-items-center">Nueva</a>
                 </div>
             </div>
         </div>

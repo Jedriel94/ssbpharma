@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/../includes/auth_representante.php';
+
+// Módulo de venta de kits deshabilitado para representantes.
+header('Location: index.php');
+exit;
+
 require_once __DIR__ . '/../models/Configuracion.php';
 require_once __DIR__ . '/../models/RepresentanteVenta.php';
 require_once __DIR__ . '/../models/Cliente.php';

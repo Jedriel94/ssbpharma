@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/../includes/auth_representante.php';
+
+// Módulo de inventario deshabilitado para representantes.
+header('Location: index.php');
+exit;
+
 require_once __DIR__ . '/../models/Configuracion.php';
 require_once __DIR__ . '/../models/RepresentanteInventario.php';
 

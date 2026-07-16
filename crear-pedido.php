@@ -264,6 +264,8 @@ foreach ($kits as $kit) {
 .producto-item {
     transition: all 0.3s ease;
     position: relative;
+    display: flex !important;          /* fuerza columna: el +/- se alinea al fondo */
+    flex-direction: column !important;
 }
 
 /* Efecto hover en las tarjetas de producto */

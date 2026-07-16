@@ -1074,16 +1074,23 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <!-- Reordenar productos: arrastrar y soltar (drag & drop) -->
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script src="<?= asset('js/Sortable.min.js') ?>"></script>
 <script>
 (function () {
     const tbody = document.getElementById('productos-table-body');
-    if (!tbody || typeof Sortable === 'undefined') return;
+    if (!tbody) return;
+    if (typeof Sortable === 'undefined') {
+        console.error('SortableJS no se cargó — el reordenar no funcionará.');
+        return;
+    }
 
     Sortable.create(tbody, {
         handle: '.drag-handle',
         animation: 150,
         ghostClass: 'bg-slate-100',
+        delay: 120,
+        delayOnTouchOnly: true,
+        touchStartThreshold: 4,
         onEnd: function () {
             const ids = Array.from(tbody.querySelectorAll('tr.producto-row'))
                              .map(tr => tr.dataset.id)

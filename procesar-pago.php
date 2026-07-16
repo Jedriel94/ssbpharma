@@ -1498,8 +1498,8 @@ body { padding-bottom: 90px; }
 
     <div class="<?= $modo_rep ? 'flex flex-col gap-4' : 'grid grid-cols-1 lg:grid-cols-2 gap-6' ?>">
         
-        <!-- Columna Izquierda: Métodos de Pago -->
-        <div class="space-y-6">
+        <!-- Métodos de Pago (en escritorio va a la DERECHA; en móvil, después de Datos de Envío) -->
+        <div class="space-y-6 order-2">
             
             <!-- Selector de Método de Pago -->
             <div class="card rounded-2xl shadow-lg p-6">
@@ -2037,8 +2037,8 @@ body { padding-bottom: 90px; }
         </div>
         
         <?php if (!$modo_rep): ?>
-        <!-- Columna Derecha: Datos de Envío -->
-        <div class="space-y-6">
+        <!-- Datos de Envío (en escritorio va a la IZQUIERDA; en móvil, primero) -->
+        <div class="space-y-6 order-1">
             
             <div class="card rounded-2xl shadow-lg p-6">
                 <h2 class="text-xl font-bold text-slate-900 mb-4">📦 Datos de Envío</h2>

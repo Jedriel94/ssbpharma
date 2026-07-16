@@ -264,8 +264,12 @@ foreach ($kits as $kit) {
 .producto-item {
     transition: all 0.3s ease;
     position: relative;
-    display: flex !important;          /* fuerza columna: el +/- se alinea al fondo */
-    flex-direction: column !important;
+}
+/* Mayor especificidad que .card para forzar columna SIN !important:
+   así el +/- se alinea al fondo, pero el JS aún puede ocultar con display:none */
+.producto-item.card {
+    display: flex;
+    flex-direction: column;
 }
 
 /* Efecto hover en las tarjetas de producto */
@@ -884,7 +888,7 @@ function buscarProductos() {
         const tipoItem = esKit ? 'kit' : 'producto';
 
         if (nombreProducto.includes(filtro) && tipoItem === tipoActivo) {
-            producto.style.display = 'block';
+            producto.style.display = '';
             // Animación de aparición
             producto.style.animation = 'fadeIn 0.3s ease';
             resultadosEncontrados++;

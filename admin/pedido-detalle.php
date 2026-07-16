@@ -268,7 +268,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
         <?php foreach ($detalle as $item): ?>
             <div class="flex items-center gap-4 bg-cream-50 p-4 rounded-xl border border-cream-200">
                 <?php if ($item['imagen']): ?>
-                    <img src="../uploads/productos/<?= htmlspecialchars($item['imagen']) ?>" 
+                    <img src="<?= uploads_url('productos') ?>/<?= htmlspecialchars($item['imagen']) ?>" 
                          alt="<?= htmlspecialchars($item['producto']) ?>"
                          class="w-20 h-20 object-cover rounded-lg">
                 <?php else: ?>
@@ -329,7 +329,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
                 Método: <span class="capitalize"><?= htmlspecialchars($pedido['metodo_pago']) ?></span>
             </p>
             <?php if (!empty($pedido['comprobante_pago'])): ?>
-                <a href="../uploads/comprobantes/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" 
+                <a href="<?= uploads_url('comprobantes') ?>/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" 
                    target="_blank"
                    class="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-semibold">
                     Ver Comprobante de Pago

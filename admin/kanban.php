@@ -271,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 exit;
             }
             
-            $uploadDir = __DIR__ . '/../uploads/comprobantes_envio/';
+            $uploadDir = uploads_dir('comprobantes_envio') . '/';
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
@@ -410,7 +410,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 }
                 
                 if (empty($errores)) {
-                    $uploadDir = __DIR__ . '/../uploads/facturas/';
+                    $uploadDir = uploads_dir('facturas') . '/';
                     if (!is_dir($uploadDir)) {
                         mkdir($uploadDir, 0755, true);
                     }
@@ -440,7 +440,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 }
                 
                 if (empty($errores)) {
-                    $uploadDir = __DIR__ . '/../uploads/facturas/';
+                    $uploadDir = uploads_dir('facturas') . '/';
                     if (!is_dir($uploadDir)) {
                         mkdir($uploadDir, 0755, true);
                     }
@@ -510,8 +510,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                         if ($cliente_fact === null) $cliente_fact = $clienteModel->getByTelefono($pedido['telefono'] ?? '');
                         $quiere_notif = (int)($cliente_fact['notif_factura'] ?? 1);
                         if ($quiere_notif) {
-                            $pdf_abs = $factura_pdf ? __DIR__ . '/../uploads/facturas/' . $factura_pdf : null;
-                            $xml_abs = $factura_xml ? __DIR__ . '/../uploads/facturas/' . $factura_xml : null;
+                            $pdf_abs = $factura_pdf ? uploads_dir('facturas') . '/' . $factura_pdf : null;
+                            $xml_abs = $factura_xml ? uploads_dir('facturas') . '/' . $factura_xml : null;
                             Mailer::sendFactura($email_fact, $pedido, $pdf_abs, $xml_abs);
                         }
                     }
@@ -1295,7 +1295,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                         <div class="pdx-prod pdx-kit-row" style="grid-column:1/-1;cursor:pointer;background:#f8faff;border:1px solid #dde3f8;border-radius:10px;padding:10px 12px"
                              onclick="this.nextElementSibling.classList.toggle('hidden')">
                             <?php if ($item['imagen']): ?>
-                                <img src="../uploads/kits/<?= htmlspecialchars($item['imagen']) ?>" alt="" class="pdx-prod-img" style="border-radius:8px">
+                                <img src="<?= uploads_url('kits') ?>/<?= htmlspecialchars($item['imagen']) ?>" alt="" class="pdx-prod-img" style="border-radius:8px">
                             <?php else: ?>
                                 <div class="pdx-prod-ph" style="background:#e0e7ff"><span style="font-size:18px"></span></div>
                             <?php endif; ?>
@@ -1321,7 +1321,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                             <?php foreach ($item['productos'] as $prod): ?>
                             <div class="pdx-prod" style="background:#fff;border:1px solid #e2e8f0">
                                 <?php if ($prod['imagen']): ?>
-                                    <img src="../uploads/productos/<?= htmlspecialchars($prod['imagen']) ?>" alt="" class="pdx-prod-img">
+                                    <img src="<?= uploads_url('productos') ?>/<?= htmlspecialchars($prod['imagen']) ?>" alt="" class="pdx-prod-img">
                                 <?php else: ?>
                                     <div class="pdx-prod-ph"><svg width="18" height="18" fill="none" stroke="#c4c4c4" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
                                 <?php endif; ?>
@@ -1337,7 +1337,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                         <!-- Producto suelto -->
                         <div class="pdx-prod">
                             <?php if ($item['imagen']): ?>
-                                <img src="../uploads/productos/<?= htmlspecialchars($item['imagen']) ?>" alt="" class="pdx-prod-img">
+                                <img src="<?= uploads_url('productos') ?>/<?= htmlspecialchars($item['imagen']) ?>" alt="" class="pdx-prod-img">
                             <?php else: ?>
                                 <div class="pdx-prod-ph"><svg width="18" height="18" fill="none" stroke="#c4c4c4" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
                             <?php endif; ?>
@@ -1427,7 +1427,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                             <div class="pdx-info-ttl">Pago</div>
                             <div style="font-size:13px;font-weight:600;color:var(--sub);text-transform:capitalize"><?= htmlspecialchars($pedido['metodo_pago']) ?></div>
                             <?php if (!empty($pedido['comprobante_pago'])): ?>
-                                <a href="../uploads/comprobantes/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" target="_blank" style="display:inline-flex;align-items:center;gap:4px;margin-top:7px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none">Ver comprobante ↗</a>
+                                <a href="<?= uploads_url('comprobantes') ?>/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" target="_blank" style="display:inline-flex;align-items:center;gap:4px;margin-top:7px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none">Ver comprobante ↗</a>
                             <?php endif; ?>
                         </div>
                         <?php endif; ?>
@@ -1435,8 +1435,8 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                         <div class="pdx-info" style="border-left:2px solid #c4b5fd">
                             <div class="pdx-info-ttl">Factura<?php if (!empty($pedido['num_factura'])): ?> <span style="font-weight:400;font-size:11px;color:var(--faint)">#<?= htmlspecialchars($pedido['num_factura']) ?></span><?php endif; ?></div>
                             <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap">
-                                <?php if (!empty($pedido['factura_pdf'])): ?><a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_pdf']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">PDF ↗</a><?php endif; ?>
-                                <?php if (!empty($pedido['factura_xml'])): ?><a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_xml']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">XML ↗</a><?php endif; ?>
+                                <?php if (!empty($pedido['factura_pdf'])): ?><a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_pdf']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">PDF ↗</a><?php endif; ?>
+                                <?php if (!empty($pedido['factura_xml'])): ?><a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_xml']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">XML ↗</a><?php endif; ?>
                             </div>
                         </div>
                         <?php endif; ?>
@@ -2508,7 +2508,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const comprobanteHTML = pedido.comprobante_pago ? 
             `<div class="mb-2">
-                <a href="../uploads/comprobantes/${pedido.comprobante_pago}" target="_blank" class="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1">
+                <a href="<?= uploads_url('comprobantes') ?>/${pedido.comprobante_pago}" target="_blank" class="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1">
                     Ver comprobante pago
                 </a>
             </div>` : '';

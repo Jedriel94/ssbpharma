@@ -50,3 +50,36 @@ function asset($path) {
     $version  = file_exists($fullPath) ? filemtime($fullPath) : 1;
     return url($path) . '?v=' . $version;
 }
+
+/**
+ * ── ARCHIVOS SUBIDOS (imagenes de productos/kits, comprobantes, facturas) ──
+ *
+ * Por defecto viven dentro del proyecto (uploads/), igual que siempre.
+ *
+ * En el servidor se pueden sacar FUERA de la carpeta que despliega git,
+ * para que un redespliegue NUNCA pueda borrarlos. Para eso, define estas
+ * constantes en config/database.local.php (ese archivo no se despliega):
+ *
+ *   define('UPLOADS_DIR', '/home/uXXXXXX/domains/botikit.shop/public_html/ssbpharma_uploads');
+ *   define('UPLOADS_URL', '/ssbpharma_uploads/');
+ *
+ * Si no se definen, todo sigue funcionando como hasta ahora.
+ */
+
+// Ruta en disco de la carpeta de subidas. Ej: uploads_dir('productos')
+function uploads_dir($sub = '') {
+    $base = (defined('UPLOADS_DIR') && UPLOADS_DIR !== '')
+        ? rtrim(UPLOADS_DIR, '/\\')
+        : rtrim(__DIR__ . '/../uploads', '/\\');
+    $sub = trim($sub, '/\\');
+    return $sub === '' ? $base : $base . '/' . $sub;
+}
+
+// URL publica de la carpeta de subidas. Ej: uploads_url('productos/foto.jpg')
+function uploads_url($sub = '') {
+    $base = (defined('UPLOADS_URL') && UPLOADS_URL !== '')
+        ? rtrim(UPLOADS_URL, '/')
+        : rtrim(url('uploads'), '/');
+    $sub = ltrim($sub, '/');
+    return $sub === '' ? $base . '/' : $base . '/' . $sub;
+}

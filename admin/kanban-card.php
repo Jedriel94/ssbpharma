@@ -153,7 +153,7 @@ foreach ($mensajes as $msg) {
     <!-- Comprobantes -->
     <?php if (!empty($pedido['comprobante_pago'])): ?>
         <div class="mb-2">
-            <a href="../uploads/comprobantes/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" 
+            <a href="<?= uploads_url('comprobantes') ?>/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" 
                target="_blank"
                class="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1">
                 Ver comprobante pago
@@ -163,7 +163,7 @@ foreach ($mensajes as $msg) {
     
     <?php if (!empty($pedido['comprobante_envio'])): ?>
         <div class="mb-2">
-            <a href="../uploads/comprobantes_envio/<?= htmlspecialchars($pedido['comprobante_envio']) ?>" 
+            <a href="<?= uploads_url('comprobantes_envio') ?>/<?= htmlspecialchars($pedido['comprobante_envio']) ?>" 
                target="_blank"
                class="text-xs text-purple-600 hover:text-purple-800 flex items-center gap-1">
                 Ver comprobante envío
@@ -179,7 +179,7 @@ foreach ($mensajes as $msg) {
             <?php if (!empty($pedido['factura_pdf']) || !empty($pedido['factura_xml'])): ?>
                 <div class="space-y-1">
                     <?php if (!empty($pedido['factura_pdf'])): ?>
-                        <a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_pdf']) ?>" 
+                        <a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_pdf']) ?>" 
                            target="_blank"
                            class="text-xs text-green-600 hover:text-green-800 flex items-center gap-1">
                             Ver PDF
@@ -187,7 +187,7 @@ foreach ($mensajes as $msg) {
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['factura_xml'])): ?>
-                        <a href="../uploads/facturas/<?= htmlspecialchars($pedido['factura_xml']) ?>" 
+                        <a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_xml']) ?>" 
                            target="_blank" download
                            class="text-xs text-green-600 hover:text-green-800 flex items-center gap-1">
                             Descargar XML

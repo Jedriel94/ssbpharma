@@ -15,7 +15,7 @@ if (!isset($_GET['file'])) {
 }
 
 $filename = basename($_GET['file']); // Seguridad: solo nombre de archivo, no rutas
-$filepath = __DIR__ . '/uploads/fiscales/' . $filename;
+$filepath = uploads_dir('fiscales') . '/' . $filename;
 
 // Verificar que el archivo existe
 if (!file_exists($filepath)) {

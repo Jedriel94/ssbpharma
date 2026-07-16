@@ -593,7 +593,7 @@ class RepresentanteVenta {
             throw new Exception('El comprobante no debe superar 5MB');
         }
 
-        $uploadDir = __DIR__ . '/../uploads/comprobantes/';
+        $uploadDir = uploads_dir('comprobantes') . '/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }

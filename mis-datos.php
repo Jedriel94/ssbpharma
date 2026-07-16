@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $maxSize = 5 * 1024 * 1024;
                 
                 if ($file['error'] === UPLOAD_ERR_OK && $file['size'] <= $maxSize && in_array($file['type'], $allowedTypes)) {
-                    $uploadDir = __DIR__ . '/uploads/fiscales/';
+                    $uploadDir = uploads_dir('fiscales') . '/';
                     if (!is_dir($uploadDir)) {
                         mkdir($uploadDir, 0755, true);
                     }

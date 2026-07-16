@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'guard
         $file = $_FILES['cli_constancia'];
         $allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
         if (in_array($file['type'], $allowedTypes)) {
-            $uploadDir = __DIR__ . '/../uploads/constancias/';
+            $uploadDir = uploads_dir('constancias') . '/';
             if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
             $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
             $fname = 'constancia_' . $cliente['id'] . '_' . time() . '.' . $ext;
@@ -221,7 +221,7 @@ if (($_GET['action'] ?? '') === 'metricas') {
     $st2 = $pdo2->prepare($sql_top);
     $st2->execute([$rid2, $d1, $h1]);
     $top = array_map(function($r) {
-        $r['imagen_url'] = !empty($r['imagen']) ? asset('uploads/productos/' . $r['imagen']) : null;
+        $r['imagen_url'] = !empty($r['imagen']) ? uploads_url('productos/' . $r['imagen']) : null;
         return $r;
     }, $st2->fetchAll(PDO::FETCH_ASSOC));
     $sql_tipo = "SELECT c.tipo_cliente, COUNT(DISTINCT p.cliente_id) as n

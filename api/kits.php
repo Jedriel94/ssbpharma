@@ -116,7 +116,7 @@ elseif ($method === 'POST') {
         }
         
         // Crear carpeta si no existe
-        $uploadDir = __DIR__ . '/../uploads/kits/';
+        $uploadDir = uploads_dir('kits') . '/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }

@@ -36,7 +36,7 @@ function handleImageUpload($file) {
     // Generar nombre único
     $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
     $nombreArchivo = uniqid('prod_') . '.' . $extension;
-    $rutaDestino = '../uploads/productos/' . $nombreArchivo;
+    $rutaDestino = uploads_dir('productos') . '/' . $nombreArchivo;
     
     // Mover archivo sin modificar (mantener tamaño original cuadrado)
     if (move_uploaded_file($file['tmp_name'], $rutaDestino)) {
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Eliminar imagen anterior si existe
                 $productoActual = $productoModel->getById($id);
                 if ($productoActual && $productoActual['imagen']) {
-                    $rutaAnterior = '../uploads/productos/' . $productoActual['imagen'];
+                    $rutaAnterior = uploads_dir('productos') . '/' . $productoActual['imagen'];
                     if (file_exists($rutaAnterior)) {
                         unlink($rutaAnterior);
                     }
@@ -398,7 +398,7 @@ $productosSinImagen = count(array_filter($productos, fn($p) => empty($p['imagen'
                                         </span>
                                         <div class="prod-thumb">
                                             <?php if ($producto['imagen']): ?>
-                                                <img src="../uploads/productos/<?= htmlspecialchars($producto['imagen']) ?>"
+                                                <img src="<?= uploads_url('productos') ?>/<?= htmlspecialchars($producto['imagen']) ?>"
                                                      alt="<?= htmlspecialchars($producto['producto']) ?>"
                                                      class="w-full h-full object-cover">
                                             <?php else: ?>
@@ -739,7 +739,7 @@ function editarProducto(id) {
             
             // Mostrar imagen actual si existe
             if (data.producto.imagen) {
-                document.getElementById('imagePreview').src = '../uploads/productos/' + data.producto.imagen;
+                document.getElementById('imagePreview').src = '<?= uploads_url('productos') ?>/' + data.producto.imagen;
                 document.getElementById('previewContainer').classList.remove('hidden');
             } else {
                 document.getElementById('previewContainer').classList.add('hidden');

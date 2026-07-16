@@ -345,7 +345,7 @@ foreach ($kits as $kit) {
                         <!-- Imagen -->
                         <?php if ($item['imagen']): ?>
                         <div class="w-full aspect-[4/3] bg-cream-50 overflow-hidden flex items-center justify-center">
-                            <img src="uploads/<?= $item['tipo'] === 'kit' ? 'kits' : 'productos' ?>/<?= htmlspecialchars($item['imagen']) ?>"
+                            <img src="<?= uploads_url() ?><?= $item['tipo'] === 'kit' ? 'kits' : 'productos' ?>/<?= htmlspecialchars($item['imagen']) ?>"
                                  alt="<?= htmlspecialchars($item['nombre']) ?>"
                                  class="w-full h-full object-contain">
                         </div>
@@ -520,7 +520,7 @@ foreach ($kits as $kit) {
             <!-- Imagen del Producto -->
             <?php if ($producto['imagen']): ?>
                 <div class="w-full aspect-square bg-gradient-to-br from-cream-100 to-cream-200 flex items-center justify-center overflow-hidden">
-                    <img src="<?= url('uploads/productos/' . htmlspecialchars($producto['imagen'])) ?>" 
+                    <img src="<?= uploads_url('productos/' . htmlspecialchars($producto['imagen'])) ?>" 
                          alt="<?= htmlspecialchars($producto['producto']) ?>"
                          class="w-full h-full object-cover">
                 </div>
@@ -599,10 +599,10 @@ foreach ($kits as $kit) {
             </div>
             
             <!-- Imagen del Kit -->
-            <!-- DEBUG: imagen='<?= htmlspecialchars($kit['imagen'] ?? 'NULL') ?>' url='<?= url('uploads/kits/' . htmlspecialchars($kit['imagen'] ?? '')) ?>' -->
+            <!-- DEBUG: imagen='<?= htmlspecialchars($kit['imagen'] ?? 'NULL') ?>' url='<?= uploads_url('kits/' . htmlspecialchars($kit['imagen'] ?? '')) ?>' -->
             <?php if ($kit['imagen']): ?>
                 <div class="w-full aspect-square bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center overflow-hidden">
-                    <img src="<?= url('uploads/kits/' . htmlspecialchars($kit['imagen'])) ?>" 
+                    <img src="<?= uploads_url('kits/' . htmlspecialchars($kit['imagen'])) ?>" 
                          alt="<?= htmlspecialchars($kit['nombre']) ?>"
                          class="w-full h-full object-cover"
                          onerror="console.error('Error cargando imagen kit:', this.src); this.parentElement.innerHTML='<div class=\'text-red-500 text-xs\'>Error: Imagen no encontrada</div>'">
@@ -839,6 +839,8 @@ foreach ($kits as $kit) {
 // ========================================
 // FUNCIONES DEL BUSCADOR
 // ========================================
+
+window.UPLOADS_URL = '<?= uploads_url() ?>';
 
 let tipoActivo = 'producto';
 
@@ -1250,7 +1252,7 @@ function actualizarResumen() {
         return `
             <div class="flex items-center gap-3 bg-cream-50 p-3 rounded-lg">
                 ${item.imagen ? 
-                    `<img src="${window.BASE_PATH}uploads/${carpetaImagen}/${item.imagen}" class="w-12 h-12 object-cover rounded-lg">` :
+                    `<img src="${window.UPLOADS_URL}${carpetaImagen}/${item.imagen}" class="w-12 h-12 object-cover rounded-lg">` :
                     `<div class="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center">
                         ${item.es_kit ? '' : ''}
                     </div>`
@@ -1306,7 +1308,7 @@ function mostrarModalConfirmacion() {
         return `
             <div class="flex items-center gap-3 mb-2">
                 ${item.imagen ? 
-                    `<img src="${window.BASE_PATH}uploads/${carpetaImagen}/${item.imagen}" class="w-12 h-12 object-cover rounded-lg">` :
+                    `<img src="${window.UPLOADS_URL}${carpetaImagen}/${item.imagen}" class="w-12 h-12 object-cover rounded-lg">` :
                     `<div class="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center">
                         ${item.es_kit ? '' : ''}
                     </div>`

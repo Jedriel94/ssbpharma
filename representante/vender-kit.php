@@ -471,7 +471,7 @@ $storeName = Configuracion::get('nombre_tienda', 'Solumedic');
                 $posibles = (int)$kit['kits_posibles_rep'];
                 $disabled = $posibles === 0;
                 $imgSrc   = !empty($kit['imagen'])
-                    ? asset('uploads/kits/' . $kit['imagen'])
+                    ? uploads_url('kits/' . $kit['imagen'])
                     : null;
             ?>
                 <label class="kit-card<?= $disabled ? ' disabled' : '' ?>"

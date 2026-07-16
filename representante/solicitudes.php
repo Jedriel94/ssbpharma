@@ -94,7 +94,7 @@ function estado_sol($estado) {
                                     <a href="<?= htmlspecialchars($solicitud['url_rastreo']) ?>" target="_blank" class="mt-1 inline-block text-xs font-bold text-[#4a70a9] underline">Ver rastreo</a>
                                 <?php endif; ?>
                                 <?php if (!empty($solicitud['guia_archivo'])): ?>
-                                    <a href="<?= url('uploads/guias_consignacion/' . htmlspecialchars($solicitud['guia_archivo'])) ?>" target="_blank" class="mt-1 ml-3 inline-block text-xs font-bold text-[#4a70a9] underline">Ver archivo</a>
+                                    <a href="<?= uploads_url('guias_consignacion/' . htmlspecialchars($solicitud['guia_archivo'])) ?>" target="_blank" class="mt-1 ml-3 inline-block text-xs font-bold text-[#4a70a9] underline">Ver archivo</a>
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
@@ -140,7 +140,7 @@ function estado_sol($estado) {
                                 <?php foreach ($det as $item): ?>
                                 <div class="flex items-center gap-3 rounded-lg border border-stone-100 bg-white px-3 py-2">
                                     <?php if (!empty($item['imagen'])): ?>
-                                        <img src="<?= asset('uploads/productos/' . $item['imagen']) ?>" alt="" class="w-9 h-9 rounded object-cover shrink-0">
+                                        <img src="<?= uploads_url('productos/' . $item['imagen']) ?>" alt="" class="w-9 h-9 rounded object-cover shrink-0">
                                     <?php else: ?>
                                         <div class="w-9 h-9 rounded bg-stone-200 grid place-items-center text-sm font-black text-slate-500 shrink-0"><?= strtoupper(substr($item['producto'], 0, 1)) ?></div>
                                     <?php endif; ?>

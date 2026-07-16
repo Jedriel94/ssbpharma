@@ -644,7 +644,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                         $fileRep = $_FILES['comprobante'];
                         $allowedTypesRep = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
                         if ($fileRep['size'] <= 5 * 1024 * 1024 && in_array($fileRep['type'], $allowedTypesRep)) {
-                            $uploadDirRep = __DIR__ . '/uploads/comprobantes/';
+                            $uploadDirRep = uploads_dir('comprobantes') . '/';
                             if (!is_dir($uploadDirRep)) mkdir($uploadDirRep, 0755, true);
                             $extRep = pathinfo($fileRep['name'], PATHINFO_EXTENSION);
                             $fnRep  = 'comprobante_' . $pedido_id . '_' . time() . '.' . $extRep;
@@ -696,7 +696,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 }
                 
                 // Guardar archivo
-                $uploadDir = __DIR__ . '/uploads/comprobantes/';
+                $uploadDir = uploads_dir('comprobantes') . '/';
                 if (!is_dir($uploadDir)) {
                     mkdir($uploadDir, 0755, true);
                 }

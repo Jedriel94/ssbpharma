@@ -102,7 +102,7 @@ foreach ($preciosRefRaw as $r) {
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
                                         <?php if ($kit['imagen']): ?>
-                                            <img src="<?= asset('uploads/kits/' . $kit['imagen']) ?>" 
+                                            <img src="<?= uploads_url('kits/' . $kit['imagen']) ?>" 
                                                  alt="<?= htmlspecialchars($kit['nombre']) ?>" 
                                                  class="w-12 h-12 rounded-lg object-cover">
                                         <?php else: ?>
@@ -823,7 +823,7 @@ async function editarKit(kit_id) {
                 
                 // Construir URL correctamente - asegurar barras correctas
                 const baseUrl = BASE_URL.endsWith('/') ? BASE_URL : BASE_URL + '/';
-                const imagenUrl = baseUrl + 'uploads/kits/' + kit.imagen;
+                const imagenUrl = '<?= uploads_url('kits') ?>/' + kit.imagen;
                 
                 console.log('Cargando imagen desde:', imagenUrl); // Debug
                 console.log('BASE_URL original:', BASE_URL); // Debug

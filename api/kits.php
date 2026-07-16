@@ -149,8 +149,19 @@ elseif ($method === 'POST') {
     }
     
     $action = $data['action'] ?? '';
-    
+
     switch ($action) {
+        case 'reordenar':
+            $ids = $data['ids'] ?? [];
+            if (is_string($ids)) $ids = json_decode($ids, true);
+            if (!is_array($ids) || empty($ids)) {
+                echo json_encode(['success' => false, 'mensaje' => 'Orden inválido']);
+                break;
+            }
+            $kitModel->actualizarOrden($ids);
+            echo json_encode(['success' => true, 'mensaje' => 'Orden guardado']);
+            break;
+
         case 'create':
             // Validar campos requeridos
             if (empty($data['nombre']) || !isset($data['precio_kit'])) {

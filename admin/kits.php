@@ -77,7 +77,7 @@ foreach ($preciosRefRaw as $r) {
                         <th class="px-6 py-4 text-center">Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-200">
+                <tbody class="divide-y divide-slate-200" id="kits-table-body">
                     <?php if (empty($kits)): ?>
                         <tr>
                             <td colspan="8" class="px-6 py-12 text-center">
@@ -90,9 +90,14 @@ foreach ($preciosRefRaw as $r) {
                         </tr>
                     <?php else: ?>
                         <?php foreach ($kits as $kit): ?>
-                            <tr class="hover:bg-slate-50 transition">
+                            <tr class="kit-row hover:bg-slate-50 transition" data-id="<?= $kit['id'] ?>">
                                 <td class="px-6 py-4">
-                                    <span class="font-mono text-sm text-slate-600">#<?= $kit['id'] ?></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="kit-drag-handle cursor-move text-slate-300 hover:text-slate-500 flex-shrink-0" title="Arrastra para reordenar">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="5" r="1.6"/><circle cx="15" cy="5" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="19" r="1.6"/><circle cx="15" cy="19" r="1.6"/></svg>
+                                        </span>
+                                        <span class="font-mono text-sm text-slate-600">#<?= $kit['id'] ?></span>
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
@@ -156,17 +161,17 @@ foreach ($preciosRefRaw as $r) {
                                         <button onclick="verDetalleKit(<?= $kit['id'] ?>)" 
                                                 class="p-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg transition"
                                                 title="Ver detalle">
-                                            
+                                            👁️
                                         </button>
                                         <button onclick="editarKit(<?= $kit['id'] ?>)" 
                                                 class="p-2 bg-yellow-100 hover:bg-yellow-200 text-yellow-700 rounded-lg transition"
                                                 title="Editar">
-                                            
+                                            ✏️
                                         </button>
                                         <button onclick="toggleEstadoKit(<?= $kit['id'] ?>, <?= $kit['activo'] ? 'false' : 'true' ?>)" 
                                                 class="p-2 bg-<?= $kit['activo'] ? 'red' : 'green' ?>-100 hover:bg-<?= $kit['activo'] ? 'red' : 'green' ?>-200 text-<?= $kit['activo'] ? 'red' : 'green' ?>-700 rounded-lg transition"
                                                 title="<?= $kit['activo'] ? 'Desactivar' : 'Activar' ?>">
-                                            <?= $kit['activo'] ? '' : '' ?>
+                                            <?= $kit['activo'] ? '🚫' : '✅' ?>
                                         </button>
                                     </div>
                                 </td>
@@ -874,6 +879,39 @@ async function editarKit(kit_id) {
         mostrarAlerta('Error al cargar kit: ' + error.message, 'error');
     }
 }
+</script>
+
+<!-- Reordenar kits: arrastrar y soltar (drag & drop) -->
+<script src="<?= asset('js/Sortable.min.js') ?>"></script>
+<script>
+(function () {
+    const tbody = document.getElementById('kits-table-body');
+    if (!tbody) return;
+    if (typeof Sortable === 'undefined') { console.error('SortableJS no se cargó — el reordenar no funcionará.'); return; }
+
+    Sortable.create(tbody, {
+        handle: '.kit-drag-handle',
+        animation: 150,
+        ghostClass: 'bg-slate-100',
+        delay: 120,
+        delayOnTouchOnly: true,
+        touchStartThreshold: 4,
+        onEnd: function () {
+            const ids = Array.from(tbody.querySelectorAll('tr.kit-row')).map(tr => tr.dataset.id).filter(Boolean);
+            const fd = new FormData();
+            fd.append('action', 'reordenar');
+            fd.append('ids', JSON.stringify(ids));
+            fetch(BASE_URL + 'api/kits.php', { method: 'POST', body: fd })
+                .then(r => r.json())
+                .then(d => {
+                    if (typeof mostrarAlerta === 'function') {
+                        mostrarAlerta(d.success ? 'Orden guardado' : (d.mensaje || 'Error al guardar el orden'), d.success ? 'success' : 'error');
+                    }
+                })
+                .catch(() => { if (typeof mostrarAlerta === 'function') mostrarAlerta('Error de conexión al guardar el orden', 'error'); });
+        }
+    });
+})();
 </script>
 
 <?php include '../includes/footer.php'; ?>

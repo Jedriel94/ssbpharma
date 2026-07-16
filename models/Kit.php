@@ -568,9 +568,23 @@ class Kit {
                 LEFT JOIN productos p ON kp.producto_id = p.id AND p.activo = 1
                 LEFT JOIN kit_ventas kv ON k.id = kv.kit_id
                 GROUP BY k.id
-                ORDER BY k.activo DESC, k.orden, k.nombre";
-        
+                ORDER BY k.orden, k.nombre";
+
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
+    }
+
+    /**
+     * Guardar el orden de los kits (drag & drop del admin).
+     * Recibe un arreglo de IDs en el nuevo orden y asigna orden = 1,2,3...
+     */
+    public function actualizarOrden(array $ids) {
+        $stmt = $this->db->prepare("UPDATE kits SET orden = :orden WHERE id = :id");
+        $pos = 1;
+        foreach ($ids as $id) {
+            $stmt->execute(['orden' => $pos, 'id' => (int)$id]);
+            $pos++;
+        }
+        return true;
     }
 }

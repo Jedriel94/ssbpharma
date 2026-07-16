@@ -9,17 +9,31 @@ class Producto {
     }
     
     public function getAll() {
-        $query = "SELECT * FROM productos ORDER BY activo DESC, producto ASC";
+        $query = "SELECT * FROM productos ORDER BY orden ASC, producto ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll();
     }
     
     public function getAllActivos() {
-        $query = "SELECT * FROM productos WHERE activo = 1 ORDER BY producto ASC";
+        $query = "SELECT * FROM productos WHERE activo = 1 ORDER BY orden ASC, producto ASC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    /**
+     * Guardar el orden de los productos (drag & drop del admin).
+     * Recibe un arreglo de IDs en el nuevo orden y asigna orden = 1,2,3...
+     */
+    public function actualizarOrden(array $ids) {
+        $stmt = $this->conn->prepare("UPDATE productos SET orden = :orden WHERE id = :id");
+        $pos = 1;
+        foreach ($ids as $id) {
+            $stmt->execute(['orden' => $pos, 'id' => (int)$id]);
+            $pos++;
+        }
+        return true;
     }
     
     /**
@@ -46,7 +60,7 @@ class Producto {
                   WHERE activo = 1 
                   AND tags IS NOT NULL 
                   AND (" . implode(' OR ', $conditions) . ")
-                  ORDER BY producto ASC";
+                  ORDER BY orden ASC, producto ASC";
         
         $stmt = $this->conn->prepare($query);
         

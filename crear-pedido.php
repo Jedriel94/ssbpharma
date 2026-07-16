@@ -39,8 +39,10 @@ function obtenerRepresentantePublico(PDO $pdo) {
 }
 
 // Cargar configuración desde base de datos
-$MONTO_MINIMO_ENVIO_GRATIS = Configuracion::get('monto_minimo_envio_gratis', 1900.00);
-$COSTO_ENVIO = Configuracion::get('costo_envio', 160.00);
+$_mmeg = Configuracion::get('monto_minimo_envio_gratis', 1900.00);
+$MONTO_MINIMO_ENVIO_GRATIS = ($_mmeg === '' || $_mmeg === null) ? 1900.00 : (float)$_mmeg;
+$_ce = Configuracion::get('costo_envio', 160.00);
+$COSTO_ENVIO = ($_ce === '' || $_ce === null) ? 160.00 : (float)$_ce;
 $MOSTRAR_STOCK = (bool) Configuracion::get('mostrar_stock', 1);
 
 // Procesar peticiones AJAX primero (antes de validar teléfono)
@@ -485,13 +487,25 @@ foreach ($kits as $kit) {
             <div id="contadorResultados" class="mt-2 text-center text-sm text-slate-600">
                 <span id="resultadosEncontrados"><?= count($productos) + count($kits) ?></span> productos disponibles
             </div>
+
+            <!-- Chips: Productos / Kits -->
+            <div class="flex justify-center gap-2 mt-3">
+                <button type="button" id="chip-producto" onclick="filtrarTipo('producto')"
+                        class="chip-tipo px-6 py-2 rounded-full text-sm font-bold bg-terracotta-500 text-white transition">
+                    Productos
+                </button>
+                <button type="button" id="chip-kit" onclick="filtrarTipo('kit')"
+                        class="chip-tipo px-6 py-2 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 transition">
+                    Kits
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- Grid de Productos (2 columnas en móvil) -->
     <div id="gridProductos" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
         <?php foreach ($productos as $producto): ?>
-        <div id="producto-<?= $producto['id'] ?>" class="producto-item card rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" 
+        <div id="producto-<?= $producto['id'] ?>" class="producto-item card rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col"
              data-producto-id="<?= $producto['id'] ?>"
              data-producto-nombre="<?= strtolower(htmlspecialchars($producto['producto'])) ?>"
              data-producto-imagen="<?= htmlspecialchars($producto['imagen']) ?>"
@@ -512,7 +526,7 @@ foreach ($kits as $kit) {
                 </div>
             <?php endif; ?>
             
-            <div class="p-3">
+            <div class="p-3 flex flex-col flex-1">
                 <!-- Nombre del producto -->
                 <h3 class="text-sm font-bold text-slate-900 mb-2 line-clamp-2"><?= htmlspecialchars($producto['producto']) ?></h3>
                 
@@ -525,7 +539,7 @@ foreach ($kits as $kit) {
                 <?php endif; ?>
                 
                 <!-- Precio inicial -->
-                <p class="precio-display text-terracotta-600 font-bold text-base mb-2" 
+                <p class="precio-display text-terracotta-600 font-bold text-base mb-2 mt-auto"
                    data-producto-id="<?= $producto['id'] ?>">
                     $<span class="precio-valor">0.00</span>
                 </p>
@@ -820,6 +834,26 @@ foreach ($kits as $kit) {
 // FUNCIONES DEL BUSCADOR
 // ========================================
 
+let tipoActivo = 'producto';
+
+function filtrarTipo(tipo) {
+    tipoActivo = tipo;
+    document.querySelectorAll('.chip-tipo').forEach(c => {
+        const activo = c.id === 'chip-' + tipo;
+        c.classList.toggle('bg-terracotta-500', activo);
+        c.classList.toggle('text-white', activo);
+        c.classList.toggle('bg-white', !activo);
+        c.classList.toggle('text-slate-600', !activo);
+        c.classList.toggle('border', !activo);
+        c.classList.toggle('border-slate-200', !activo);
+    });
+    buscarProductos();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    filtrarTipo('producto');
+});
+
 function buscarProductos() {
     const input = document.getElementById('buscadorProductos');
     const btnLimpiar = document.getElementById('btnLimpiarBusqueda');
@@ -844,8 +878,10 @@ function buscarProductos() {
     // Filtrar productos
     productos.forEach(producto => {
         const nombreProducto = producto.getAttribute('data-producto-nombre');
-        
-        if (nombreProducto.includes(filtro)) {
+        const esKit = producto.getAttribute('data-es-kit') === '1';
+        const tipoItem = esKit ? 'kit' : 'producto';
+
+        if (nombreProducto.includes(filtro) && tipoItem === tipoActivo) {
             producto.style.display = 'block';
             // Animación de aparición
             producto.style.animation = 'fadeIn 0.3s ease';

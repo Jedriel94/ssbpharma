@@ -121,12 +121,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
         case 'delete':
             $id = $_POST['id'] ?? 0;
-            
+
             if ($productoModel->delete($id)) {
                 echo json_encode(['success' => true, 'message' => 'Producto eliminado exitosamente']);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Error al eliminar producto']);
             }
+            exit;
+
+        case 'reordenar':
+            $ids = json_decode($_POST['ids'] ?? '[]', true);
+            if (!is_array($ids) || empty($ids)) {
+                echo json_encode(['success' => false, 'message' => 'Orden inválido']);
+                exit;
+            }
+            $productoModel->actualizarOrden($ids);
+            echo json_encode(['success' => true, 'message' => 'Orden guardado']);
             exit;
             
         case 'get':
@@ -373,6 +383,7 @@ $productosSinImagen = count(array_filter($productos, fn($p) => empty($p['imagen'
                             $tagsProducto = trim((string)($producto['tags'] ?? ''));
                             ?>
                             <tr class="producto-row hover:bg-slate-50 transition <?= $producto['activo'] ? '' : 'opacity-70' ?>"
+                                data-id="<?= (int)$producto['id'] ?>"
                                 data-nombre="<?= htmlspecialchars(mb_strtolower($producto['producto'] ?? ''), ENT_QUOTES) ?>"
                                 data-codigo="<?= htmlspecialchars(mb_strtolower($producto['codigo_barras'] ?? ''), ENT_QUOTES) ?>"
                                 data-tags="<?= htmlspecialchars(mb_strtolower($tagsProducto), ENT_QUOTES) ?>"
@@ -382,6 +393,9 @@ $productosSinImagen = count(array_filter($productos, fn($p) => empty($p['imagen'
                                 data-codigo-ok="<?= !empty($producto['codigo_barras']) ? '1' : '0' ?>">
                                 <td class="px-4 py-4 min-w-[280px]">
                                     <div class="flex items-center gap-3">
+                                        <span class="drag-handle cursor-move text-slate-300 hover:text-slate-500 flex-shrink-0" title="Arrastra para reordenar">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="5" r="1.6"/><circle cx="15" cy="5" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="19" r="1.6"/><circle cx="15" cy="19" r="1.6"/></svg>
+                                        </span>
                                         <div class="prod-thumb">
                                             <?php if ($producto['imagen']): ?>
                                                 <img src="../uploads/productos/<?= htmlspecialchars($producto['imagen']) ?>"
@@ -1057,6 +1071,39 @@ document.addEventListener('DOMContentLoaded', () => {
         filtro.addEventListener('input', aplicarFiltrosProductos);
     }
 });
+</script>
+
+<!-- Reordenar productos: arrastrar y soltar (drag & drop) -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script>
+(function () {
+    const tbody = document.getElementById('productos-table-body');
+    if (!tbody || typeof Sortable === 'undefined') return;
+
+    Sortable.create(tbody, {
+        handle: '.drag-handle',
+        animation: 150,
+        ghostClass: 'bg-slate-100',
+        onEnd: function () {
+            const ids = Array.from(tbody.querySelectorAll('tr.producto-row'))
+                             .map(tr => tr.dataset.id)
+                             .filter(Boolean);
+            const fd = new FormData();
+            fd.append('action', 'reordenar');
+            fd.append('ids', JSON.stringify(ids));
+            fetch('productos.php', { method: 'POST', body: fd })
+                .then(r => r.json())
+                .then(d => {
+                    if (typeof mostrarAlerta === 'function') {
+                        mostrarAlerta(d.success ? 'Orden guardado' : (d.message || 'Error al guardar el orden'), d.success ? 'success' : 'error');
+                    }
+                })
+                .catch(() => {
+                    if (typeof mostrarAlerta === 'function') mostrarAlerta('Error de conexión al guardar el orden', 'error');
+                });
+        }
+    });
+})();
 </script>
 
 </body>

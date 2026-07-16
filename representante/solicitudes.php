@@ -94,7 +94,7 @@ function estado_sol($estado) {
                                     <a href="<?= htmlspecialchars($solicitud['url_rastreo']) ?>" target="_blank" class="mt-1 inline-block text-xs font-bold text-[#4a70a9] underline">Ver rastreo</a>
                                 <?php endif; ?>
                                 <?php if (!empty($solicitud['guia_archivo'])): ?>
-                                    <a href="<?= uploads_url('guias_consignacion/' . htmlspecialchars($solicitud['guia_archivo'])) ?>" target="_blank" class="mt-1 ml-3 inline-block text-xs font-bold text-[#4a70a9] underline">Ver archivo</a>
+                                    <a href="<?= url('descargar-guia.php?file=' . urlencode($solicitud['guia_archivo'])) ?>" target="_blank" class="mt-1 ml-3 inline-block text-xs font-bold text-[#4a70a9] underline">Ver archivo</a>
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>

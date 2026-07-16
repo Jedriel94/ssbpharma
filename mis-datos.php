@@ -72,10 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $maxSize = 5 * 1024 * 1024;
                 
                 if ($file['error'] === UPLOAD_ERR_OK && $file['size'] <= $maxSize && in_array($file['type'], $allowedTypes)) {
-                    $uploadDir = uploads_dir('fiscales') . '/';
-                    if (!is_dir($uploadDir)) {
-                        mkdir($uploadDir, 0755, true);
-                    }
+                    $uploadDir = uploads_dir_privado('fiscales') . '/';
                     $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
                     $constancia_fiscal = 'constancia_' . $telefono . '_' . time() . '.' . $extension;
                     move_uploaded_file($file['tmp_name'], $uploadDir . $constancia_fiscal);

@@ -83,3 +83,19 @@ function uploads_url($sub = '') {
     $sub = ltrim($sub, '/');
     return $sub === '' ? $base . '/' : $base . '/' . $sub;
 }
+
+// Carpeta de subidas con documentos privados (fiscales, guias). La crea si no
+// existe y le deja un .htaccess que bloquea la descarga directa: estos archivos
+// solo se sirven por descargar-fiscal.php / descargar-guia.php, que validan sesion.
+// Se auto-repara, asi que tambien protege la carpeta externa fuera del despliegue.
+function uploads_dir_privado($sub) {
+    $dir = uploads_dir($sub);
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+    $htaccess = $dir . '/.htaccess';
+    if (!file_exists($htaccess)) {
+        file_put_contents($htaccess, "# Solo se sirven por PHP con sesion validada.\nOrder Deny,Allow\nDeny from all\n");
+    }
+    return $dir;
+}

@@ -105,13 +105,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'guard
         $file = $_FILES['cli_constancia'];
         $allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
         if (in_array($file['type'], $allowedTypes)) {
-            $uploadDir = uploads_dir('constancias') . '/';
-            if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
+            // Misma carpeta y mismo formato de nombre que mis-datos.php, para que
+            // descargar-fiscal.php (que valida sesion) pueda servir el archivo.
+            $uploadDir = uploads_dir_privado('fiscales') . '/';
             $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-            $fname = 'constancia_' . $cliente['id'] . '_' . time() . '.' . $ext;
+            $fname = 'constancia_' . $tel . '_' . time() . '.' . $ext;
             if (move_uploaded_file($file['tmp_name'], $uploadDir . $fname)) {
                 $sets[] = '`constancia_fiscal` = ?';
-                $vals[] = 'uploads/constancias/' . $fname;
+                $vals[] = $fname;
                 $constanciaGuardada = $fname;
             }
         }

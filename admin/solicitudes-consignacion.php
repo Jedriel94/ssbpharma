@@ -65,10 +65,7 @@ function guardarArchivoGuia($solicitudId) {
         throw new Exception('El tipo de archivo de guia no es valido');
     }
 
-    $uploadDir = uploads_dir('guias_consignacion') . '/';
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0755, true);
-    }
+    $uploadDir = uploads_dir_privado('guias_consignacion') . '/';
 
     $filename = 'guia_consignacion_' . (int)$solicitudId . '_' . time() . '.' . $extension;
     if (!move_uploaded_file($file['tmp_name'], $uploadDir . $filename)) {
@@ -505,7 +502,7 @@ $pageTitle = ($vista === 'lista' ? 'Lista de Consignaciones' : 'Tablero de Consi
                                             <a href="<?= h($solicitud['url_rastreo']) ?>" target="_blank" class="text-xs font-bold text-slate-700 underline">Abrir rastreo</a>
                                         <?php endif; ?>
                                         <?php if (!empty($solicitud['guia_archivo'])): ?>
-                                            <a href="<?= uploads_url('guias_consignacion') ?>/<?= h($solicitud['guia_archivo']) ?>" target="_blank" class="text-xs font-bold text-slate-700 underline">Ver archivo</a>
+                                            <a href="<?= url('descargar-guia.php?file=' . urlencode($solicitud['guia_archivo'])) ?>" target="_blank" class="text-xs font-bold text-slate-700 underline">Ver archivo</a>
                                         <?php endif; ?>
                                     </div>
                                 </div>

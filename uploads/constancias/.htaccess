@@ -1,0 +1,3 @@
+# Solo se sirven por PHP con sesion validada.
+Order Deny,Allow
+Deny from all

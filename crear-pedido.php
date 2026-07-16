@@ -790,7 +790,7 @@ foreach ($kits as $kit) {
     <div class="card rounded-3xl shadow-2xl max-w-md w-full p-8 text-center" onclick="event.stopPropagation()">
         <!-- Icono de éxito -->
         <div class="w-20 h-20 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
-            <span class="text-5xl"></span>
+            <span class="text-5xl">✅</span>
         </div>
         
         <h2 class="text-2xl font-bold text-slate-900 mb-2">¡Pedido Creado Exitosamente!</h2>
@@ -811,14 +811,14 @@ foreach ($kits as $kit) {
             <!-- Botón principal: Proceder al Pago -->
             <button onclick="procederAlPago()" 
                     class="w-full btn-primary text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2">
-                <span class="text-xl"></span>
+                <span class="text-xl">💳</span>
                 <span>Proceder al Pago</span>
             </button>
             
             <!-- Botón secundario: Ver seguimiento -->
             <button onclick="verSeguimiento()" 
                     class="w-full btn-secondary text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2">
-                <span class="text-xl"></span>
+                <span class="text-xl">📦</span>
                 <span>Ver Seguimiento del Pedido</span>
             </button>
             

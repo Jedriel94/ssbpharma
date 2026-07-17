@@ -195,19 +195,14 @@ $titulo = match($rol_codigo) {
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
             <div>
                 <h2 class="text-xl font-bold text-slate-900">Operación de Representantes</h2>
-                <p class="text-sm text-slate-600">Entrega directa, consignación, efectivo y CFDI</p>
+                <p class="text-sm text-slate-600">Consignación, efectivo y CFDI</p>
             </div>
             <span class="text-xs font-semibold text-slate-500 uppercase">
                 <?= in_array($rol_codigo, ['director_general', 'admin'], true) ? 'Vista global' : 'Vista de equipo' ?>
             </span>
         </div>
 
-        <div class="dashboard-op-grid grid grid-cols-2 lg:grid-cols-7 gap-3 mb-6">
-            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                <p class="text-xs font-semibold text-slate-500 uppercase">Venta directa</p>
-                <p id="opVentasDirectas" class="text-2xl font-bold text-slate-900 mt-2">0</p>
-                <p id="opMontoDirecto" class="text-xs text-slate-500 mt-1">$0.00</p>
-            </div>
+        <div class="dashboard-op-grid grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
                 <p class="text-xs font-semibold text-slate-500 uppercase">Venta tienda</p>
                 <p id="opVentasTienda" class="text-2xl font-bold text-slate-900 mt-2">0</p>
@@ -228,24 +223,6 @@ $titulo = match($rol_codigo) {
                 <p id="opCfdiPendiente" class="text-2xl font-bold text-purple-700 mt-2">0</p>
                 <p class="text-xs text-purple-600 mt-1">PDF/XML faltante</p>
             </div>
-            <?php if (in_array($rol_codigo, ['admin', 'representante'], true)): ?>
-            <a href="solicitudes-consignacion.php" class="rounded-xl border border-blue-200 bg-blue-50 p-4 hover:bg-blue-100 transition">
-            <?php else: ?>
-            <div class="rounded-xl border border-blue-200 bg-blue-50 p-4">
-            <?php endif; ?>
-                <p class="text-xs font-semibold text-blue-700 uppercase">Solicitudes</p>
-                <p id="opSolicitudes" class="text-2xl font-bold text-blue-700 mt-2">0</p>
-                <p class="text-xs text-blue-600 mt-1">Abiertas</p>
-            <?php if (in_array($rol_codigo, ['admin', 'representante'], true)): ?>
-            </a>
-            <?php else: ?>
-            </div>
-            <?php endif; ?>
-            <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-                <p class="text-xs font-semibold text-emerald-700 uppercase">Inventario</p>
-                <p id="opInventario" class="text-2xl font-bold text-emerald-700 mt-2">0</p>
-                <p class="text-xs text-emerald-600 mt-1">Disponible</p>
-            </div>
         </div>
 
         <div class="px-4 py-3 border-b border-slate-100">
@@ -257,19 +234,15 @@ $titulo = match($rol_codigo) {
                 <thead class="bg-slate-100">
                     <tr>
                         <th class="op-th-sort px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase" data-sort-col="nombre" onclick="opSortBy('nombre')">Representante<span class="op-sort-icon">↕</span></th>
-                        <th class="op-th-sort px-4 py-3 text-right text-xs font-semibold text-slate-600 uppercase" data-sort-col="ventas_directas" onclick="opSortBy('ventas_directas')">Venta directa<span class="op-sort-icon">↕</span></th>
-                        <th class="op-th-sort px-4 py-3 text-right text-xs font-semibold text-slate-600 uppercase" data-sort-col="monto_directo" onclick="opSortBy('monto_directo')">Monto<span class="op-sort-icon">↕</span></th>
                         <th class="op-th-sort px-4 py-3 text-right text-xs font-semibold text-slate-600 uppercase" data-sort-col="ventas_tienda" onclick="opSortBy('ventas_tienda')">Tienda<span class="op-sort-icon">↕</span></th>
                         <th class="op-th-sort px-4 py-3 text-right text-xs font-semibold text-slate-600 uppercase" data-sort-col="monto_tienda" onclick="opSortBy('monto_tienda')">Monto tienda<span class="op-sort-icon">↕</span></th>
                         <th class="op-th-sort px-4 py-3 text-right text-xs font-semibold text-slate-600 uppercase" data-sort-col="efectivo_pendiente" onclick="opSortBy('efectivo_pendiente')">Efectivo pend.<span class="op-sort-icon">↕</span></th>
                         <th class="op-th-sort px-4 py-3 text-right text-xs font-semibold text-slate-600 uppercase" data-sort-col="cfdi_pendientes" onclick="opSortBy('cfdi_pendientes')">CFDI pend.<span class="op-sort-icon">↕</span></th>
-                        <th class="op-th-sort px-4 py-3 text-right text-xs font-semibold text-slate-600 uppercase" data-sort-col="inventario_disponible" onclick="opSortBy('inventario_disponible')">Inventario<span class="op-sort-icon">↕</span></th>
-                        <th class="op-th-sort px-4 py-3 text-right text-xs font-semibold text-slate-600 uppercase" data-sort-col="solicitudes_abiertas" onclick="opSortBy('solicitudes_abiertas')">Solicitudes<span class="op-sort-icon">↕</span></th>
                     </tr>
                 </thead>
                 <tbody id="tablaOperacionRepresentantes">
                     <tr>
-                        <td colspan="9" class="text-center py-8 text-slate-500">Cargando operación...</td>
+                        <td colspan="5" class="text-center py-8 text-slate-500">Cargando operación...</td>
                     </tr>
                 </tbody>
             </table>
@@ -1288,14 +1261,10 @@ function _opRenderTable() {
                 <div class="font-semibold text-slate-900">${rep.nombre}</div>
                 <div class="text-xs text-slate-500">${rep.codigo}</div>
             </td>
-            <td class="px-4 py-3 text-right font-semibold">${parseInt(rep.ventas_directas || 0).toLocaleString('es-MX')}</td>
-            <td class="px-4 py-3 text-right font-semibold text-green-600">$${parseFloat(rep.monto_directo || 0).toLocaleString('es-MX', {minimumFractionDigits: 2})}</td>
             <td class="px-4 py-3 text-right font-semibold">${parseInt(rep.ventas_tienda || 0).toLocaleString('es-MX')}</td>
             <td class="px-4 py-3 text-right font-semibold">$${parseFloat(rep.monto_tienda || 0).toLocaleString('es-MX', {minimumFractionDigits: 2})}</td>
             <td class="px-4 py-3 text-right">${parseInt(rep.efectivo_pendiente || 0).toLocaleString('es-MX')}</td>
             <td class="px-4 py-3 text-right">${parseInt(rep.cfdi_pendientes || 0).toLocaleString('es-MX')}</td>
-            <td class="px-4 py-3 text-right">${parseInt(rep.inventario_disponible || 0).toLocaleString('es-MX')}</td>
-            <td class="px-4 py-3 text-right">${parseInt(rep.solicitudes_abiertas || 0).toLocaleString('es-MX')}</td>
         `;
         tbody.appendChild(tr);
     });
@@ -1319,22 +1288,18 @@ async function cargarOperacionRepresentantes() {
         if (!result.success) return;
 
         const kpis = result.data.kpis || {};
-        document.getElementById('opVentasDirectas').textContent = parseInt(kpis.ventas_directas || 0).toLocaleString('es-MX');
-        document.getElementById('opMontoDirecto').textContent = '$' + parseFloat(kpis.monto_directo || 0).toLocaleString('es-MX', {minimumFractionDigits: 2});
         document.getElementById('opVentasTienda').textContent = parseInt(kpis.ventas_tienda || 0).toLocaleString('es-MX');
         document.getElementById('opMontoTienda').textContent = '$' + parseFloat(kpis.monto_tienda || 0).toLocaleString('es-MX', {minimumFractionDigits: 2});
         document.getElementById('opPagosValidar').textContent = parseInt(kpis.pagos_por_validar || 0).toLocaleString('es-MX');
         document.getElementById('opEfectivoPendiente').textContent = parseInt(kpis.efectivo_pendiente || 0).toLocaleString('es-MX');
         document.getElementById('opMontoEfectivo').textContent = '$' + parseFloat(kpis.monto_efectivo_pendiente || 0).toLocaleString('es-MX', {minimumFractionDigits: 2});
         document.getElementById('opCfdiPendiente').textContent = parseInt(kpis.cfdi_pendientes || 0).toLocaleString('es-MX');
-        document.getElementById('opSolicitudes').textContent = parseInt(kpis.solicitudes_abiertas || 0).toLocaleString('es-MX');
-        document.getElementById('opInventario').textContent = parseInt(kpis.inventario_disponible || 0).toLocaleString('es-MX');
 
         const tbody = document.getElementById('tablaOperacionRepresentantes');
         tbody.innerHTML = '';
 
         if (!result.data.representantes || result.data.representantes.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="9" class="text-center py-8 text-slate-500">Sin representantes en este alcance.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500">Sin representantes en este alcance.</td></tr>';
             _opPag.apply([]);
             return;
         }

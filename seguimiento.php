@@ -657,7 +657,7 @@ $estados = [
                                     <!-- Botones de descarga -->
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                         <?php if (!empty($pedido['factura_pdf'])): ?>
-                                            <a href="<?= uploads_url('facturas/' . htmlspecialchars($pedido['factura_pdf'])) ?>" 
+                                            <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=factura_pdf') ?>" 
                                                target="_blank"
                                                download
                                                class="btn-descarga flex items-center justify-center gap-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all transform hover:scale-105">
@@ -669,7 +669,7 @@ $estados = [
                                         <?php endif; ?>
                                         
                                         <?php if (!empty($pedido['factura_xml'])): ?>
-                                            <a href="<?= uploads_url('facturas/' . htmlspecialchars($pedido['factura_xml'])) ?>" 
+                                            <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=factura_xml') ?>" 
                                                download
                                                class="btn-descarga flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all transform hover:scale-105">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -853,7 +853,7 @@ $estados = [
                                 <div class="bg-white rounded-lg p-3 border-2 border-purple-200">
                                     <?php 
                                     $extension = strtolower(pathinfo($pedido['comprobante_envio'], PATHINFO_EXTENSION));
-                                    $rutaComprobante = uploads_url('comprobantes_envio/' . htmlspecialchars($pedido['comprobante_envio']));
+                                    $rutaComprobante = url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=envio');
                                     ?>
                                     
                                     <?php if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp'])): ?>
@@ -931,7 +931,7 @@ $estados = [
                                         <p class="text-xs font-semibold text-green-800 mb-2">Información de Envío:</p>
                                         <?php 
                                         $extension = strtolower(pathinfo($pedido['comprobante_envio'], PATHINFO_EXTENSION));
-                                        $rutaComprobante = uploads_url('comprobantes_envio/' . htmlspecialchars($pedido['comprobante_envio']));
+                                        $rutaComprobante = url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=envio');
                                         ?>
                                         <a href="<?= $rutaComprobante ?>" 
                                            target="_blank"

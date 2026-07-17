@@ -244,7 +244,7 @@ function money_ventas($value) {
                             <?php if ($tieneComprobante): ?>
                                 <div class="flex items-center gap-2 text-sm">
                                     <span class="text-green-600 font-bold">Comprobante subido</span>
-                                    <a href="<?= uploads_url('comprobantes/' . htmlspecialchars($venta['comprobante_pago'])) ?>"
+                                    <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$venta['id'] . '&tipo=comprobante') ?>"
                                        target="_blank"
                                        class="text-xs text-blue-600 underline">Ver</a>
                                     <button type="button"
@@ -353,28 +353,28 @@ function money_ventas($value) {
                             <?php if (!empty($venta['comprobante_pago']) || !empty($venta['comprobante_envio']) || !empty($venta['factura_pdf']) || !empty($venta['factura_xml'])): ?>
                             <div class="mt-3 pt-2 border-t border-stone-200 flex flex-wrap gap-3">
                                 <?php if (!empty($venta['comprobante_pago'])): ?>
-                                <a href="<?= uploads_url('comprobantes/' . htmlspecialchars($venta['comprobante_pago'])) ?>"
+                                <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$venta['id'] . '&tipo=comprobante') ?>"
                                    target="_blank"
                                    class="flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800">
                                     Comprobante de pago ↗
                                 </a>
                                 <?php endif; ?>
                                 <?php if (!empty($venta['comprobante_envio'])): ?>
-                                <a href="<?= uploads_url('guias/' . htmlspecialchars($venta['comprobante_envio'])) ?>"
+                                <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$venta['id'] . '&tipo=envio') ?>"
                                    target="_blank"
                                    class="flex items-center gap-1 text-xs font-bold text-emerald-600 hover:text-emerald-800">
                                     Guía de envío ↗
                                 </a>
                                 <?php endif; ?>
                                 <?php if (!empty($venta['factura_pdf'])): ?>
-                                <a href="<?= uploads_url('facturas/' . htmlspecialchars($venta['factura_pdf'])) ?>"
+                                <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$venta['id'] . '&tipo=factura_pdf') ?>"
                                    target="_blank"
                                    class="flex items-center gap-1 text-xs font-bold text-violet-600 hover:text-violet-800">
                                     Factura PDF ↗
                                 </a>
                                 <?php endif; ?>
                                 <?php if (!empty($venta['factura_xml'])): ?>
-                                <a href="<?= uploads_url('facturas/' . htmlspecialchars($venta['factura_xml'])) ?>"
+                                <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$venta['id'] . '&tipo=factura_xml') ?>"
                                    download
                                    class="flex items-center gap-1 text-xs font-bold text-violet-600 hover:text-violet-800">
                                     Descargar XML

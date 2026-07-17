@@ -153,19 +153,19 @@ foreach ($mensajes as $msg) {
     <!-- Comprobantes -->
     <?php if (!empty($pedido['comprobante_pago'])): ?>
         <div class="mb-2">
-            <a href="<?= uploads_url('comprobantes') ?>/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" 
+            <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=comprobante') ?>"
                target="_blank"
-               class="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1">
+               class="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 px-3 py-2 rounded-lg text-xs font-semibold flex items-center justify-center transition">
                 Ver comprobante pago
             </a>
         </div>
     <?php endif; ?>
-    
+
     <?php if (!empty($pedido['comprobante_envio'])): ?>
         <div class="mb-2">
-            <a href="<?= uploads_url('comprobantes_envio') ?>/<?= htmlspecialchars($pedido['comprobante_envio']) ?>" 
+            <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=envio') ?>"
                target="_blank"
-               class="text-xs text-purple-600 hover:text-purple-800 flex items-center gap-1">
+               class="w-full bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 px-3 py-2 rounded-lg text-xs font-semibold flex items-center justify-center transition">
                 Ver comprobante envío
             </a>
         </div>
@@ -179,7 +179,7 @@ foreach ($mensajes as $msg) {
             <?php if (!empty($pedido['factura_pdf']) || !empty($pedido['factura_xml'])): ?>
                 <div class="space-y-1">
                     <?php if (!empty($pedido['factura_pdf'])): ?>
-                        <a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_pdf']) ?>" 
+                        <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=factura_pdf') ?>"
                            target="_blank"
                            class="text-xs text-green-600 hover:text-green-800 flex items-center gap-1">
                             Ver PDF
@@ -187,7 +187,7 @@ foreach ($mensajes as $msg) {
                     <?php endif; ?>
                     
                     <?php if (!empty($pedido['factura_xml'])): ?>
-                        <a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_xml']) ?>" 
+                        <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=factura_xml') ?>"
                            target="_blank" download
                            class="text-xs text-green-600 hover:text-green-800 flex items-center gap-1">
                             Descargar XML

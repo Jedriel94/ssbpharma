@@ -37,3 +37,7 @@ Thumbs.db
 # Preview local (solo esta Mac)
 /iniciar-preview-local.command
 /.claude/launch.json
+
+# Solo local: vista previa y datos de prueba
+/limpiar-demo-local.php
+/uploads/**/DEMO_*

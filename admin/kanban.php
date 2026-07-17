@@ -1427,7 +1427,7 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                             <div class="pdx-info-ttl">Pago</div>
                             <div style="font-size:13px;font-weight:600;color:var(--sub);text-transform:capitalize"><?= htmlspecialchars($pedido['metodo_pago']) ?></div>
                             <?php if (!empty($pedido['comprobante_pago'])): ?>
-                                <a href="<?= uploads_url('comprobantes') ?>/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" target="_blank" style="display:inline-flex;align-items:center;gap:4px;margin-top:7px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none">Ver comprobante ↗</a>
+                                <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=comprobante') ?>" target="_blank" style="display:inline-flex;align-items:center;gap:4px;margin-top:7px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none">Ver comprobante ↗</a>
                             <?php endif; ?>
                         </div>
                         <?php endif; ?>
@@ -1435,8 +1435,8 @@ body.theme-dark .pdx-act-approve:hover { background: #122b1f; }
                         <div class="pdx-info" style="border-left:2px solid #c4b5fd">
                             <div class="pdx-info-ttl">Factura<?php if (!empty($pedido['num_factura'])): ?> <span style="font-weight:400;font-size:11px;color:var(--faint)">#<?= htmlspecialchars($pedido['num_factura']) ?></span><?php endif; ?></div>
                             <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap">
-                                <?php if (!empty($pedido['factura_pdf'])): ?><a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_pdf']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">PDF ↗</a><?php endif; ?>
-                                <?php if (!empty($pedido['factura_xml'])): ?><a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_xml']) ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">XML ↗</a><?php endif; ?>
+                                <?php if (!empty($pedido['factura_pdf'])): ?><a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=factura_pdf') ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">PDF ↗</a><?php endif; ?>
+                                <?php if (!empty($pedido['factura_xml'])): ?><a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=factura_xml') ?>" target="_blank" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none">XML ↗</a><?php endif; ?>
                             </div>
                         </div>
                         <?php endif; ?>
@@ -2508,7 +2508,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const comprobanteHTML = pedido.comprobante_pago ? 
             `<div class="mb-2">
-                <a href="<?= uploads_url('comprobantes') ?>/${pedido.comprobante_pago}" target="_blank" class="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1">
+                <a href="<?= url('descargar-pedido-archivo.php') ?>?pedido=${pedido.id}&tipo=comprobante" target="_blank" class="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 px-3 py-2 rounded-lg text-xs font-semibold flex items-center justify-center transition">
                     Ver comprobante pago
                 </a>
             </div>` : '';

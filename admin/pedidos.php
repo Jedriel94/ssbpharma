@@ -663,7 +663,7 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
                 <div class="pdx-info-ttl">Método de Pago</div>
                 <div style="font-size:13px;font-weight:600;color:var(--sub);text-transform:capitalize;"><?= htmlspecialchars($pedido['metodo_pago']) ?></div>
                 <?php if (!empty($pedido['comprobante_pago'])): ?>
-                  <a href="<?= uploads_url('comprobantes') ?>/<?= htmlspecialchars($pedido['comprobante_pago']) ?>"
+                  <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=comprobante') ?>"
                      target="_blank"
                      style="display:inline-flex;align-items:center;gap:4px;margin-top:7px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none;">
                     Ver comprobante ↗
@@ -675,7 +675,7 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
               <?php if (!empty($pedido['comprobante_envio'])): ?>
               <div class="pdx-info" style="border-left:2px solid #6ee7b7;">
                 <div class="pdx-info-ttl">Guía de Envío</div>
-                <a href="<?= uploads_url('guias') ?>/<?= htmlspecialchars($pedido['comprobante_envio']) ?>"
+                <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=envio') ?>"
                    target="_blank"
                    style="display:inline-flex;align-items:center;gap:4px;margin-top:4px;font-size:12px;font-weight:700;color:var(--brand);text-decoration:none;">
                   Ver guía ↗
@@ -693,14 +693,14 @@ body { background: var(--paper) !important; font-family: var(--font-base); color
                 </div>
                 <div style="display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;">
                   <?php if (!empty($pedido['factura_pdf'])): ?>
-                    <a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_pdf']) ?>"
+                    <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=factura_pdf') ?>"
                        target="_blank"
                        style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none;">
                       PDF ↗
                     </a>
                   <?php endif; ?>
                   <?php if (!empty($pedido['factura_xml'])): ?>
-                    <a href="<?= uploads_url('facturas') ?>/<?= htmlspecialchars($pedido['factura_xml']) ?>"
+                    <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=factura_xml') ?>"
                        target="_blank"
                        style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none;">
                       XML ↗

@@ -1,24 +1,3 @@
-# Permitir acceso solo a archivos de imagen y PDF
-# Bloquear acceso a otros archivos potencialmente peligrosos
-
-# Por defecto, denegar todo
+# Solo se sirven por descargar-pedido-archivo.php, que valida sesion.
 Order Deny,Allow
 Deny from all
-
-# Permitir acceso a imágenes y PDFs (comprobantes de envío)
-<FilesMatch "\.(jpg|jpeg|png|gif|pdf)$">
-    Allow from all
-</FilesMatch>
-
-# Permitir scripts PHP (si los hay)
-<FilesMatch "\.(php)$">
-    Allow from all
-</FilesMatch>
-
-# Bloquear ejecución de scripts
-<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|sh|cgi)$">
-    SetHandler none
-    SetHandler default-handler
-    Options -ExecCGI
-    RemoveHandler .php .php3 .php4 .php5 .phtml .pl .py .jsp .asp .sh .cgi
-</FilesMatch>

@@ -329,7 +329,7 @@ $es_entrega_directa = (($pedido['canal'] ?? '') === 'representante_directo') || 
                 Método: <span class="capitalize"><?= htmlspecialchars($pedido['metodo_pago']) ?></span>
             </p>
             <?php if (!empty($pedido['comprobante_pago'])): ?>
-                <a href="<?= uploads_url('comprobantes') ?>/<?= htmlspecialchars($pedido['comprobante_pago']) ?>" 
+                <a href="<?= url('descargar-pedido-archivo.php?pedido=' . (int)$pedido['id'] . '&tipo=comprobante') ?>" 
                    target="_blank"
                    class="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-semibold">
                     Ver Comprobante de Pago
